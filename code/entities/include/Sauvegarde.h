@@ -2,6 +2,7 @@
 #define DEF_SAUVEGARDE
 
 #include "Card.h"
+#include <vector>
 
 
 class EnergyCard{
@@ -24,7 +25,7 @@ class EnergyCard{
 
         //Function who right on .txt every infomrations about card and profil for tne next use of application
         void saveSauvegarde();
-        
+
     };
 
 

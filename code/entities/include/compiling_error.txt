@@ -1,0 +1,12 @@
+C:\Users\ququq\Documents\GitHub\Ecemon\code\entities\include\Sauvegarde.h:10:21: error: 'Profil' was not declared in this scope
+C:\Users\ququq\Documents\GitHub\Ecemon\code\entities\include\Sauvegarde.h:10:28: error: template argument 1 is invalid
+C:\Users\ququq\Documents\GitHub\Ecemon\code\entities\include\Sauvegarde.h:10:28: error: template argument 2 is invalid
+C:\Users\ququq\Documents\GitHub\Ecemon\code\entities\include\Sauvegarde.h:11:9: error: 'map' in namespace 'std' does not name a type
+C:\Users\ququq\Documents\GitHub\Ecemon\code\entities\include\Sauvegarde.h:14:20: error: ISO C++ forbids declaration of 'Sauvegarde' with no type [-fpermissive]
+C:\Users\ququq\Documents\GitHub\Ecemon\code\entities\include\Sauvegarde.h:15:20: error: expected class-name before '(' token
+C:\Users\ququq\Documents\GitHub\Ecemon\code\entities\include\Sauvegarde.h:18:21: error: 'Profil' was not declared in this scope
+C:\Users\ququq\Documents\GitHub\Ecemon\code\entities\include\Sauvegarde.h:18:28: error: template argument 1 is invalid
+C:\Users\ququq\Documents\GitHub\Ecemon\code\entities\include\Sauvegarde.h:18:28: error: template argument 2 is invalid
+C:\Users\ququq\Documents\GitHub\Ecemon\code\entities\include\Sauvegarde.h:21:9: error: 'map' in namespace 'std' does not name a type
+C:\Users\ququq\Documents\GitHub\Ecemon\code\entities\include\Sauvegarde.h: In member function 'int* EnergyCard::getpDataProfil()':
+C:\Users\ququq\Documents\GitHub\Ecemon\code\entities\include\Sauvegarde.h:18:68: error: expected ';' before '}' token
