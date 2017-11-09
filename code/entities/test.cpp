@@ -7,8 +7,8 @@
 using namespace std;
 
 int main(int argc, char const *argv[]) {
-    PowerCard pc;
-    EnergyCard ec;
-    CreatureCard cc;
+
+    std::cout<<"Hello World" << std::endl;
+
     return 0;
 }
