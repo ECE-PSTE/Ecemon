@@ -1,3 +1,6 @@
+#ifndef DEF_POWERTYPE
+#define DEF_POWERTYPE
+
 enum PowerType {
     Respect,
     OmgKenny,
@@ -6,3 +9,5 @@ enum PowerType {
     Cold,
     President
 };
+
+#endif
