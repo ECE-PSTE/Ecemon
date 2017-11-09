@@ -15,10 +15,10 @@ class EnergyCard{
         ~Sauvegarde();
 
         //GETTER : pointeur of m_dataProfil
-        std::vector<Profil*>* getpDataProfil(){return &m_dataProfil}
+        std::vector<Profil*>* getpDataProfil(){return &m_dataProfil;}
 
         //GETTER : pointeur of m_dataCard
-        std::map<int, Card*>* getpDataCard(){return &m_dataCard}
+        std::map<int, Card*>* getpDataCard(){return &m_dataCard;}
 
         //Function who load all data on .txt to our game's Profil of players and Card
         void loadSauvegarde();

@@ -1,14 +1,16 @@
 #include <iostream>
 
-#include "include/PowerCard.h"
-#include "include/EnergyCard.h"
-#include "include/CreatureCard.h"
+#include "include/Deck.h"
+#include "src/Deck.cpp"
+
 
 using namespace std;
 
 int main(int argc, char const *argv[]) {
 
     std::cout<<"Hello World" << std::endl;
+
+    Deck deck1("yolo");
 
     return 0;
 }

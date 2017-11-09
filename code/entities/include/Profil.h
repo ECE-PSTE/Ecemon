@@ -7,7 +7,7 @@
 #include <vector>
 #include <map>
 
-class EnergyCard{
+class Profil{
     private:
         std::string m_nom;
         std::map<int, int> m_collectionCard;
@@ -22,16 +22,16 @@ class EnergyCard{
         ~Profil();
 
         //GETTER : pointeur of m_collectionDeck
-        std::vector<Deck*>* getpCollectionDeck(){return &m_collectionDeck}
+        std::vector<Deck*>* getpCollectionDeck(){return &m_collectionDeck;}
 
         //GETTER : pointeur of m_collectionCard
-        std::map<int, Card*>* getpCollectionCard(){return &m_collectionCard}
+        std::map<int, Card*>* getpCollectionCard(){return &m_collectionCard;}
 
         //GETTER : std::string m_nom
-        std::string getNom(){return m_nom}
+        std::string getNom(){return m_nom;}
 
         //Setter : std::string m_nom
-        void setNom(std::string val){m_nom = val}
+        void setNom(std::string val){m_nom = val;}
 
         //Function who delete a deck from his profil with his name, true if success
         bool deleteDeck(std::string name);

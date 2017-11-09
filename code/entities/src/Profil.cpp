@@ -4,11 +4,11 @@ Profil::Profil() : m_nom("Default")
 {
 }
 
-Profil(std::string nom) : m_nom(nom)
+Profil::Profil(std::string nom) : m_nom(nom)
 {
 }
 
-~Profil()
+Profil::~Profil()
 {
   for(auto elem : getpCollectionDeck())
   {
@@ -17,7 +17,7 @@ Profil(std::string nom) : m_nom(nom)
   }
 }
 
-bool deleteDeck(std::string name)
+bool Profil::deleteDeck(std::string name)
 {
   for(auto elem : getpCollectionDeck())
   {
