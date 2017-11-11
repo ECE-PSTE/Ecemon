@@ -1,10 +1,10 @@
 #include "../include/Card.h"
 
 Card::Card(){
-    m_id = 0;
-    m_cardType = Undefined;
-    m_name = "Default Card";
-    m_description = "Default description";
+    m_id = -1;
+    m_cardType = CardType_Undefined;
+    m_name = "Default Card Name";
+    m_description = "Default Card Description";
 }
 
 Card::~Card(){

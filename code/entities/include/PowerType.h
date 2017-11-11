@@ -2,12 +2,13 @@
 #define DEF_POWERTYPE
 
 enum PowerType {
-    Respect,
-    OmgKenny,
-    Food,
-    Jesus,
-    Cold,
-    President
+    PowerType_Respect,
+    PowerType_OmgKenny,
+    PowerType_Food,
+    PowerType_Jesus,
+    PowerType_Cold,
+    PowerType_President,
+    PowerType_Undefined
 };
 
 #endif

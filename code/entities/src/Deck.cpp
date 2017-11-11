@@ -1,7 +1,7 @@
 #include "../include/Deck.h"
 
 Deck::Deck(){
-    m_name = "Default Deck";
+    m_name = "Default Deck Name";
 }
 
 Deck::Deck(std::string name){

@@ -1,7 +1,7 @@
 #include "../include/Profil.h"
 
 Profil::Profil(){
-    m_name = "Default Profil";
+    m_name = "Default Profil Name";
 }
 
 Profil::Profil(std::string name){

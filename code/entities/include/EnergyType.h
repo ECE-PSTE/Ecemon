@@ -2,11 +2,12 @@
 #define DEF_ENERGYTYPE
 
 enum EnergyType {
-    Chili,
-    Tacos,
-    IceCream,
-    Blueberries,
-    Neutral
+    EnergyType_Chili,
+    EnergyType_Tacos,
+    EnergyType_IceCream,
+    EnergyType_Blueberries,
+    EnergyType_Neutral,
+    EnergyType_Undefined
 };
 
 #endif

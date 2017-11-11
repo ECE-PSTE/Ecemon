@@ -2,10 +2,10 @@
 #define DEF_CARDTYPE
 
 enum CardType {
-    Energy,
-    Creature,
-    Power,
-    Undefined
+    CardType_Energy,
+    CardType_Creature,
+    CardType_Power,
+    CardType_Undefined
 };
 
 #endif

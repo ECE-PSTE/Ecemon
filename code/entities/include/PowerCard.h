@@ -15,5 +15,8 @@ class PowerCard : public Card {
 
         int getStats();
         PowerType getPowerType();
+
+        void setStats(int stats);
+        void setPowerType(PowerType powerType);
 };
 #endif
