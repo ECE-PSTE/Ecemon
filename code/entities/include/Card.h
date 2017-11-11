@@ -19,6 +19,11 @@ class Card {
         CardType getCardType();
         std::string getName();
         std::string getDescription();
+
+        void setId(int id);
+        void setCardType(CardType type);
+        void setName(std::string name);
+        void setDescription(std::string description);
 };
 
 #endif

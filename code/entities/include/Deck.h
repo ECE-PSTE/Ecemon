@@ -3,35 +3,28 @@
 
 #define NB_CARD_DECK 30 ///Tempory, wait namespace with parameter
 
-#include <iostream>
-
+#include <string>
 #include <vector>
 
 class Deck{
     private:
-        std::string m_nom;
-        std::vector<int> m_vecteurIdCardDeck;
-
+        std::string m_name;
+        std::vector<int> m_cardIds;
 
     public:
         Deck();
-        //Constructor with the name
-        Deck(std::string nom);
-
+        Deck(std::string name);
         ~Deck();
 
-        //GETTER : pointeur of m_vecteurIdCardDeck
-        std::vector<int>* getpVecteurIdCardDeck(){return &m_vecteurIdCardDeck;}
+        std::vector<int>* getpCardIds();
+        std::string getName();
 
-        //GETTER : std::string m_nom
-        std::string getNom(){return m_nom;}
-
-        //Setter : std::string m_nom
-        void setNom(std::string val){m_nom = val;}
+        void addCard(int id);
+        void addCards(std::vector<int> ids);
+        void setName(std::string name);
 
         //True if number of card of deck is same than number of card in a deck
-        bool complet();
-
-    };
+        bool complete();
+};
 
 #endif

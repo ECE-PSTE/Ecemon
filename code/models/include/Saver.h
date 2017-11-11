@@ -1,21 +1,19 @@
 #ifndef DEF_SAUVEGARDE
 #define DEF_SAUVEGARDE
-#include <iostream>
-#include "Card.h"
-#include "Profil.h"
+
 #include "EnergyCard.h"
+#include "Profil.h"
+
+#include <iostream>
+#include <fstream>
 #include <vector>
 #include <map>
-#include <fstream>
 
-
-class Sauvegarde{
+class Saver{
     private:
         std::vector<Profil*> m_dataProfil;
         //int id card / pointeur of card
         std::map<int, Card*> m_dataCard;
-
-
 
         //Save a card in the fill pass, the card is in a map with his Id and pointeur of card
         void saveCardOnFil(const std::pair<const int, Card*> pMap, std::ofstream filCard);

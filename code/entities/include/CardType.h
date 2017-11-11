@@ -4,7 +4,8 @@
 enum CardType {
     Energy,
     Creature,
-    Power
+    Power,
+    Undefined
 };
 
 #endif

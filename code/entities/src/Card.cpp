@@ -1,6 +1,10 @@
 #include "../include/Card.h"
 
 Card::Card(){
+    m_id = 0;
+    m_cardType = Undefined;
+    m_name = "Default Card";
+    m_description = "Default description";
 }
 
 Card::~Card(){
@@ -20,4 +24,20 @@ std::string Card::getName(){
 
 std::string Card::getDescription(){
     return m_description;
+}
+
+void Card::setId(int id){
+    m_id = id;
+}
+
+void Card::setCardType(CardType type){
+    m_cardType = type;
+}
+
+void Card::setName(std::string name){
+    m_name = name;
+}
+
+void Card::setDescription(std::string description){
+    m_description = description;
 }
