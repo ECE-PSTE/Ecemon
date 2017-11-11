@@ -15,5 +15,8 @@ class EnergyCard : public Card {
 
         EnergyType getEnergyType();
         int getEnergy();
+
+        void setEnergyType(EnergyType energyType);
+        void setEnergy(int energy);
 };
 #endif

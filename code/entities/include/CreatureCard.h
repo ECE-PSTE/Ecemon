@@ -17,5 +17,9 @@ class CreatureCard : public Card {
         int getLife();
         Attack getFirstAttack();
         Attack getSecondAttack();
+
+        void setLife(int life);
+        void setFirstAttack(Attack firstAttack);
+        void setSecondAttack(Attack secondAttack);
 };
 #endif

@@ -1,13 +1,13 @@
-#include "..\include\Sauvegarde.h"
+#include "..\include\Saver.h"
 
-Sauvegarde::Sauvegarde()
+Saver::Saver()
 {
   //loadSauvegarde();
 
 }
 
 
-Sauvegarde::~Sauvegarde()
+Saver::~Saver()
 {
   saveSauvegarde();
 
@@ -25,17 +25,17 @@ Sauvegarde::~Sauvegarde()
 */
 }
 
-void Sauvegarde::loadSauvegarde()
+void Saver::loadSauvegarde()
 {
 
 }
 
-void Sauvegarde::saveSauvegarde()
+void Saver::saveSauvegarde()
 {
   saveDataCard();
 }
 
-void Sauvegarde::saveDataCard()
+void Saver::saveDataCard()
 {
   getDataCard()[1] = new EnergyCard();
 

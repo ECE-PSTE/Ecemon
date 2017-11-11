@@ -1,42 +1,33 @@
 #ifndef DEF_PROFIL
 #define DEF_PROFIL
 
-#include <iostream>
-
-#include "Card.h"
-#include "Deck.h"
+#include <string>
 #include <vector>
-#include <map>
+#include <utility>
+
+#include "Deck.h"
 
 class Profil{
     private:
-        std::string m_nom;
-        std::map<int, int> m_collectionCard;
-        std::vector<Deck*> m_collectionDeck;
-
+        std::string m_name;
+        std::vector<std::pair<int, int> > m_cards; // <int, int> = <id, nb of occurrences>
+        std::vector<Deck> m_decks;
 
     public:
         Profil();
-        //Constructor with the name
         Profil(std::string nom);
-
         ~Profil();
 
-        //GETTER : pointeur of m_collectionDeck
-        std::vector<Deck*>* getpCollectionDeck(){return &m_collectionDeck;}
+        std::vector<std::pair<int, int> >* getpCards();
+        std::vector<Deck>* getpDecks();
+        std::string getName();
 
-        //GETTER : pointeur of m_collectionCard
-        std::map<int, int>* getCollectionCard(){return &m_collectionCard;}
+        void addCard(std::pair<int, int> card);
+        void addDeck(Deck deck);
+        void setName(std::string name);
 
-        //GETTER : std::string m_nom
-        std::string getNom(){return m_nom;}
-
-        //Setter : std::string m_nom
-        void setNom(std::string val){m_nom = val;}
-
-        //Function who delete a deck from his profil with his name, true if success
+        // delete a deck by its name, return true if success
         bool deleteDeck(std::string name);
-
     };
 
 #endif
