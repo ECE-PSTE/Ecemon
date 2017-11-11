@@ -19,8 +19,8 @@ class Saver{
         void saveCardOnFil(const std::pair<const int, Card*> pMap, std::ofstream filCard);
 
     public:
-        Sauvegarde();
-        ~Sauvegarde();
+        Saver();
+        ~Saver();
 
         //GETTER : pointeur of m_dataProfil
         std::vector<Profil*>* getpDataProfil(){return &m_dataProfil;}
