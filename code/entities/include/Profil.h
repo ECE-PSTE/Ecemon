@@ -4,6 +4,7 @@
 #include <iostream>
 
 #include "Card.h"
+#include "Deck.h"
 #include <vector>
 #include <map>
 
@@ -25,7 +26,7 @@ class Profil{
         std::vector<Deck*>* getpCollectionDeck(){return &m_collectionDeck;}
 
         //GETTER : pointeur of m_collectionCard
-        std::map<int, Card*>* getpCollectionCard(){return &m_collectionCard;}
+        std::map<int, int>* getCollectionCard(){return &m_collectionCard;}
 
         //GETTER : std::string m_nom
         std::string getNom(){return m_nom;}

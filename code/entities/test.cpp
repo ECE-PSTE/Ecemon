@@ -1,16 +1,27 @@
 #include <iostream>
 
-#include "include/Deck.h"
-#include "src/Deck.cpp"
+#include "include\Deck.h"
+#include "src\Deck.cpp"
+
+#include "include\Card.h"
+#include "src\Card.cpp"
+
+#include "include\Profil.h"
+#include "src\Profil.cpp"
+
+#include "include\EnergyCard.h"
+#include "src\EnergyCard.cpp"
 
 
-using namespace std;
+#include "include\Sauvegarde.h"
+#include "src\Sauvegarde.cpp"
+
 
 int main(int argc, char const *argv[]) {
 
-    std::cout<<"Hello World" << std::endl;
+    Sauvegarde sauv1 = Sauvegarde();
 
-    Deck deck1("yolo");
+    sauv1.saveSauvegarde();
 
     return 0;
 }

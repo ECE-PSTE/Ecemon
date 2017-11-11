@@ -1,32 +1,60 @@
-#include "../include/Sauvegarde.h"
+#include "..\include\Sauvegarde.h"
 
 Sauvegarde::Sauvegarde()
 {
-  loadSauvegarde();
+  //loadSauvegarde();
+
 }
 
 
 Sauvegarde::~Sauvegarde()
 {
   saveSauvegarde();
-  for(auto elem : getpDataProfil())
+
+/*
+  for(auto & elem : *getpDataProfil())
   {
-    elem->~Profil();
-    delete elem;
+    elem.~Profil();
+    //delete elem;
   }
-  for(auto elem : getpDataCard())
+  for(auto & elem : *getpDataCard())
   {
-    elem->~Card();
-    delete elem;
+    elem.second->~Card();
+    //delete elem.second;
   }
+*/
 }
 
-Sauvegarde::loadSauvegarde()
+void Sauvegarde::loadSauvegarde()
 {
 
 }
 
-Sauvegarde::saveSauvegarde()
+void Sauvegarde::saveSauvegarde()
 {
+  saveDataCard();
+}
 
+void Sauvegarde::saveDataCard()
+{
+  getDataCard()[1] = new EnergyCard();
+
+  std::ofstream filCard("DataSauvegarde/CardData.txt", std::ios::out | std::ios::trunc);
+
+  if(filCard)
+  {
+    filCard << getpDataCard()->size() << std::endl;
+
+
+    for(auto & elem : *getpDataCard())
+    {
+      filCard << elem.first << std::endl << "Coucou" << std::endl;
+    }
+
+    filCard.close();
+  }
+  else
+  {
+    std::cout<< "Error open " << std::endl;
+  }
 }
