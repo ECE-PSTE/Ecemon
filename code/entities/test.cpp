@@ -1,14 +1,27 @@
 #include <iostream>
 
-#include "include/PowerCard.h"
-#include "include/EnergyCard.h"
-#include "include/CreatureCard.h"
+#include "include\Deck.h"
+#include "src\Deck.cpp"
 
-using namespace std;
+#include "include\Card.h"
+#include "src\Card.cpp"
+
+#include "include\Profil.h"
+#include "src\Profil.cpp"
+
+#include "include\EnergyCard.h"
+#include "src\EnergyCard.cpp"
+
+
+#include "include\Sauvegarde.h"
+#include "src\Sauvegarde.cpp"
+
 
 int main(int argc, char const *argv[]) {
-    PowerCard pc;
-    EnergyCard ec;
-    CreatureCard cc;
+
+    Sauvegarde sauv1 = Sauvegarde();
+
+    sauv1.saveSauvegarde();
+
     return 0;
 }

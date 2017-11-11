@@ -8,7 +8,7 @@ Energie : Bouff
 	+ le nombre d energie qu il apporte
 
 
-	
+
 Creature :
 	Point de vie
 	2*Attaques
@@ -18,10 +18,10 @@ Creature :
 		Descritpion
 
 Pouvoir : effet
-	"Respecte mon autorité" : skip un tour
-	"O mon dieu, ils ont tué kenny" fait perdre ... pdv
+	"Respecte mon autoritï¿½" : skip un tour
+	"O mon dieu, ils ont tuï¿½ kenny" fait perdre ... pdv
 	"Sortie bouf avec la mere de cartman" fait gagner 2 energie au choix
-	"Jesus VS Satan " fait remettre dans votre pioche la dernière creature morte
+	"Jesus VS Satan " fait remettre dans votre pioche la derniï¿½re creature morte
 	"Rechauffement climatique" : la creature enemis ne peux pas attaquer au prochain tour
 	"Cartman president" : fait regagner les pdv de ta creature
 
@@ -35,3 +35,4 @@ ofstream file("omomo");
 file << "hello World" << endl;
 file.close();
 
+Collection : map qui contient l id et le nombre de carte qu a le joueur
