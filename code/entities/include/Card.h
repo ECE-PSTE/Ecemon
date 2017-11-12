@@ -2,6 +2,9 @@
 #define DEF_CARD
 
 #include <string>
+#include <sstream>
+#include <iostream>
+
 #include "CardType.h"
 
 class Card {
@@ -13,6 +16,7 @@ class Card {
 
     public:
         Card();
+        Card(const Card &card);
         virtual ~Card();
 
         int getId();
@@ -24,6 +28,9 @@ class Card {
         void setCardType(CardType type);
         void setName(std::string name);
         void setDescription(std::string description);
+
+        friend std::ostream& operator<<(std::ostream& os, const Card& card);
+        friend std::istream& operator>>(std::istream& is, Card& card);
 };
 
 #endif

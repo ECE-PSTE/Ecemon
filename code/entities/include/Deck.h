@@ -5,26 +5,32 @@
 
 #include <string>
 #include <vector>
+#include <iostream>
+
+#include "Card.h"
 
 class Deck{
     private:
         std::string m_name;
-        std::vector<int> m_cardIds;
+        std::vector<Card*> m_cards;
 
     public:
         Deck();
         Deck(std::string name);
         ~Deck();
 
-        std::vector<int>* getpCardIds();
+        std::vector<Card*> getCards();
         std::string getName();
 
-        void addCard(int id);
-        void addCards(std::vector<int> ids);
+        void addCard(Card *card);
+        void addCards(std::vector<Card*> cards);
         void setName(std::string name);
 
         //True if number of card of deck is same than number of card in a deck
         bool complete();
+
+        friend std::ostream& operator<<(std::ostream& os, const Deck& deck);
+        friend std::istream& operator>>(std::istream& is, Deck& deck);
 };
 
 #endif

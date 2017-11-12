@@ -1,7 +1,6 @@
-#ifndef DEF_SAUVEGARDE
-#define DEF_SAUVEGARDE
+#ifndef DEF_SAUVER
+#define DEF_SAUVER
 
-#include "EnergyCard.h"
 #include "Profil.h"
 
 #include <iostream>
@@ -9,7 +8,7 @@
 #include <vector>
 #include <map>
 
-class Saver{
+class Saver {
     private:
         std::vector<Profil*> m_dataProfil;
         //int id card / pointeur of card
