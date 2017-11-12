@@ -1,6 +1,9 @@
-C:\Users\ququq\AppData\Local\Temp\ccAPCQeO.o:test.cpp:(.text+0x1d): undefined reference to `Saver::Saver()'
-C:\Users\ququq\AppData\Local\Temp\ccAPCQeO.o:test.cpp:(.text+0x4c): undefined reference to `Saver::testaff()'
-C:\Users\ququq\AppData\Local\Temp\ccAPCQeO.o:test.cpp:(.text+0x5b): undefined reference to `Saver::~Saver()'
-C:\Users\ququq\AppData\Local\Temp\ccAPCQeO.o:test.cpp:(.text+0x6b): undefined reference to `Saver::~Saver()'
-C:\Program Files (x86)\CodeAnalysis Suite\Tools\MinGW\bin/ld.exe: C:\Users\ququq\AppData\Local\Temp\ccAPCQeO.o: bad reloc address 0x0 in section `.ctors'
-collect2.exe: error: ld returned 1 exit status
+In file included from C:\Users\ququq\Documents\GitHub\Ecemon\code\models\include\Saver.h:10:0,
+                 from C:\Users\ququq\Documents\GitHub\Ecemon\code\test.cpp:6:
+C:\Users\ququq\Documents\GitHub\Ecemon\code\models\include\../../entities/src/Profil.cpp: In function 'std::istream& operator>>(std::istream&, Profil&)':
+C:\Users\ququq\Documents\GitHub\Ecemon\code\models\include\../../entities/src/Profil.cpp:81:14: error: 'stoi' is not a member of 'std'
+In file included from C:\Users\ququq\Documents\GitHub\Ecemon\code\models\include\Saver.h:11:0,
+                 from C:\Users\ququq\Documents\GitHub\Ecemon\code\test.cpp:6:
+C:\Users\ququq\Documents\GitHub\Ecemon\code\models\include\../../entities/src/Card.cpp: In function 'std::istream& operator>>(std::istream&, Card&)':
+C:\Users\ququq\Documents\GitHub\Ecemon\code\models\include\../../entities/src/Card.cpp:64:17: error: 'stoi' is not a member of 'std'
+C:\Users\ququq\Documents\GitHub\Ecemon\code\models\include\../../entities/src/Card.cpp:67:34: error: 'stoi' is not a member of 'std'
