@@ -2,7 +2,6 @@
 #define DEF_CARD
 
 #include <string>
-#include <sstream>
 #include <iostream>
 
 #include "CardType.h"

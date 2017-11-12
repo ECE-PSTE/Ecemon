@@ -51,6 +51,7 @@ void Card::setDescription(std::string description){
 
 std::ostream& operator<<(std::ostream& os, const Card& card){
     os << card.m_id << std::endl;
+    os << card.m_cardType << std::endl;
     os << card.m_name << std::endl;
     os << card.m_description;
     return os;
@@ -58,15 +59,13 @@ std::ostream& operator<<(std::ostream& os, const Card& card){
 
 std::istream& operator>>(std::istream& is, Card& card){
     std::string line;
-    std::stringstream ss;
 
     getline(is, line);
-    ss << line;
-    ss >> card.m_id;
+    card.m_id = std::stoi(line);
 
     getline(is, line);
-    card.m_name = line;
+    card.m_cardType = (CardType) std::stoi(line);
 
-    getline(is, line);
-    card.m_description = line;
+    getline(is, card.m_name);
+    getline(is, card.m_description);
 }

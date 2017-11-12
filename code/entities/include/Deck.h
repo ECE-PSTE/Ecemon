@@ -14,8 +14,11 @@ class Deck{
         std::string m_name;
         std::vector<Card*> m_cards;
 
+        bool m_wasDeserialized;
+
     public:
         Deck();
+        Deck(const Deck &deck);
         Deck(std::string name);
         ~Deck();
 

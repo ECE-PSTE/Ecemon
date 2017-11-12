@@ -1,6 +1,7 @@
 #ifndef DEF_PROFIL
 #define DEF_PROFIL
 
+#include <map>
 #include <string>
 #include <vector>
 #include <utility>
@@ -11,19 +12,20 @@
 class Profil{
     private:
         std::string m_name;
-        std::vector<std::pair<Card*, int> > m_cards; // <Card*, int> = <Card, nb of occurrences>
         std::vector<Deck*> m_decks;
+        Deck m_cards;
 
     public:
         Profil();
         Profil(std::string nom);
         ~Profil();
 
-        std::vector<std::pair<Card*, int> >* getpCards();
+        Deck* getpCards();
         std::vector<Deck*>* getpDecks();
         std::string getName();
 
-        void addCard(std::pair<Card*, int> card);
+        void addCard(Card *card);
+        void addCards(std::vector<Card*> cards);
         void addDeck(Deck *deck);
         void setName(std::string name);
 
