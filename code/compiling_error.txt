@@ -1,9 +1,0 @@
-In file included from C:\Users\ququq\Documents\GitHub\Ecemon\code\models\include\Saver.h:10:0,
-                 from C:\Users\ququq\Documents\GitHub\Ecemon\code\test.cpp:6:
-C:\Users\ququq\Documents\GitHub\Ecemon\code\models\include\../../entities/src/Profil.cpp: In function 'std::istream& operator>>(std::istream&, Profil&)':
-C:\Users\ququq\Documents\GitHub\Ecemon\code\models\include\../../entities/src/Profil.cpp:81:14: error: 'stoi' is not a member of 'std'
-In file included from C:\Users\ququq\Documents\GitHub\Ecemon\code\models\include\Saver.h:11:0,
-                 from C:\Users\ququq\Documents\GitHub\Ecemon\code\test.cpp:6:
-C:\Users\ququq\Documents\GitHub\Ecemon\code\models\include\../../entities/src/Card.cpp: In function 'std::istream& operator>>(std::istream&, Card&)':
-C:\Users\ququq\Documents\GitHub\Ecemon\code\models\include\../../entities/src/Card.cpp:64:17: error: 'stoi' is not a member of 'std'
-C:\Users\ququq\Documents\GitHub\Ecemon\code\models\include\../../entities/src/Card.cpp:67:34: error: 'stoi' is not a member of 'std'

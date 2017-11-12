@@ -6,6 +6,10 @@
 #include "../../entities/include/Profil.h"
 #include "../../entities/include/Card.h"
 #include "../../entities/include/EnergyCard.h"
+#include "../../entities/include/EnergyType.h"
+#include "../../entities/include/CardType.h"
+#include "../../entities/include/CreatureCard.h"
+#include "../../entities/include/Attack.h"
 
 #include "../../entities/src/Profil.cpp"
 #include "../../entities/src/Card.cpp"
@@ -27,7 +31,20 @@ class Saver {
         /** Default destructor */
         ~Saver();
 
-        void testaff();
+        //GETTER : pointeur of m_dataProfil
+        std::vector<Profil*>* getpDataProfil(){return &m_dataProfil;}
+
+        //GETTER : m_dataProfil
+        std::vector<Profil*> getDataProfil(){return m_dataProfil;}
+
+        //GETTER : pointeur of m_dataCard
+        std::map<int, Card*>* getpDataCard(){return &m_dataCard;}
+
+        //GETTER : m_dataCard
+        std::map<int, Card*> getDataCard(){return m_dataCard;}
+
+        //Function who load all data on .txt to our game's Profil of players and Card
+        void loadSaver();
 
 };
 #endif // SAVER_H

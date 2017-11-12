@@ -1,0 +1,28 @@
+Sauvegarde Card : 
+nb_Card
+
+//puis on repete le schéma:
+
+int id;
+std::string name;
+std::string descritpion;
+char cardType;  //C for creature, P for Power, E for energy
+
+//Si Energy :
+EnergyType typeE; //Type d energy
+int nb_enerf;
+
+//Si Power
+PowerType powerType;
+int nb_stats; 
+
+//Si creature
+int nb_lp;
+std::string name1; //1 for attack 1
+std::string description1;
+EnergyType typeAttack1;
+int costAttack1;
+std::string name2; //2 for attack 2
+std::string description2;
+EnergyType typeAttack2;
+int costAttack2;
