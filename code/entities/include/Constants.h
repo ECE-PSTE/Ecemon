@@ -7,13 +7,13 @@
 #include "EnergyCard.h"
 #include "PowerCard.h"
 
-const std::map<int, const Card*> CARDS_MAP = {
+const int DECK_SIZE = 30;
+
+const std::map<int, const Card*> CARDS = {
     {1, new EnergyCard(1)},
     {2, new PowerCard(2)},
     {3, new CreatureCard(3)},
-    /* .... */
+    /* all cards... */
 };
-
-const int DECK_SIZE = 30;
 
 #endif

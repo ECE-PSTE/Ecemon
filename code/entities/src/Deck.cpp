@@ -21,12 +21,12 @@ std::string Deck::getName(){
     return m_name;
 }
 
-void Deck::addCard(const Card *card){
+void Deck::addCard(const Card* card){
     m_cards.push_back(card);
 }
 
 void Deck::addCards(std::vector<const Card*> cards){
-    m_cards.insert(m_cards.end(), cards.begin(), cards.end());
+    m_cards.insert(m_cards.begin(), cards.begin(), cards.end());
 }
 
 void Deck::setName(std::string name){
@@ -63,7 +63,7 @@ std::istream& operator>>(std::istream& is, Deck& deck){
     Card card;
     for(int i=0 ; i<length ; i++){
         is >> card;
-        deck.m_cards.push_back(CARDS_MAP.at(card.getId()));
+        deck.m_cards.push_back(CARDS.at(card.getId()));
     }
     return is;
 }

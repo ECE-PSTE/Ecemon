@@ -30,14 +30,14 @@ namespace Utils{
 
     std::vector<const Card*> getAllCards(){
         std::vector<const Card*> cards;
-        for(auto it : CARDS_MAP){
+        for(auto it : CARDS){
             cards.push_back(it.second);
         }
         return cards;
     }
 
     void deleteAllCards(){
-        for(auto it : CARDS_MAP){
+        for(auto it : CARDS){
             delete it.second;
         }
     }
