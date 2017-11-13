@@ -5,6 +5,12 @@ EnergyCard::EnergyCard(){
     m_energy = 0;
 }
 
+EnergyCard::EnergyCard(int id){
+    m_id = id;
+    m_energyType = EnergyType_Undefined;
+    m_energy = 0;
+}
+
 EnergyCard::~EnergyCard(){
 }
 

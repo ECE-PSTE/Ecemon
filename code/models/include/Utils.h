@@ -1,4 +1,10 @@
+#ifndef DEF_UTILS
+#define DEF_UTILS
+
+#include <vector>
 #include <fstream>
+
+#include "../../entities/include/Constants.h"
 #include "../../entities/include/Profile.h"
 
 namespace Utils{
@@ -20,5 +26,22 @@ namespace Utils{
             return true;
         }
         return false;
-    }    
+    }
+
+    std::vector<const Card*> getAllCards(){
+        std::vector<const Card*> cards;
+        for(auto it : CARDS){
+            cards.push_back(it.second);
+        }
+        return cards;
+    }
+
+    void deleteAllCards(){
+        for(auto it : CARDS){
+            delete it.second;
+        }
+    }
 };
+
+
+#endif

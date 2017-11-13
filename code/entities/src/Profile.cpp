@@ -26,14 +26,6 @@ std::string Profile::getName(){
     return m_name;
 }
 
-void Profile::addCard(Card* card){
-    m_cards.addCard(card);
-}
-
-void Profile::addCards(std::vector<Card*> cards){
-    m_cards.addCards(cards);
-}
-
 void Profile::addDeck(Deck *deck){
     m_decks.push_back(deck);
 }

@@ -12,6 +12,7 @@ class CreatureCard : public Card {
 
     public:
         CreatureCard();
+        CreatureCard(int id);
         ~CreatureCard();
 
         int getLife();

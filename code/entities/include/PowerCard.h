@@ -12,6 +12,7 @@ class PowerCard : public Card {
 
     public:
         PowerCard();
+        PowerCard(int id);
         ~PowerCard();
 
         int getStats();
