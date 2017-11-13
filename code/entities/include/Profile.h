@@ -1,5 +1,5 @@
-#ifndef DEF_PROFIL
-#define DEF_PROFIL
+#ifndef DEF_PROFILE
+#define DEF_PROFILE
 
 #include <map>
 #include <string>
@@ -9,16 +9,16 @@
 
 #include "Deck.h"
 
-class Profil{
+class Profile{
     private:
         std::string m_name;
         std::vector<Deck*> m_decks;
         Deck m_cards;
 
     public:
-        Profil();
-        Profil(std::string nom);
-        ~Profil();
+        Profile();
+        Profile(std::string nom);
+        ~Profile();
 
         Deck* getpCards();
         std::vector<Deck*>* getpDecks();
@@ -32,8 +32,8 @@ class Profil{
         // delete a deck by its name, return true if success
         bool deleteDeck(std::string name);
 
-        friend std::ostream& operator<<(std::ostream& os, const Profil& profil);
-        friend std::istream& operator>>(std::istream& is, Profil& profil);
+        friend std::ostream& operator<<(std::ostream& os, const Profile& profile);
+        friend std::istream& operator>>(std::istream& is, Profile& profile);
     };
 
 #endif
