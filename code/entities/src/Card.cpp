@@ -21,10 +21,6 @@ int Card::getId(){
     return m_id;
 }
 
-CardType Card::getCardType(){
-    return m_cardType;
-}
-
 std::string Card::getName(){
     return m_name;
 }
@@ -35,10 +31,6 @@ std::string Card::getDescription(){
 
 void Card::setId(int id){
     m_id = id;
-}
-
-void Card::setCardType(CardType type){
-    m_cardType = type;
 }
 
 void Card::setName(std::string name){

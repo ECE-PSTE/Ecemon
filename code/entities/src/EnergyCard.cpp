@@ -23,3 +23,7 @@ void EnergyCard::setEnergyType(EnergyType energyType){
 void EnergyCard::setEnergy(int energy){
     m_energy = energy;
 }
+
+CardType EnergyCard::type(){
+    return CardType_Energy;
+}

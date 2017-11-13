@@ -3,6 +3,7 @@
 
 #include "Card.h"
 #include "EnergyType.h"
+#include "CardType.h"
 
 class EnergyCard : public Card {
     private:
@@ -18,5 +19,7 @@ class EnergyCard : public Card {
 
         void setEnergyType(EnergyType energyType);
         void setEnergy(int energy);
+
+        CardType type();
 };
 #endif

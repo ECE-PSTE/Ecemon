@@ -3,23 +3,26 @@
 
 #include "Card.h"
 #include "Attack.h"
+#include "CardType.h"
 
 class CreatureCard : public Card {
     private:
         int m_life;
-        Attack m_firstAttack;
-        Attack m_secondAttack;
+        std::vector<Attack> m_vattack;
 
     public:
         CreatureCard();
         ~CreatureCard();
 
         int getLife();
-        Attack getFirstAttack();
-        Attack getSecondAttack();
+        std::vector<Attack> getVattack();
+
 
         void setLife(int life);
-        void setFirstAttack(Attack firstAttack);
-        void setSecondAttack(Attack secondAttack);
+
+
+        CardType type();
+
+
 };
 #endif

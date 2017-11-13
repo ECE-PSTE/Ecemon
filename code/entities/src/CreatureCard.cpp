@@ -11,12 +11,9 @@ int CreatureCard::getLife(){
     return m_life;
 }
 
-Attack CreatureCard::getFirstAttack(){
-    return m_firstAttack;
-}
-
-Attack CreatureCard::getSecondAttack(){
-    return m_secondAttack;
+std::vector<Attack> CreatureCard::getVattack()
+{
+    return m_vattack;
 }
 
 void CreatureCard::setLife(int life){
@@ -29,4 +26,8 @@ void CreatureCard::setFirstAttack(Attack firstAttack){
 
 void CreatureCard::setSecondAttack(Attack secondAttack){
     m_secondAttack = secondAttack;
+}
+
+CardType CreatureCard::type(){
+    return CardType_Creature;
 }

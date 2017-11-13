@@ -23,3 +23,7 @@ void PowerCard::setStats(int stats){
 void PowerCard::setPowerType(PowerType powerType){
     m_powerType = powerType;
 }
+
+CardType PowerCard::type(){
+    return CardType_Power;
+}
