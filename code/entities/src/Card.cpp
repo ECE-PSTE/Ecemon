@@ -68,4 +68,6 @@ std::istream& operator>>(std::istream& is, Card& card){
 
     getline(is, card.m_name);
     getline(is, card.m_description);
+    
+    return is;
 }

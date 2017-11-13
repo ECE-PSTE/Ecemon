@@ -5,6 +5,12 @@ PowerCard::PowerCard(){
     m_powerType = PowerType_Undefined;
 }
 
+PowerCard::PowerCard(int id){
+    m_id = id;
+    m_stats = 0;
+    m_powerType = PowerType_Undefined;
+}
+
 PowerCard::~PowerCard(){
 }
 

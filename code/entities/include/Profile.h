@@ -24,8 +24,8 @@ class Profile{
         std::vector<Deck*>* getpDecks();
         std::string getName();
 
-        void addCard(Card *card);
-        void addCards(std::vector<Card*> cards);
+        void addCard(const Card *card);
+        void addCards(std::vector<const Card*> cards);
         void addDeck(Deck *deck);
         void setName(std::string name);
 

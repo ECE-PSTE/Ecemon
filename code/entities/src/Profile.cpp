@@ -26,11 +26,11 @@ std::string Profile::getName(){
     return m_name;
 }
 
-void Profile::addCard(Card* card){
+void Profile::addCard(const Card* card){
     m_cards.addCard(card);
 }
 
-void Profile::addCards(std::vector<Card*> cards){
+void Profile::addCards(std::vector<const Card*> cards){
     m_cards.addCards(cards);
 }
 

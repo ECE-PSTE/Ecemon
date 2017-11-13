@@ -11,6 +11,7 @@ class EnergyCard : public Card {
 
     public:
         EnergyCard();
+        EnergyCard(int id);
         ~EnergyCard();
 
         EnergyType getEnergyType();

@@ -4,6 +4,11 @@ CreatureCard::CreatureCard(){
     m_life = 0;
 }
 
+CreatureCard::CreatureCard(int id){
+    m_id = id;
+    m_life = 0;
+}
+
 CreatureCard::~CreatureCard(){
 }
 
