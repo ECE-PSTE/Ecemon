@@ -1,6 +1,8 @@
 #ifndef DEF_CREATURECARD
 #define DEF_CREATURECARD
 
+#include <vector>
+
 #include "Card.h"
 #include "Attack.h"
 #include "CardType.h"
@@ -8,7 +10,7 @@
 class CreatureCard : public Card {
     private:
         int m_life;
-        std::vector<Attack> m_vattack;
+        std::vector<Attack> m_attacks;
 
     public:
         CreatureCard();
@@ -16,14 +18,9 @@ class CreatureCard : public Card {
         ~CreatureCard();
 
         int getLife();
-        std::vector<Attack> getVattack();
-
+        std::vector<Attack> getAttacks();
 
         void setLife(int life);
-
-
         CardType type();
-
-
 };
 #endif
