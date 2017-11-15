@@ -34,7 +34,7 @@ void Deck::setName(std::string name){
 }
 
 bool Deck::isComplete(){
-    return (m_cards.size() == DECK_SIZE);
+    return (m_cards.size() == Constants::DeckSize);
 }
 
 std::ostream& operator<<(std::ostream& os, const Deck& deck){
@@ -58,7 +58,7 @@ std::istream& operator>>(std::istream& is, Deck& deck){
     Card card;
     for(int i=0 ; i<length ; i++){
         is >> card;
-        deck.m_cards.push_back(CARDS.at(card.getId()));
+        deck.m_cards.push_back(Constants::Cards.at(card.getId()));
     }
     return is;
 }
