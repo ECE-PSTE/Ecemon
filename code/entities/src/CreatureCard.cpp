@@ -12,6 +12,16 @@ CreatureCard::CreatureCard(int id){
 CreatureCard::~CreatureCard(){
 }
 
+void CreatureCard::writeCard(std::ostream &os){
+    Card::writeCard(os);
+    os << m_life << std::endl;
+}
+
+void CreatureCard::readCard(std::istream &is){
+    Card::readCard(is);
+    is >> m_life;
+}
+
 int CreatureCard::getLife(){
     return m_life;
 }

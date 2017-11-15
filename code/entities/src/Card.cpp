@@ -15,6 +15,20 @@ Card::Card(const Card &card){
 Card::~Card(){
 }
 
+void Card::writeCard(std::ostream &os){
+    os << m_id << std::endl;
+    os << m_name << std::endl;
+    os << m_description << std::endl;
+}
+
+void Card::readCard(std::istream &is){
+    std::string line;
+    getline(is, line);
+    m_id = std::stoi(line);
+    getline(is, m_name);
+    getline(is, m_description);
+}
+
 int Card::getId(){
     return m_id;
 }

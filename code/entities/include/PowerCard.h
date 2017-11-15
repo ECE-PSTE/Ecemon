@@ -1,6 +1,8 @@
 #ifndef DEF_POWERCARD
 #define DEF_POWERCARD
 
+#include <iostream>
+
 #include "Card.h"
 #include "PowerType.h"
 #include "CardType.h"
@@ -14,6 +16,9 @@ class PowerCard : public Card {
         PowerCard();
         PowerCard(int id);
         ~PowerCard();
+
+        void writeCard(std::ostream &os);
+        void readCard(std::istream &is);
 
         int getStats();
         PowerType getPowerType();

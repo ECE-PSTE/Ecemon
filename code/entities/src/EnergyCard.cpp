@@ -14,6 +14,20 @@ EnergyCard::EnergyCard(int id){
 EnergyCard::~EnergyCard(){
 }
 
+void EnergyCard::writeCard(std::ostream &os){
+    Card::writeCard(os);
+    os << m_energyType << std::endl;
+    os << m_energy << std::endl;
+}
+
+void EnergyCard::readCard(std::istream &is){
+    Card::readCard(is);
+    int et;
+    is >> et;
+    m_energyType = (EnergyType) et;
+    is >> m_energy;
+}
+
 EnergyType EnergyCard::getEnergyType(){
     return m_energyType;
 }

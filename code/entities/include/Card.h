@@ -15,6 +15,9 @@ class Card {
         Card(const Card &card);
         virtual ~Card();
 
+        virtual void writeCard(std::ostream &os);
+        virtual void readCard(std::istream &is);
+
         int getId();
         std::string getName();
         std::string getDescription();

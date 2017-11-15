@@ -1,6 +1,7 @@
 #ifndef DEF_CREATURECARD
 #define DEF_CREATURECARD
 
+#include <iostream>
 #include <vector>
 
 #include "Card.h"
@@ -16,6 +17,9 @@ class CreatureCard : public Card {
         CreatureCard();
         CreatureCard(int id);
         ~CreatureCard();
+
+        void writeCard(std::ostream &os);
+        void readCard(std::istream &is);
 
         int getLife();
         std::vector<Attack> getAttacks();
