@@ -59,6 +59,8 @@ std::ostream& operator<<(std::ostream& os, const Card& card){
 }
 
 std::istream& operator>>(std::istream& is, Card& card){
-    is >> card.m_id;
+    std::string line;
+    getline(is, line);
+    card.m_id = std::stoi(line);
     return is;
 }

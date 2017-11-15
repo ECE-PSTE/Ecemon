@@ -38,9 +38,8 @@ bool Deck::isComplete(){
 }
 
 std::ostream& operator<<(std::ostream& os, const Deck& deck){
-    os << deck.m_name << std::endl;
-
     int length = deck.m_cards.size();
+    os << deck.m_name << std::endl;
     os << length << std::endl;
     for(int i=0 ; i<length ; i++){
         os << *deck.m_cards[i];
@@ -52,14 +51,10 @@ std::ostream& operator<<(std::ostream& os, const Deck& deck){
 }
 
 std::istream& operator>>(std::istream& is, Deck& deck){
-    getline(is, deck.m_name);
-
     std::string line;
-    int length;
-
+    getline(is, deck.m_name);
     getline(is, line);
-    length = std::stoi(line);
-
+    int length = std::stoi(line);
     Card card;
     for(int i=0 ; i<length ; i++){
         is >> card;
