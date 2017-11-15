@@ -1,9 +1,9 @@
 #include "../include/Card.h"
 
 Card::Card(){
-    m_id = -1;
-    m_name = "Default Card Name";
-    m_description = "Default Card Description";
+    m_id = Constants::DefaultCardId;
+    m_name = Constants::DefaultCardName;
+    m_description = Constants::DefaultCardDescription;
 }
 
 Card::Card(const Card &card){

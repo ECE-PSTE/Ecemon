@@ -1,14 +1,14 @@
 #include "../include/EnergyCard.h"
 
 EnergyCard::EnergyCard(){
-    m_energyType = EnergyType_Undefined;
-    m_energy = 0;
+    m_energyType = Constants::DefaultEnergyType;
+    m_energy = Constants::DefaultEnergy;
 }
 
 EnergyCard::EnergyCard(int id){
     m_id = id;
-    m_energyType = EnergyType_Undefined;
-    m_energy = 0;
+    m_energyType = Constants::DefaultEnergyType;
+    m_energy = Constants::DefaultEnergy;
 }
 
 EnergyCard::~EnergyCard(){

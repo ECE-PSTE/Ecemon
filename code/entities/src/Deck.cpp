@@ -1,7 +1,7 @@
 #include "../include/Deck.h"
 
 Deck::Deck(){
-    m_name = "Default Deck Name";
+    m_name = Constants::DefaultDeckName;
 }
 
 Deck::Deck(const Deck &deck){
@@ -58,7 +58,7 @@ std::istream& operator>>(std::istream& is, Deck& deck){
     Card card;
     for(int i=0 ; i<length ; i++){
         is >> card;
-        deck.m_cards.push_back(Constants::Cards.at(card.getId()));
+        deck.m_cards.push_back(Game::Cards.at(card.getId()));
     }
     return is;
 }

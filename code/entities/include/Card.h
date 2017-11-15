@@ -4,6 +4,8 @@
 #include <string>
 #include <iostream>
 
+#include "Constants.h"
+
 class Card {
     protected:
         int m_id;

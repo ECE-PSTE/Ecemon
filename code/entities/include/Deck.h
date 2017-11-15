@@ -8,6 +8,7 @@
 
 #include "Card.h"
 #include "Constants.h"
+#include "Game.h"
 
 class Deck{
     private:

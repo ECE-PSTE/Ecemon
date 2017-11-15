@@ -1,12 +1,12 @@
 #include "../include/CreatureCard.h"
 
 CreatureCard::CreatureCard(){
-    m_life = 0;
+    m_life = Constants::DefaultCreatureLife;
 }
 
 CreatureCard::CreatureCard(int id){
     m_id = id;
-    m_life = 0;
+    m_life = Constants::DefaultCreatureLife;
 }
 
 CreatureCard::~CreatureCard(){
@@ -33,6 +33,10 @@ std::vector<Attack> CreatureCard::getAttacks()
 
 void CreatureCard::setLife(int life){
     m_life = life;
+}
+
+void CreatureCard::addAttack(Attack attack){
+    m_attacks.push_back(attack);
 }
 
 CardType CreatureCard::type(){

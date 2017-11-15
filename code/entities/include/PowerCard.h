@@ -6,6 +6,7 @@
 #include "Card.h"
 #include "PowerType.h"
 #include "CardType.h"
+#include "Constants.h"
 
 class PowerCard : public Card {
     private:

@@ -7,6 +7,7 @@
 #include "Card.h"
 #include "Attack.h"
 #include "CardType.h"
+#include "Constants.h"
 
 class CreatureCard : public Card {
     private:
@@ -25,6 +26,7 @@ class CreatureCard : public Card {
         std::vector<Attack> getAttacks();
 
         void setLife(int life);
+        void addAttack(Attack attack);
         CardType type();
 };
 #endif
