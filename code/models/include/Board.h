@@ -17,7 +17,7 @@
 class Board{
     private:
         Card* m_cardBet;
-        Deck* m_deckPlay;
+        Deck m_deckPlay;
         std::list<Card*> m_creatureGraveyard;
         std::list<Card*> m_powerEnergyGraveyard;
         Card* m_creatureOnBoard;
@@ -35,10 +35,34 @@ class Board{
         void playPower();
 
         bool stillAliveCreatureDeck();
-        
+
 public:
     Board();
     ~Board();
+
+    Card* getCardBet(){return m_cardBet;}
+
+    Deck* getpDeckPlay(){return &m_deckPlay;}
+    Deck getpDeckPlay(){return m_deckPlay;}
+
+    std::list<Card*>* getpCreatureGraveyard(){return &m_creatureGraveyard;}
+    std::list<Card*> getCreatureGraveyard(){return m_creatureGraveyard};
+
+    std::list<Card*>* getpPowerEnergyGraveyard(){return &m_powerEnergyGraveyard;}
+    std::list<Card*> getPowerEnergyGraveyard(){return m_powerEnergyGraveyard};
+
+    Card* getCreatureOnBoard(){return m_creatureOnBoard;}
+
+    EffectStack getEffectsOnPlayer(){return m_effectsOnPlayer;}
+
+    EnergyStack getQuantityEnergy(){return m_quantityEnergy;}
+
+    Board* getpEnemyBoard(){return m_pEnemyBoard;}
+
+    int getLifePoint(){return m_lifePoint;}
+
+    void setCardBet(Card* val){m_cardBet = val;}
+    void setDeckPlay(Deck val){m_deckPlay = val;}
 
     void endTurn();
 
@@ -50,7 +74,5 @@ public:
 
     //Initialisation of every parameter for a game (ex : lifepoibt of player at start)
     void startGame();
-
 };
-
 #endif
