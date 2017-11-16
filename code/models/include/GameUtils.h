@@ -1,15 +1,14 @@
-#ifndef DEF_UTILS
-#define DEF_UTILS
+#ifndef DEF_GAMEUTILS
+#define DEF_GAMEUTILS
 
 #include <vector>
 #include <fstream>
 
-#include "../../entities/include/Game.h"
+#include "Game.h"
 #include "../../entities/include/Profile.h"
-#include "../../entities/include/Constants.h"
 
-namespace Utils{
-    bool saveProfile(const char *filename, Profile &profile){
+namespace GameUtils {
+    bool SaveProfile(const char *filename, Profile &profile){
         std::ofstream file(filename);
         if(file){
             file << profile;
@@ -19,7 +18,7 @@ namespace Utils{
         return false;
     }
 
-    bool loadProfile(const char *filename, Profile &profile){
+    bool LoadProfile(const char *filename, Profile &profile){
         std::ifstream file(filename);
         if(file){
             file >> profile;
@@ -29,7 +28,20 @@ namespace Utils{
         return false;
     }
 
-    std::vector<const Card*> getAllCards(){
+    bool AddCardToGame(Card *card){
+        std::ofstream file(Constants::DefaultCardsFilename().c_str(), std::ios::app);
+        if(file){
+            file << card->type() << std::endl;
+            card->writeCard(file);
+            file.close();
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+    std::vector<const Card*> CardsVector(){
         std::vector<const Card*> cards;
         for(auto it : Game::Cards){
             cards.push_back(it.second);
@@ -37,7 +49,7 @@ namespace Utils{
         return cards;
     }
 
-    void deleteAllCards(){
+    void FreeCards(){
         for(auto it : Game::Cards){
             delete it.second;
         }

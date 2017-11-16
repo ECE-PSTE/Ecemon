@@ -1,10 +1,10 @@
 #include "../include/Attack.h"
 
 Attack::Attack(){
-    m_name = Constants::DefaultAttackName;
-    m_description = Constants::DefaultAttackDescription;
-    m_attackType = Constants::DefaultAttackType;
-    m_cost = Constants::DefaultAttackCost;
+    m_name = Constants::DefaultAttackName();
+    m_description = Constants::DefaultAttackDescription();
+    m_attackType = Constants::DefaultAttackType();
+    m_cost = Constants::DefaultAttackCost();
 }
 
 Attack::~Attack(){

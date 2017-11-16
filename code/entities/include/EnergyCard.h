@@ -18,15 +18,14 @@ class EnergyCard : public Card {
         EnergyCard(int id);
         ~EnergyCard();
 
-        void writeCard(std::ostream &os);
+        void writeCard(std::ostream &os) const;
         void readCard(std::istream &is);
+        CardType type() const;
 
         EnergyType getEnergyType();
         int getEnergy();
 
         void setEnergyType(EnergyType energyType);
         void setEnergy(int energy);
-
-        CardType type();
 };
 #endif

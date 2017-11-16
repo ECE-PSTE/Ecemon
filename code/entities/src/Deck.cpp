@@ -1,7 +1,7 @@
 #include "../include/Deck.h"
 
 Deck::Deck(){
-    m_name = Constants::DefaultDeckName;
+    m_name = Constants::DefaultDeckName();
 }
 
 Deck::Deck(const Deck &deck){
@@ -34,7 +34,7 @@ void Deck::setName(std::string name){
 }
 
 bool Deck::isComplete(){
-    return (m_cards.size() == Constants::DeckSize);
+    return (m_cards.size() == Constants::DefaultDeckSize());
 }
 
 std::ostream& operator<<(std::ostream& os, const Deck& deck){

@@ -1,9 +1,9 @@
 #include "../include/Card.h"
 
 Card::Card(){
-    m_id = Constants::DefaultCardId;
-    m_name = Constants::DefaultCardName;
-    m_description = Constants::DefaultCardDescription;
+    m_id = Constants::DefaultCardId();
+    m_name = Constants::DefaultCardName();
+    m_description = Constants::DefaultCardDescription();
 }
 
 Card::Card(const Card &card){
@@ -15,7 +15,7 @@ Card::Card(const Card &card){
 Card::~Card(){
 }
 
-void Card::writeCard(std::ostream &os){
+void Card::writeCard(std::ostream &os) const{
     os << m_id << std::endl;
     os << m_name << std::endl;
     os << m_description << std::endl;
@@ -27,6 +27,10 @@ void Card::readCard(std::istream &is){
     m_id = std::stoi(line);
     getline(is, m_name);
     getline(is, m_description);
+}
+
+CardType Card::type() const{
+    return Constants::DefaultCardType();
 }
 
 int Card::getId(){

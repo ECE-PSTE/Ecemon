@@ -19,14 +19,14 @@ class CreatureCard : public Card {
         CreatureCard(int id);
         ~CreatureCard();
 
-        void writeCard(std::ostream &os);
+        void writeCard(std::ostream &os) const;
         void readCard(std::istream &is);
+        CardType type() const;
 
         int getLife();
         std::vector<Attack> getAttacks();
 
         void setLife(int life);
         void addAttack(Attack attack);
-        CardType type();
 };
 #endif

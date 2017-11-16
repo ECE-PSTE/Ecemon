@@ -2,29 +2,81 @@
 #define DEF_CONSTANTS
 
 #include <string>
+#include "CardType.h"
 #include "EnergyType.h"
+#include "PowerType.h"
+
+// ########################## NOTICE ##########################
+// used functions to avoid “static initialization order fiasco”
+// ############################################################
 
 namespace Constants {
-    const std::string DefaultProfileName = "Default Profile Name";
+    // GAME
+    inline std::string DefaultCardsFilename(){
+        return "GameCards";
+    }
 
-    const int DeckSize = 30;
-    const std::string DefaultDeckName = "Default Deck Name";
+    // PROFILE
+    inline std::string DefaultProfileName(){
+        return "Default Profile Name";
+    }
 
-    const int DefaultCreatureLife = 100;
+    // DECK
+    inline int DefaultDeckSize(){
+        return 30;
+    }
+    inline std::string DefaultDeckName(){
+        return "Default Deck Name";
+    }
 
-    const int DefaultEnergy = 5;
-    const EnergyType DefaultEnergyType = EnergyType_Undefined;
+    // ATTACK
+    inline int DefaultAttackCost(){
+        return 10;
+    }
+    inline EnergyType DefaultAttackType(){
+        return EnergyType_Undefined;
+    }
+    inline std::string DefaultAttackName(){
+        return "Default Attack Name";
+    }
+    inline std::string DefaultAttackDescription(){
+        return "Default Attack Description";
+    }
 
-    const int DefaultPowerStats = -1;
+    // CARD
+    inline int DefaultCardId(){
+        return -1;
+    }
+    inline std::string DefaultCardName(){
+        return "Default Card Name";
+    }
+    inline std::string DefaultCardDescription(){
+        return "Default Card Description";
+    }
+    inline CardType DefaultCardType(){
+        return CardType_Undefined;
+    }
 
-    const int DefaultCardId = -1;
-    const std::string DefaultCardName = "Default Card Name";
-    const std::string DefaultCardDescription = "Default Card Description";
+    // CREATURE
+    inline int DefaultCreatureLife(){
+        return 100;
+    }
 
-    const int DefaultAttackCost = 10;
-    const EnergyType DefaultAttackType = EnergyType_Undefined;
-    const std::string DefaultAttackName = "Default Attack Name";
-    const std::string DefaultAttackDescription = "Default Attack Description";
-}
+    // ENERGY
+    inline int DefaultEnergy(){
+        return 5;
+    }
+    inline EnergyType DefaultEnergyType(){
+        return EnergyType_Undefined;
+    }
+
+    // POWER
+    inline int DefaultPowerStats(){
+        return -1;
+    }
+    inline PowerType DefaultPowerType(){
+        return PowerType_Undefined;
+    }
+};
 
 #endif

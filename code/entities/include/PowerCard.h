@@ -18,15 +18,14 @@ class PowerCard : public Card {
         PowerCard(int id);
         ~PowerCard();
 
-        void writeCard(std::ostream &os);
+        void writeCard(std::ostream &os) const;
         void readCard(std::istream &is);
+        CardType type() const;
 
         int getStats();
         PowerType getPowerType();
 
         void setStats(int stats);
         void setPowerType(PowerType powerType);
-
-        CardType type();
 };
 #endif
