@@ -1,4 +1,4 @@
-#include "..\include\EnergyStack.h"
+#include "../include/EnergyStack.h"
 
 EnergyStack::EnergyStack(): m_chili(0), m_tacos(0), m_iceCream(0), m_blueverries(0){
     //Yooo
@@ -8,7 +8,7 @@ EnergyStack::~EnergyStack(){
     //mdrrrr
 }
 
-void addEnergy(EnergyType eType, int quantity){
+void EnergyStack::addEnergy(EnergyType eType, int quantity){
     switch (eType) {
         case EnergyType_Chili:
             setChili(getChili() + quantity);

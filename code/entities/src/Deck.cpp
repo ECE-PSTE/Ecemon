@@ -62,3 +62,30 @@ std::istream& operator>>(std::istream& is, Deck& deck){
     }
     return is;
 }
+
+bool Deck::takeoffCard(const Card* card){
+
+    std::vector<Card*>::iterator i;
+    for(i = getCards().begin() ; i != getCards().end(); i++){
+        if(card == *i){
+            getCards().erase(i);
+            return true;
+        }
+    }
+    return false;
+}
+
+Card* Deck::creatureRandom(){
+
+    Card* p;
+    int hasard;
+
+    srand(time(NULL));
+
+    do{
+        hasard = rand()%getCards().size();
+        p = getCards()[hasard];
+    }while(p->type() == CardType_Creature);
+
+    return p;
+}

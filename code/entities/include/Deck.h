@@ -5,10 +5,13 @@
 #include <vector>
 #include <utility>
 #include <iostream>
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
 
 #include "Card.h"
 #include "Constants.h"
-#include "Game.h"
+#include "../../models/include/Game.h"
 
 class Deck{
     private:
@@ -26,6 +29,11 @@ class Deck{
         void addCard(const Card* card);
         void addCards(std::vector<const Card*> cards);
         void setName(std::string name);
+
+        //true if card take off
+        bool takeoffCard(const Card* card);
+
+        Card* creatureRandom();
 
         bool isComplete();
 

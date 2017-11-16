@@ -1,22 +1,22 @@
-#include "..\include\Effectstack.h"
+#include "../include/Effectstack.h"
 
-Effectstack::Effectstack(): m_freez(false), m_damage(0){
+EffectStack::EffectStack(): m_freez(false), m_damage(0){
     //Coucou
 }
 
-Effectstack::~Effectstack(){
+EffectStack::~EffectStack(){
     //Chalut
 }
 
-void Effectstack::endTurn(){
+void EffectStack::endTurn(){
     setFreez(false);
 }
 
-void Effectstack::takeDamage(int damage){
+void EffectStack::takeDamage(int damage){
     setDamage(getDamage() + damage);
 }
 
-void Effectstack::newCreature(){
+void EffectStack::newCreature(){
     setFreez(false);
     setDamage(0);
 }

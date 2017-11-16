@@ -3,21 +3,21 @@
 
 #include <iostream>
 
-class Effectstack{
+class EffectStack{
     private:
-        bool m_freez;
-        int m_damage;
+        bool m_freez = false;
+        int m_damage = 0;
 
     public:
 
-        Effectstack();
-        ~Effectstack();
+        EffectStack();
+        ~EffectStack();
 
-        void setFreez(bool val){m_freez = val}
-        void setDamage(int val){m_damage = val}
+        void setFreez(bool val){m_freez = val;}
+        void setDamage(int val){m_damage = val;}
 
-        bool getFreez(){return m_freez}
-        int getDamage(){return m_damage}
+        bool getFreez(){return m_freez;}
+        int getDamage(){return m_damage;}
 
          //Clean effects like m_freez
         void endTurn();
