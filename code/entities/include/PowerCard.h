@@ -1,9 +1,12 @@
 #ifndef DEF_POWERCARD
 #define DEF_POWERCARD
 
+#include <iostream>
+
 #include "Card.h"
 #include "PowerType.h"
 #include "CardType.h"
+#include "Constants.h"
 
 class PowerCard : public Card {
     private:
@@ -15,12 +18,14 @@ class PowerCard : public Card {
         PowerCard(int id);
         ~PowerCard();
 
+        void writeCard(std::ostream &os) const;
+        void readCard(std::istream &is);
+        CardType type() const;
+
         int getStats();
         PowerType getPowerType();
 
         void setStats(int stats);
         void setPowerType(PowerType powerType);
-
-        CardType type();
 };
 #endif

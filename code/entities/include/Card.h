@@ -4,6 +4,8 @@
 #include <string>
 #include <iostream>
 
+#include "Constants.h"
+
 class Card {
     protected:
         int m_id;
@@ -14,6 +16,10 @@ class Card {
         Card();
         Card(const Card &card);
         virtual ~Card();
+
+        virtual void writeCard(std::ostream &os) const;
+        virtual void readCard(std::istream &is);
+        virtual CardType type() const;
 
         int getId();
         std::string getName();
