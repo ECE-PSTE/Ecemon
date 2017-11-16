@@ -18,15 +18,13 @@ class Board{
     private:
         Card* m_cardBet;
         Deck m_deckPlay;
-        std::list<Card*> m_creatureGraveyard;
-        std::list<Card*> m_powerEnergyGraveyard;
+        Deck m_creatureGraveyard;
+        Deck m_powerEnergyGraveyard;
         Card* m_creatureOnBoard;
         EffectStack m_effectsOnPlayer;
         EnergyStack m_quantityEnergy;
         Board* m_pEnemyBoard;
         int m_lifePoint;
-
-        void mixDeck();
 
         void playCreature(CreatureCard* cardPlay);
 
@@ -78,5 +76,7 @@ public:
 
     //Initialisation of every parameter for a game (ex : lifepoibt of player at start)
     void startGame();
+
+    Card* askCard();
 };
 #endif
