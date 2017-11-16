@@ -5,13 +5,7 @@ Board::Board(){
 }
 
 Board::~Board(){
-    for(const auto & elem : getCreatureGraveyard().getCards()){
-        getpDeckPlay()->addCard(elem);
-    }
-
-    for(const auto & elem : getpPowerEnergyGraveyard()->getCards()){
-        getpDeckPlay()->addCard(elem);
-    }
+    //hello my dear
 }
 
 void Board::endTurn(){
@@ -108,4 +102,14 @@ bool Board::stillAliveCreatureDeck(){
     }
 
     return false;
+}
+
+void Board::endGame(){
+    for(const auto & elem : getCreatureGraveyard().getCards()){
+        getpDeckPlay()->addCard(elem);
+    }
+
+    for(const auto & elem : getpPowerEnergyGraveyard()->getCards()){
+        getpDeckPlay()->addCard(elem);
+    }
 }

@@ -16,6 +16,7 @@
 
 class Board{
     private:
+        std::string m_namePlayer;
         Card* m_cardBet;
         Deck m_deckPlay;
         Deck m_creatureGraveyard;
@@ -38,16 +39,18 @@ public:
     Board();
     ~Board();
 
+    std::string getNamePlayer(){return m_namePlayer;}
+
     Card* getCardBet(){return m_cardBet;}
 
     Deck* getpDeckPlay(){return &m_deckPlay;}
     Deck getpDeckPlay(){return m_deckPlay;}
 
-    std::list<Card*>* getpCreatureGraveyard(){return &m_creatureGraveyard;}
-    std::list<Card*> getCreatureGraveyard(){return m_creatureGraveyard;}
+    Deck* getpCreatureGraveyard(){return &m_creatureGraveyard;}
+    Deck getCreatureGraveyard(){return m_creatureGraveyard;}
 
-    std::list<Card*>* getpPowerEnergyGraveyard(){return &m_powerEnergyGraveyard;}
-    std::list<Card*> getPowerEnergyGraveyard(){return m_powerEnergyGraveyard;}
+    Deck* getpPowerEnergyGraveyard(){return &m_powerEnergyGraveyard;}
+    Deck getPowerEnergyGraveyard(){return m_powerEnergyGraveyard;}
 
     Card* getCreatureOnBoard(){return m_creatureOnBoard;}
 
@@ -59,6 +62,7 @@ public:
 
     int getLifePoint(){return m_lifePoint;}
 
+    void setNamePlayer(std::string val){m_namePlayer = val;}
     void setCardBet(Card* val){m_cardBet = val;}
     void setDeckPlay(Deck val){m_deckPlay = val;}
     void setCreatureOnBoard(Card* val){m_creatureOnBoard = val;}
@@ -78,5 +82,7 @@ public:
     void startGame();
 
     Card* askCard();
+
+    void endGame();
 };
 #endif

@@ -23,6 +23,9 @@ class Profile{
 
         Deck* getpCards();
         std::vector<Deck*>* getpDecks();
+        std::vector<Deck*> getDecks(){return m_decks;}
+
+        Deck getCollectionDeck(){return m_cards;}
         std::string getName();
 
         void addDeck(Deck *deck);
