@@ -63,6 +63,9 @@ public:
 
     void setCardBet(Card* val){m_cardBet = val;}
     void setDeckPlay(Deck val){m_deckPlay = val;}
+    void setCreatureOnBoard(Card* val){m_creatureOnBoard = val;}
+    void setpEnemyBoard(Board* val){m_pEnemyBoard = val;}
+    
 
     void endTurn();
 
