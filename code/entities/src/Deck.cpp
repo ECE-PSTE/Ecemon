@@ -1,7 +1,7 @@
 #include "../include/Deck.h"
 
 Deck::Deck(){
-    m_name = "Default Deck Name";
+    m_name = Constants::DefaultDeckName();
 }
 
 Deck::Deck(const Deck &deck){
@@ -34,13 +34,12 @@ void Deck::setName(std::string name){
 }
 
 bool Deck::isComplete(){
-    return (m_cards.size() == DECK_SIZE);
+    return (m_cards.size() == Constants::DefaultDeckSize());
 }
 
 std::ostream& operator<<(std::ostream& os, const Deck& deck){
-    os << deck.m_name << std::endl;
-
     int length = deck.m_cards.size();
+    os << deck.m_name << std::endl;
     os << length << std::endl;
     for(int i=0 ; i<length ; i++){
         os << *deck.m_cards[i];
@@ -52,18 +51,14 @@ std::ostream& operator<<(std::ostream& os, const Deck& deck){
 }
 
 std::istream& operator>>(std::istream& is, Deck& deck){
-    getline(is, deck.m_name);
-
     std::string line;
-    int length;
-
+    getline(is, deck.m_name);
     getline(is, line);
-    length = std::stoi(line);
-
+    int length = std::stoi(line);
     Card card;
     for(int i=0 ; i<length ; i++){
         is >> card;
-        deck.m_cards.push_back(CARDS.at(card.getId()));
+        deck.m_cards.push_back(Game::Cards.at(card.getId()));
     }
     return is;
 }

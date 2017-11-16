@@ -1,38 +1,46 @@
 #include "../include/CreatureCard.h"
 
 CreatureCard::CreatureCard(){
-    m_life = 0;
+    m_life = Constants::DefaultCreatureLife();
 }
 
 CreatureCard::CreatureCard(int id){
     m_id = id;
-    m_life = 0;
+    m_life = Constants::DefaultCreatureLife();
 }
 
 CreatureCard::~CreatureCard(){
+}
+
+void CreatureCard::writeCard(std::ostream &os) const{
+    Card::writeCard(os);
+    os << m_life << std::endl;
+}
+
+void CreatureCard::readCard(std::istream &is){
+    Card::readCard(is);
+    std::string line;
+    getline(is, line);
+    m_life = std::stoi(line);
+}
+
+CardType CreatureCard::type() const{
+    return CardType_Creature;
 }
 
 int CreatureCard::getLife(){
     return m_life;
 }
 
-std::vector<Attack> CreatureCard::getVattack()
+std::vector<Attack> CreatureCard::getAttacks()
 {
-    return m_vattack;
+    return m_attacks;
 }
 
 void CreatureCard::setLife(int life){
     m_life = life;
 }
 
-void CreatureCard::setFirstAttack(Attack firstAttack){
-    m_firstAttack = firstAttack;
-}
-
-void CreatureCard::setSecondAttack(Attack secondAttack){
-    m_secondAttack = secondAttack;
-}
-
-CardType CreatureCard::type(){
-    return CardType_Creature;
+void CreatureCard::addAttack(Attack attack){
+    m_attacks.push_back(attack);
 }

@@ -8,6 +8,7 @@
 #include <iostream>
 
 #include "Deck.h"
+#include "Constants.h"
 
 class Profile{
     private:

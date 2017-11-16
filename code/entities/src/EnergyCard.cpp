@@ -1,17 +1,36 @@
 #include "../include/EnergyCard.h"
 
 EnergyCard::EnergyCard(){
-    m_energyType = EnergyType_Undefined;
-    m_energy = 0;
+    m_energyType = Constants::DefaultEnergyType();
+    m_energy = Constants::DefaultEnergy();
 }
 
 EnergyCard::EnergyCard(int id){
     m_id = id;
-    m_energyType = EnergyType_Undefined;
-    m_energy = 0;
+    m_energyType = Constants::DefaultEnergyType();
+    m_energy = Constants::DefaultEnergy();
 }
 
 EnergyCard::~EnergyCard(){
+}
+
+void EnergyCard::writeCard(std::ostream &os) const{
+    Card::writeCard(os);
+    os << m_energyType << std::endl;
+    os << m_energy << std::endl;
+}
+
+void EnergyCard::readCard(std::istream &is){
+    Card::readCard(is);
+    std::string line;
+    getline(is, line);
+    m_energyType = (EnergyType) std::stoi(line);
+    getline(is, line);
+    m_energy = std::stoi(line);
+}
+
+CardType EnergyCard::type() const{
+    return CardType_Energy;
 }
 
 EnergyType EnergyCard::getEnergyType(){
@@ -28,8 +47,4 @@ void EnergyCard::setEnergyType(EnergyType energyType){
 
 void EnergyCard::setEnergy(int energy){
     m_energy = energy;
-}
-
-CardType EnergyCard::type(){
-    return CardType_Energy;
 }

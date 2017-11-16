@@ -1,20 +1,36 @@
 #include "../include/Card.h"
 
 Card::Card(){
-    m_id = -1;
-    m_cardType = CardType_Undefined;
-    m_name = "Default Card Name";
-    m_description = "Default Card Description";
+    m_id = Constants::DefaultCardId();
+    m_name = Constants::DefaultCardName();
+    m_description = Constants::DefaultCardDescription();
 }
 
 Card::Card(const Card &card){
     m_id = card.m_id;
-    m_cardType = card.m_cardType;
     m_name = card.m_name;
     m_description = card.m_description;
 }
 
 Card::~Card(){
+}
+
+void Card::writeCard(std::ostream &os) const{
+    os << m_id << std::endl;
+    os << m_name << std::endl;
+    os << m_description << std::endl;
+}
+
+void Card::readCard(std::istream &is){
+    std::string line;
+    getline(is, line);
+    m_id = std::stoi(line);
+    getline(is, m_name);
+    getline(is, m_description);
+}
+
+CardType Card::type() const{
+    return Constants::DefaultCardType();
 }
 
 int Card::getId(){
@@ -42,24 +58,13 @@ void Card::setDescription(std::string description){
 }
 
 std::ostream& operator<<(std::ostream& os, const Card& card){
-    os << card.m_id << std::endl;
-    os << card.m_cardType << std::endl;
-    os << card.m_name << std::endl;
-    os << card.m_description;
+    os << card.m_id;
     return os;
 }
 
 std::istream& operator>>(std::istream& is, Card& card){
     std::string line;
-
     getline(is, line);
     card.m_id = std::stoi(line);
-
-    getline(is, line);
-    card.m_cardType = (CardType) std::stoi(line);
-
-    getline(is, card.m_name);
-    getline(is, card.m_description);
-    
     return is;
 }

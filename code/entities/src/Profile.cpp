@@ -1,7 +1,7 @@
 #include "../include/Profile.h"
 
 Profile::Profile(){
-    m_name = "Default Profile Name";
+    m_name = Constants::DefaultProfileName();
 }
 
 Profile::Profile(std::string name){
@@ -52,6 +52,7 @@ std::ostream& operator<<(std::ostream& os, const Profile& profile){
 
     int length = profile.m_decks.size();
     os << length << std::endl;
+
     for(int i=0 ; i<length ; i++){
         os << *profile.m_decks[i];
         if(i!=length-1){
@@ -67,10 +68,9 @@ std::istream& operator>>(std::istream& is, Profile& profile){
     is >> profile.m_cards;
 
     std::string line;
-    int length;
-
     getline(is, line);
-    length = std::stoi(line);
+    int length = std::stoi(line);
+
     for(int i=0 ; i<length ; i++){
         Deck *deck = new Deck();
         is >> *deck;

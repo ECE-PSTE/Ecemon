@@ -1,9 +1,12 @@
 #ifndef DEF_ENERGYCARD
 #define DEF_ENERGYCARD
 
+#include <iostream>
+
 #include "Card.h"
 #include "EnergyType.h"
 #include "CardType.h"
+#include "Constants.h"
 
 class EnergyCard : public Card {
     private:
@@ -15,12 +18,14 @@ class EnergyCard : public Card {
         EnergyCard(int id);
         ~EnergyCard();
 
+        void writeCard(std::ostream &os) const;
+        void readCard(std::istream &is);
+        CardType type() const;
+
         EnergyType getEnergyType();
         int getEnergy();
 
         void setEnergyType(EnergyType energyType);
         void setEnergy(int energy);
-
-        CardType type();
 };
 #endif

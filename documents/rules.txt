@@ -1,0 +1,30 @@
+Bonjour a tout ! Bienvenue sur les regles du jeu de combat : South Park, the revenge of Card
+
+L'objectif du jeu est de battre tout ces adversaires lors de vos combat contre eux.
+Un combat se déroule de cette manière :
+
+- Chaque joueur arrive un deck de 30 cartes, ces cartes peuvent etre des creature, des energie ou des pouvoir spéciaux ...
+    Au départ, chaque hero possede 100 point de vie. Pour gagner, il faut soit que les point de vie du hero adverse tombe a 0 ou qu'il ne possède plus de créature dans son deck ...
+    Si vous gagnez une partie, vous gagner deux carte : celle que vous aviez misez aléatoirement et celle de votre adversaire (en vrai vous en gagnez une) et de l'or !
+    Si vous perdez, vous perdez votre carte mise en jeu et vous gagner un peu d'or histoire de pouvoir tt de meme acheter une autre carte.
+
+Le combat se deroule de la maniere suivante :
+    Au debut de la partie, une creature au hasard de chaque joueur est poser sur leur plateau
+
+    Chacun leur tour, les joueurs vont piocher une carte dans leur deck. Il vont avoir la possibilité de la jouer ou de la remettre a un endroit aleatoire de leur deck.
+    Si la carte pioche est une creature, deux situation lui font fasse :
+        Soit il n'a pas de creature sur le plateau de son coté, dans ce cas il peut la poser.
+        Si il possede deja une creature sur son plateau, il peut la remplacer mais cependant cette creature remplacer va au cimetiere.
+    Si la carte est une carte energie, celle ci va augmenter ses stock d energy en fonction du type d energie apporte et sa quantite
+        Il existe 4 type d energie
+    Si c est une carte pouvoir, alors l effet est applique
+
+    Une fois le choix de l action avec la carte, si le joueur possede une creature sur son plateau il peut faire une attaque.
+    Cependant, une creature possede deux attaque, une attaque basic et une special. La special tappe plus fort et peu avoir des consequences, cependant elle a un cout en energie pour etre lancer
+        Si l ennemie possede une creature sur le plateau, l attaque va forcement sur la creature ennemie
+            Contre celle basique qui ne demande aucune energie pour etre lancer (c est donc l attaque par defaut). Lorsque que la creature attaque une autre creature,
+            celle ci ne prend pas de riposte et donc ne perd pas de point de vie.
+            Si la creature acheve l enemie, alors tout ces point de degats supplementaire vont taper le hero ennemie (si il reste 3 pdv a la creature et qu il prend une attaque de 5, 2 degats irons au hero adverse)
+        Si l ennemie n en possede pas, dans ce cas la creature ne peut faire qu une attaque basic sur le hero adversaire.
+
+    Donc si on ne possede plus de creature dans son deck , on a perdu !

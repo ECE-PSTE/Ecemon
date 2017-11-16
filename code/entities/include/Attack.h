@@ -3,6 +3,7 @@
 
 #include <string>
 #include "EnergyType.h"
+#include "Constants.h"
 
 class Attack {
     private:
