@@ -31,10 +31,8 @@ bool Board::playerAlive(){
 
 void Board::startGame(){
 
-    srand(time(NULL));
-    int ran = rand()%getpDeckPlay()->getCards().size();
-    setCardBet(getpDeckPlay()->getCards()[ran]);
-    if(!getpDeckPlay()->takeoffCard(getpDeckPlay()->getCards()[ran])){
+    setCardBet(askCard());
+    if(!getDeckPlay().takeoffCard(getCardBet())){
         std::cout << "ERROR : TAKE OFF CARD BET BY PLAYER \n";
     }
 
@@ -44,9 +42,9 @@ void Board::startGame(){
     }
 }
 
-bool stillAliveCreatureDeck(){
-    for(const auto & elem : getpDeckPlay()->getCards()){
-        if(elem.type() = CardType_Creature){
+bool Board::stillAliveCreatureDeck(){
+    for(auto & elem : getDeckPlay().getCards()){
+        if(elem->type() == CardType_Creature){
             return true;
         }
     }
@@ -55,11 +53,10 @@ bool stillAliveCreatureDeck(){
 }
 
 Card* Board::askCard(){
-    srand(time(NULL));
 
-    int i = rand()%(getpDeckPlay()->getCards().size());
+    int i = rand()%(getDeckPlay().getCards().size());
 
-    return getpDeckPlay()->getCards()[i];
+    return ((getDeckPlay().getCards())[i]);
 }
 
 void Board::playCreature(CreatureCard* cardPlay){
@@ -69,7 +66,7 @@ void Board::playCreature(CreatureCard* cardPlay){
 }
 
 void Board::playEnergy(EnergyCard* cardPlay){
-    getQuantityEnergy()->addEnergy(cardPlay->getEnergyType(), cardPlay->getEnergy());
+    getQuantityEnergy().addEnergy(cardPlay->getEnergyType(), cardPlay->getEnergy());
     getpPowerEnergyGraveyard()->addCard(cardPlay);
 }
 
@@ -82,8 +79,8 @@ void Board::playPower(PowerCard* cardPlay){
             getpEnemyBoard()->setLifePoint(getLifePoint() - cardPlay->getStats());
             break;
         case PowerType_Jesus:
-            getpDeckPlay()->addCard(getCreatureGraveyard()[getpCreatureGraveyard().size() - 1]);
-            getCreatureGraveyard().pop_back();
+            getpDeckPlay()->addCard(getCreatureGraveyard().getCards()[getCreatureGraveyard().getCards().size() - 1]);
+            getpCreatureGraveyard()->getCards().pop_back();
             break;
         case PowerType_President:
             getEffectsOnPlayer().setDamage(0);
@@ -92,16 +89,6 @@ void Board::playPower(PowerCard* cardPlay){
         default:
             std::cout<<"ERROR : POWER CARD PLAY NO RECONIZE \n";
     }
-}
-
-bool Board::stillAliveCreatureDeck(){
-    for(const auto & elem : getpDeckPlay()->getCards()){
-        if(elem.type() == CardType_Creature){
-            return true;
-        }
-    }
-
-    return false;
 }
 
 void Board::endGame(){

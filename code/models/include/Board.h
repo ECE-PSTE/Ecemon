@@ -2,16 +2,16 @@
 #define DEF_BOARD
 
 #include <iostream>
+#include <cstdlib>
+#include <string>
 
 #include "../../entities/include/Card.h"
 #include "../../entities/include/Deck.h"
 #include "../../entities/include/CreatureCard.h"
 #include "../../entities/include/EnergyCard.h"
 #include "../../entities/include/PowerCard.h"
-#include "../../entities/EnergyStack.h"
-#include "../../entities/EffectStack.h"
-
-#include <list>
+#include "../../entities/include/EnergyStack.h"
+#include "../../entities/include/EffectStack.h"
 
 class Board{
     private:
@@ -20,7 +20,7 @@ class Board{
         Deck m_deckPlay;
         Deck m_creatureGraveyard;
         Deck m_powerEnergyGraveyard;
-        Card* m_creatureOnBoard;
+        CreatureCard* m_creatureOnBoard;
         EffectStack m_effectsOnPlayer;
         EnergyStack m_quantityEnergy;
         Board* m_pEnemyBoard;
@@ -43,7 +43,7 @@ public:
     Card* getCardBet(){return m_cardBet;}
 
     Deck* getpDeckPlay(){return &m_deckPlay;}
-    Deck getpDeckPlay(){return m_deckPlay;}
+    Deck getDeckPlay(){return m_deckPlay;}
 
     Deck* getpCreatureGraveyard(){return &m_creatureGraveyard;}
     Deck getCreatureGraveyard(){return m_creatureGraveyard;}
@@ -51,7 +51,7 @@ public:
     Deck* getpPowerEnergyGraveyard(){return &m_powerEnergyGraveyard;}
     Deck getPowerEnergyGraveyard(){return m_powerEnergyGraveyard;}
 
-    Card* getCreatureOnBoard(){return m_creatureOnBoard;}
+    CreatureCard* getCreatureOnBoard(){return m_creatureOnBoard;}
 
     EffectStack getEffectsOnPlayer(){return m_effectsOnPlayer;}
 
@@ -64,7 +64,7 @@ public:
     void setNamePlayer(std::string val){m_namePlayer = val;}
     void setCardBet(Card* val){m_cardBet = val;}
     void setDeckPlay(Deck val){m_deckPlay = val;}
-    void setCreatureOnBoard(Card* val){m_creatureOnBoard = val;}
+    void setCreatureOnBoard(CreatureCard* val){m_creatureOnBoard = val;}
     void setpEnemyBoard(Board* val){m_pEnemyBoard = val;}
     void setLifePoint(int val){m_lifePoint = val;}
 

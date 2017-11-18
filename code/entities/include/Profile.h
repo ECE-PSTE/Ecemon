@@ -6,6 +6,7 @@
 #include <vector>
 #include <utility>
 #include <iostream>
+#include <cstdlib>
 
 #include "Deck.h"
 #include "Constants.h"

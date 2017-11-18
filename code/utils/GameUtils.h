@@ -3,6 +3,9 @@
 
 #include <map>
 #include <fstream>
+#include <string>
+#include <iostream>
+#include <cstdlib>
 
 #include "../../entities/include/PowerCard.h"
 #include "../../entities/include/EnergyCard.h"

@@ -2,7 +2,9 @@
 #define DEF_CREATURECARD
 
 #include <iostream>
+#include <cstdlib>
 #include <vector>
+#include <string>
 
 #include "Card.h"
 #include "Attack.h"

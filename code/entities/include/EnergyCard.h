@@ -2,6 +2,8 @@
 #define DEF_ENERGYCARD
 
 #include <iostream>
+#include <cstdlib>
+#include <string>
 
 #include "Card.h"
 #include "EnergyType.h"

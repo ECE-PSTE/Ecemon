@@ -2,6 +2,8 @@
 #define DEF_EFFECTSTACK
 
 #include <iostream>
+#include <cstdlib>
+#include <string>
 
 class EffectStack{
     private:

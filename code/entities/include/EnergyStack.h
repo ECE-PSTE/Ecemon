@@ -2,6 +2,8 @@
 #define DEF_ENERGYSTACK
 
 #include <iostream>
+#include <cstdlib>
+#include <string>
 #include "../../entities/include/EnergyType.h"
 
 class EnergyStack{

@@ -1,6 +1,7 @@
 #ifndef DEF_CONSTANTS
 #define DEF_CONSTANTS
 
+#include <iostream>
 #include <string>
 #include "CardType.h"
 #include "EnergyType.h"

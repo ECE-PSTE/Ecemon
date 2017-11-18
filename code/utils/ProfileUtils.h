@@ -2,6 +2,9 @@
 #define DEF_PROFILEUTILS
 
 #include <fstream>
+#include <string>
+#include <iostream>
+#include <cstdlib>
 #include "../entities/include/Profile.h"
 
 namespace ProfileUtils {

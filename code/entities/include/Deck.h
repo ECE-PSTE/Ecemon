@@ -4,6 +4,7 @@
 #include <string>
 #include <vector>
 #include <iostream>
+#include <cstdlib>
 
 #include "Card.h"
 #include "Constants.h"
@@ -30,7 +31,7 @@ class Deck{
 
         //true if card take off
         bool takeoffCard(const Card* card);
-        const Card* creatureRandom();
+        CreatureCard* creatureRandom();
 
         bool isComplete();
 
