@@ -2,14 +2,13 @@
 #define DEF_CREATURECARD
 
 #include <iostream>
-#include <cstdlib>
 #include <vector>
-#include <string>
 
 #include "Card.h"
 #include "Attack.h"
 #include "CardType.h"
 #include "Constants.h"
+#include "../../utils/Utils.h"
 
 class CreatureCard : public Card {
     private:

@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <string>
+
 #include "CardType.h"
 #include "EnergyType.h"
 #include "PowerType.h"

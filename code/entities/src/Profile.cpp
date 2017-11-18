@@ -77,7 +77,7 @@ std::istream& operator>>(std::istream& is, Profile& profile){
 
     std::string line;
     getline(is, line);
-    int length = std::stoi(line);
+    int length = Utils::toInt(line);
 
     for(int i=0 ; i<length ; i++){
         Deck *deck = new Deck();

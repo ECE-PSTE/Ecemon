@@ -7,6 +7,7 @@
 
 #include "Board.h"
 #include "../../entities/include/Profile.h"
+#include "../../utils/Utils.h"
 
 class Combat {
 private:

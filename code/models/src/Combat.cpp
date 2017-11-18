@@ -44,7 +44,7 @@ void Combat::startCombat(Profile* player1, std::string nameDeckP1, Profile* play
     getBoardP1().startGame();
     getBoardP2().startGame();
 
-    setPlayerTurn(rand()%2 + 1);
+    setPlayerTurn(Utils::getRand(1,2));
 }
 
 void Combat::endGame(){

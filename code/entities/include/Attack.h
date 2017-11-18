@@ -2,8 +2,7 @@
 #define DEF_ATTACK
 
 #include <iostream>
-#include <cstdlib>
-#include <string>
+
 #include "EnergyType.h"
 #include "Constants.h"
 

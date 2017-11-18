@@ -2,12 +2,13 @@
 #define DEF_POWERCARD
 
 #include <iostream>
-#include <cstdlib>
-#include <string>
+
 #include "Card.h"
 #include "PowerType.h"
 #include "CardType.h"
 #include "Constants.h"
+
+#include "../../utils/Utils.h"
 
 class PowerCard : public Card {
     private:

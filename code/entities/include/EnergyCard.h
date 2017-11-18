@@ -2,13 +2,13 @@
 #define DEF_ENERGYCARD
 
 #include <iostream>
-#include <cstdlib>
-#include <string>
 
 #include "Card.h"
 #include "EnergyType.h"
 #include "CardType.h"
 #include "Constants.h"
+
+#include "../../utils/Utils.h"
 
 class EnergyCard : public Card {
     private:
