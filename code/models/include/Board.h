@@ -8,9 +8,8 @@
 #include "../../entities/include/CreatureCard.h"
 #include "../../entities/include/EnergyCard.h"
 #include "../../entities/include/PowerCard.h"
-
-#include "EnergyStack.h"
-#include "EffectStack.h"
+#include "../../entities/EnergyStack.h"
+#include "../../entities/EffectStack.h"
 
 #include <list>
 

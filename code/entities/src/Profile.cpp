@@ -14,16 +14,24 @@ Profile::~Profile(){
     }
 }
 
-Deck* Profile::getpCards(){
-    return &m_cards;
+std::string Profile::getName(){
+    return m_name;
 }
 
 std::vector<Deck*>* Profile::getpDecks(){
     return &m_decks;
 }
 
-std::string Profile::getName(){
-    return m_name;
+std::vector<Deck*> Profile::getDecks(){
+    return m_decks;
+}
+
+Deck* Profile::getpCards(){
+    return &m_cards;
+}
+
+Deck Profile::getCards(){
+    return m_cards;
 }
 
 void Profile::addDeck(Deck *deck){

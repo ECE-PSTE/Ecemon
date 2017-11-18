@@ -37,6 +37,29 @@ bool Deck::isComplete(){
     return (m_cards.size() == Constants::DefaultDeckSize());
 }
 
+bool Deck::takeoffCard(const Card* card){
+    for(int i=0 ; i<m_cards.size() ; i++){
+        if(m_cards[i] == card){
+            m_cards.erase(m_cards.begin() + i);
+            return true;
+        }
+    }
+    return false;
+}
+
+const Card* Deck::creatureRandom(){
+    const Card* card;
+    int pos;
+
+    do{
+        pos = Utils::getRand(0, m_cards.size()-1);
+        card = m_cards[pos];
+    }while(card->type() != CardType_Creature);
+
+    return card;
+}
+
+
 std::ostream& operator<<(std::ostream& os, const Deck& deck){
     int length = deck.m_cards.size();
     os << deck.m_name << std::endl;
@@ -58,34 +81,7 @@ std::istream& operator>>(std::istream& is, Deck& deck){
     Card card;
     for(int i=0 ; i<length ; i++){
         is >> card;
-        deck.m_cards.push_back(Game::Cards.at(card.getId()));
+        deck.m_cards.push_back(GameUtils::Cards.at(card.getId()));
     }
     return is;
-}
-
-bool Deck::takeoffCard(const Card* card){
-
-    std::vector<Card*>::iterator i;
-    for(i = getCards().begin() ; i != getCards().end(); i++){
-        if(card == *i){
-            getCards().erase(i);
-            return true;
-        }
-    }
-    return false;
-}
-
-Card* Deck::creatureRandom(){
-
-    Card* p;
-    int hasard;
-
-    srand(time(NULL));
-
-    do{
-        hasard = rand()%getCards().size();
-        p = getCards()[hasard];
-    }while(p->type() == CardType_Creature);
-
-    return p;
 }

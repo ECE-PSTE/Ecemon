@@ -3,15 +3,13 @@
 
 #include <string>
 #include <vector>
-#include <utility>
 #include <iostream>
-#include <stdio.h>
-#include <stdlib.h>
-#include <time.h>
 
 #include "Card.h"
 #include "Constants.h"
-#include "../../models/include/Game.h"
+
+#include "../../utils/GameUtils.h"
+#include "../../utils/Utils.h"
 
 class Deck{
     private:
@@ -32,8 +30,7 @@ class Deck{
 
         //true if card take off
         bool takeoffCard(const Card* card);
-
-        Card* creatureRandom();
+        const Card* creatureRandom();
 
         bool isComplete();
 
