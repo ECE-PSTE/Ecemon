@@ -21,7 +21,7 @@ void CreatureCard::readCard(std::istream &is){
     Card::readCard(is);
     std::string line;
     getline(is, line);
-    m_life = std::stoi(line);
+    m_life = Utils::toInt(line);
 }
 
 CardType CreatureCard::type() const{

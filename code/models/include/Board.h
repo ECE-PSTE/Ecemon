@@ -13,6 +13,8 @@
 #include "../../entities/include/EnergyStack.h"
 #include "../../entities/include/EffectStack.h"
 
+#include "../../utils/Utils.h"
+
 class Board{
     private:
         std::string m_namePlayer;

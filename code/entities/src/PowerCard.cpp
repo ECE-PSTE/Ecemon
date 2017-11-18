@@ -24,9 +24,9 @@ void PowerCard::readCard(std::istream &is){
     Card::readCard(is);
     std::string line;
     getline(is, line);
-    m_stats = std::stoi(line);
+    m_stats = Utils::toInt(line);
     getline(is, line);
-    m_powerType = (PowerType) std::stoi(line);
+    m_powerType = (PowerType) Utils::toInt(line);
 }
 
 CardType PowerCard::type() const{

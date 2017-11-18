@@ -13,12 +13,16 @@ Deck::Deck(std::string name){
     m_name = name;
 }
 
-std::vector<const Card*> Deck::getCards(){
-    return m_cards;
-}
-
 std::string Deck::getName(){
     return m_name;
+}
+
+std::vector<const Card*>* Deck::getpCards(){
+    return &m_cards;
+}
+
+std::vector<const Card*> Deck::getCards(){
+    return m_cards;
 }
 
 void Deck::addCard(const Card* card){
@@ -47,8 +51,8 @@ bool Deck::takeoffCard(const Card* card){
     return false;
 }
 
-Card* Deck::creatureRandom(){
-    Card* card;
+const Card* Deck::creatureRandom(){
+    const Card* card;
     int pos;
 
     do{
@@ -77,7 +81,7 @@ std::istream& operator>>(std::istream& is, Deck& deck){
     std::string line;
     getline(is, deck.m_name);
     getline(is, line);
-    int length = std::stoi(line);
+    int length = Utils::toInt(line);
     Card card;
     for(int i=0 ; i<length ; i++){
         is >> card;

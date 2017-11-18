@@ -1,10 +1,8 @@
 #ifndef DEF_DECK
 #define DEF_DECK
 
-#include <string>
-#include <vector>
 #include <iostream>
-#include <cstdlib>
+#include <vector>
 
 #include "Card.h"
 #include "Constants.h"
@@ -22,8 +20,9 @@ class Deck{
         Deck(const Deck &deck);
         Deck(std::string name);
 
-        std::vector<const Card*> getCards();
         std::string getName();
+        std::vector<const Card*>* getpCards();
+        std::vector<const Card*> getCards();
 
         void addCard(const Card* card);
         void addCards(std::vector<const Card*> cards);
@@ -31,7 +30,7 @@ class Deck{
 
         //true if card take off
         bool takeoffCard(const Card* card);
-        Card* creatureRandom();
+        const Card* creatureRandom();
 
         bool isComplete();
 

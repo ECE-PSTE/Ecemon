@@ -1,15 +1,14 @@
 #ifndef DEF_PROFILE
 #define DEF_PROFILE
 
-#include <map>
-#include <string>
-#include <vector>
-#include <utility>
 #include <iostream>
-#include <cstdlib>
+#include <vector>
+#include <map>
 
 #include "Deck.h"
 #include "Constants.h"
+
+#include "../../utils/Utils.h"
 
 class Profile{
     private:

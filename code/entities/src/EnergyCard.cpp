@@ -24,9 +24,9 @@ void EnergyCard::readCard(std::istream &is){
     Card::readCard(is);
     std::string line;
     getline(is, line);
-    m_energyType = (EnergyType) std::stoi(line);
+    m_energyType = (EnergyType) Utils::toInt(line);
     getline(is, line);
-    m_energy = std::stoi(line);
+    m_energy = Utils::toInt(line);
 }
 
 CardType EnergyCard::type() const{

@@ -1,11 +1,8 @@
 #ifndef DEF_CARD
 #define DEF_CARD
 
-#include <string>
-#include <iostream>
-#include <cstdlib>
-
 #include "Constants.h"
+#include "../../utils/Utils.h"
 
 class Card {
     protected:

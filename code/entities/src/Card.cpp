@@ -24,7 +24,7 @@ void Card::writeCard(std::ostream &os) const{
 void Card::readCard(std::istream &is){
     std::string line;
     getline(is, line);
-    m_id = std::stoi(line);
+    m_id = Utils::toInt(line);
     getline(is, m_name);
     getline(is, m_description);
 }
@@ -65,6 +65,6 @@ std::ostream& operator<<(std::ostream& os, const Card& card){
 std::istream& operator>>(std::istream& is, Card& card){
     std::string line;
     getline(is, line);
-    card.m_id = std::stoi(line);
+    card.m_id = Utils::toInt(line);
     return is;
 }
