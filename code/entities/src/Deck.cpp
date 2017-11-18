@@ -47,8 +47,8 @@ bool Deck::takeoffCard(const Card* card){
     return false;
 }
 
-CreatureCard* Deck::creatureRandom(){
-    CreatureCard* card;
+Card* Deck::creatureRandom(){
+    Card* card;
     int pos;
 
     do{

@@ -54,9 +54,7 @@ bool Board::stillAliveCreatureDeck(){
 
 Card* Board::askCard(){
 
-    int i = rand()%(getDeckPlay().getCards().size());
-
-    return ((getDeckPlay().getCards())[i]);
+    return ((getDeckPlay().getCards())[rand()%(getDeckPlay().getCards().size())]);
 }
 
 void Board::playCreature(CreatureCard* cardPlay){
