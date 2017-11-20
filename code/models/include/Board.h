@@ -18,11 +18,11 @@
 class Board{
     private:
         std::string m_namePlayer;
-        Card* m_cardBet;
+        const Card* m_cardBet;
         Deck m_deckPlay;
         Deck m_creatureGraveyard;
         Deck m_powerEnergyGraveyard;
-        CreatureCard* m_creatureOnBoard;
+        const CreatureCard* m_creatureOnBoard;
         EffectStack m_effectsOnPlayer;
         EnergyStack m_quantityEnergy;
         Board* m_pEnemyBoard;
@@ -42,7 +42,7 @@ public:
 
     std::string getNamePlayer(){return m_namePlayer;}
 
-    Card* getCardBet(){return m_cardBet;}
+    const Card* getCardBet(){return m_cardBet;}
 
     Deck* getpDeckPlay(){return &m_deckPlay;}
     Deck getDeckPlay(){return m_deckPlay;}
@@ -53,7 +53,7 @@ public:
     Deck* getpPowerEnergyGraveyard(){return &m_powerEnergyGraveyard;}
     Deck getPowerEnergyGraveyard(){return m_powerEnergyGraveyard;}
 
-    CreatureCard* getCreatureOnBoard(){return m_creatureOnBoard;}
+    const CreatureCard* getCreatureOnBoard(){return m_creatureOnBoard;}
 
     EffectStack getEffectsOnPlayer(){return m_effectsOnPlayer;}
 
@@ -64,9 +64,9 @@ public:
     int getLifePoint(){return m_lifePoint;}
 
     void setNamePlayer(std::string val){m_namePlayer = val;}
-    void setCardBet(Card* val){m_cardBet = val;}
+    void setCardBet(const Card* val){m_cardBet = val;}
     void setDeckPlay(Deck val){m_deckPlay = val;}
-    void setCreatureOnBoard(CreatureCard* val){m_creatureOnBoard = val;}
+    void setCreatureOnBoard(const CreatureCard* val){m_creatureOnBoard = val;}
     void setpEnemyBoard(Board* val){m_pEnemyBoard = val;}
     void setLifePoint(int val){m_lifePoint = val;}
 
@@ -82,7 +82,7 @@ public:
     //Initialisation of every parameter for a game (ex : lifepoibt of player at start)
     void startGame();
 
-    Card* askCard();
+    const Card* askCard();
 
     void endGame();
 };

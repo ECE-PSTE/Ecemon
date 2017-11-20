@@ -28,7 +28,7 @@ CardType CreatureCard::type() const{
     return CardType_Creature;
 }
 
-int CreatureCard::getLife(){
+int CreatureCard::getLife() const{
     return m_life;
 }
 

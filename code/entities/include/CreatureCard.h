@@ -24,7 +24,7 @@ class CreatureCard : public Card {
         void readCard(std::istream &is);
         CardType type() const;
 
-        int getLife();
+        int getLife() const;
         std::vector<Attack> getAttacks();
 
         void setLife(int life);

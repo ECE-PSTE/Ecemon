@@ -52,7 +52,7 @@ bool Board::stillAliveCreatureDeck(){
     return false;
 }
 
-Card* Board::askCard(){
+const Card* Board::askCard(){
     return ((getDeckPlay().getCards())[Utils::getRand(0, getDeckPlay().getCards().size()-1)]);
 }
 
