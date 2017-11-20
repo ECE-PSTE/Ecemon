@@ -79,6 +79,10 @@ namespace Constants {
     inline PowerType DefaultPowerType(){
         return PowerType_Undefined;
     }
+
+    inline int DefaultDamageAttack(){
+        return 0;
+    }
 };
 
 #endif

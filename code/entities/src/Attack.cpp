@@ -5,6 +5,7 @@ Attack::Attack(){
     m_description = Constants::DefaultAttackDescription();
     m_attackType = Constants::DefaultAttackType();
     m_cost = Constants::DefaultAttackCost();
+    m_damage = Constants::DefaultDamageAttack();
 }
 
 Attack::~Attack(){
@@ -26,6 +27,10 @@ int Attack::getCost(){
     return m_cost;
 }
 
+int Attack::getDamage(){
+    return m_damage;
+}
+
 void Attack::setName(std::string name){
     m_name = name;
 }
@@ -40,4 +45,8 @@ void Attack::setAttackType(EnergyType attackType){
 
 void Attack::setCost(int cost){
     m_cost = cost;
+}
+
+void Attack::setDamage(int dam){
+    m_damage = dam;
 }

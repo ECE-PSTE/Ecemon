@@ -12,6 +12,7 @@ class Attack {
         std::string m_description;
         EnergyType m_attackType;
         int m_cost;
+        int m_damage;
 
     public:
         Attack();
@@ -21,10 +22,12 @@ class Attack {
         std::string getDescription();
         EnergyType getAttackType();
         int getCost();
+        int getDamage();
 
         void setName(std::string name);
         void setDescription(std::string description);
         void setAttackType(EnergyType attackType);
         void setCost(int cost);
+        void setDamage(int dam);
 };
 #endif
