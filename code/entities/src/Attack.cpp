@@ -50,3 +50,23 @@ void Attack::setCost(int cost){
 void Attack::setDamage(int dam){
     m_damage = dam;
 }
+
+std::ostream& operator<<(std::ostream& os, const Attack& attack){
+    os << attack.m_name << std::endl;
+    os << attack.m_description << std::endl;
+    os << attack.m_attackType << std::endl;
+    os << attack.m_cost << std::endl;
+    os << attack.m_damage;
+}
+
+std::istream& operator>>(std::istream& is, Attack& attack){
+    std::string line;
+    getline(is, attack.m_name);
+    getline(is, attack.m_description);
+    getline(is, line);
+    attack.m_attackType = (EnergyType) Utils::toInt(line);
+    getline(is, line);
+    attack.m_cost = Utils::toInt(line);
+    getline(is, line);
+    attack.m_damage = Utils::toInt(line);
+}
