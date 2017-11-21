@@ -30,7 +30,7 @@ class Deck{
 
         //true if card take off
         bool takeoffCard(const Card* card);
-        const Card* creatureRandom();
+        const CreatureCard* creatureRandom();
 
         bool isComplete();
 

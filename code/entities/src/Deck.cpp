@@ -51,16 +51,14 @@ bool Deck::takeoffCard(const Card* card){
     return false;
 }
 
-const Card* Deck::creatureRandom(){
-    const Card* card;
+const CreatureCard* Deck::creatureRandom(){
     int pos;
 
     do{
         pos = Utils::getRand(0, m_cards.size()-1);
-        card = m_cards[pos];
-    }while(card->type() != CardType_Creature);
+    }while(m_cards[pos]->type() != CardType_Creature);
 
-    return card;
+    return (CreatureCard*) m_cards[pos];
 }
 
 
