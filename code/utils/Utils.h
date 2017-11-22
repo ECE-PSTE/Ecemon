@@ -22,6 +22,22 @@ namespace Utils {
         ss >> n;
         return n;
     }
+
+    inline bool fileToString(const char* filename, std::string &str){
+        std::ifstream file(filename);
+        if(file){
+            std::string line;
+            std::stringstream ss;
+            while(!file.eof()){
+                getline(file, line);
+                ss << line << std::endl;
+            }
+            str = ss.str();
+            file.close();
+            return true;
+        }
+        return false;
+    }
 }
 
 #endif
