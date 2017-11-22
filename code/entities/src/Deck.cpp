@@ -41,7 +41,7 @@ bool Deck::isComplete(){
     return (m_cards.size() == Constants::DefaultDeckSize());
 }
 
-bool Deck::takeoffCard(const Card* card){
+bool Deck::removeCard(const Card* card){
     for(int i=0 ; i<m_cards.size() ; i++){
         if(m_cards[i] == card){
             m_cards.erase(m_cards.begin() + i);
