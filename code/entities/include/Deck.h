@@ -28,8 +28,7 @@ class Deck{
         void addCards(std::vector<const Card*> cards);
         void setName(std::string name);
 
-        //true if card take off
-        bool takeoffCard(const Card* card);
+        bool removeCard(const Card* card);
         const CreatureCard* creatureRandom();
 
         bool isComplete();

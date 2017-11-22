@@ -32,12 +32,12 @@ bool Board::playerAlive(){
 void Board::startGame(){
 
     setCardBet(askCard());
-    if(!getDeckPlay().takeoffCard(getCardBet())){
+    if(!getDeckPlay().removeCard(getCardBet())){
         std::cout << "ERROR : TAKE OFF CARD BET BY PLAYER \n";
     }
 
     setCreatureOnBoard(getpDeckPlay()->creatureRandom());
-    if(!getpDeckPlay()->takeoffCard(getCreatureOnBoard())){
+    if(!getpDeckPlay()->removeCard(getCreatureOnBoard())){
         std::cout<< "ERROR : CREATURE ON BOARD NO TAKE OF DECK PLAY" << std::endl;
     }
 }
