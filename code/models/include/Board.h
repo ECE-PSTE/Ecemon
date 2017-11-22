@@ -12,6 +12,7 @@
 #include "../../entities/include/PowerCard.h"
 #include "../../entities/include/EnergyStack.h"
 #include "../../entities/include/EffectStack.h"
+#include "../../entities/include/Constants.h"
 
 #include "../../utils/Utils.h"
 
@@ -19,7 +20,7 @@ class Board{
     private:
         std::string m_namePlayer;
         const Card* m_cardBet;
-        Deck m_deckPlay;
+        Deck* m_deckPlay;
         Deck m_creatureGraveyard;
         Deck m_powerEnergyGraveyard;
         const CreatureCard* m_creatureOnBoard;
@@ -44,8 +45,7 @@ public:
 
     const Card* getCardBet(){return m_cardBet;}
 
-    Deck* getpDeckPlay(){return &m_deckPlay;}
-    Deck getDeckPlay(){return m_deckPlay;}
+    Deck* getDeckPlay(){return m_deckPlay;}
 
     Deck* getpCreatureGraveyard(){return &m_creatureGraveyard;}
     Deck getCreatureGraveyard(){return m_creatureGraveyard;}
@@ -65,7 +65,7 @@ public:
 
     void setNamePlayer(std::string val){m_namePlayer = val;}
     void setCardBet(const Card* val){m_cardBet = val;}
-    void setDeckPlay(Deck val){m_deckPlay = val;}
+    void setDeckPlay(Deck* val){m_deckPlay = val;}
     void setCreatureOnBoard(const CreatureCard* val){m_creatureOnBoard = val;}
     void setpEnemyBoard(Board* val){m_pEnemyBoard = val;}
     void setLifePoint(int val){m_lifePoint = val;}

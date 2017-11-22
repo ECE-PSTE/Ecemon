@@ -26,23 +26,25 @@ void Combat::startCombat(Profile* player1, std::string nameDeckP1, Profile* play
 
     for(const auto & elem : player1->getDecks()){
         if(elem->getName() == nameDeckP1){
-            getBoardP1().setDeckPlay(*elem);
+            std::cout << "Yes add to game\n";
+            getBoardP1().setDeckPlay(elem);
             break;
         }
     }
+
+
 
     for(const auto & elem : player2->getDecks()){
         if(elem->getName() == nameDeckP2){
-            getBoardP2().setDeckPlay(*elem);
+            getBoardP2().setDeckPlay(elem);
             break;
         }
     }
 
-    getBoardP1().setNamePlayer(player1->getName());
-    getBoardP2().setNamePlayer(player2->getName());
-
     getBoardP1().startGame();
     getBoardP2().startGame();
+
+
 
     setPlayerTurn(Utils::getRand(1,2));
 }
@@ -50,12 +52,12 @@ void Combat::startCombat(Profile* player1, std::string nameDeckP1, Profile* play
 void Combat::endGame(){
     switch (askEndGame()) {
         case 1:
-            getBoardP1().getpDeckPlay()->addCard(getBoardP2().getCardBet());
-            getBoardP1().getpDeckPlay()->addCard(getBoardP1().getCardBet());
+            getBoardP1().getDeckPlay()->addCard(getBoardP2().getCardBet());
+            getBoardP1().getDeckPlay()->addCard(getBoardP1().getCardBet());
             break;
         case 2:
-            getBoardP2().getpDeckPlay()->addCard(getBoardP1().getCardBet());
-            getBoardP2().getpDeckPlay()->addCard(getBoardP2().getCardBet());
+            getBoardP2().getDeckPlay()->addCard(getBoardP1().getCardBet());
+            getBoardP2().getDeckPlay()->addCard(getBoardP2().getCardBet());
             break;
         default:
             std::cout<<"ERROR : END OF GAME, ASKENDGAME BAD RETURN OF WINNER\n";

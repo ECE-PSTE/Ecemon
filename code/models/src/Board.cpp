@@ -32,18 +32,22 @@ bool Board::playerAlive(){
 void Board::startGame(){
 
     setCardBet(askCard());
-    if(!getDeckPlay().takeoffCard(getCardBet())){
+    if(!getDeckPlay()->takeoffCard(getCardBet())){
         std::cout << "ERROR : TAKE OFF CARD BET BY PLAYER \n";
     }
 
-    setCreatureOnBoard(getpDeckPlay()->creatureRandom());
-    if(!getpDeckPlay()->takeoffCard(getCreatureOnBoard())){
+
+    setCreatureOnBoard(getDeckPlay()->creatureRandom());
+    if(!getDeckPlay()->takeoffCard(getCreatureOnBoard())){
         std::cout<< "ERROR : CREATURE ON BOARD NO TAKE OF DECK PLAY" << std::endl;
     }
+
+
+    setLifePoint(Constants::DefaultLifePointBoard());
 }
 
 bool Board::stillAliveCreatureDeck(){
-    for(auto & elem : getDeckPlay().getCards()){
+    for(auto & elem : getDeckPlay()->getCards()){
         if(elem->type() == CardType_Creature){
             return true;
         }
@@ -53,7 +57,10 @@ bool Board::stillAliveCreatureDeck(){
 }
 
 const Card* Board::askCard(){
-    return ((getDeckPlay().getCards())[Utils::getRand(0, getDeckPlay().getCards().size()-1)]);
+    //std::cout << *m_deckPlay << "\n";
+    //std::cout << m_deckPlay->getName() << "\n";
+    return m_deckPlay->getCards()[Utils::getRand(0, getDeckPlay()->getCards().size()-1)];
+
 }
 
 void Board::playCreature(CreatureCard* cardPlay){
@@ -76,7 +83,7 @@ void Board::playPower(PowerCard* cardPlay){
             getpEnemyBoard()->setLifePoint(getLifePoint() - cardPlay->getStats());
             break;
         case PowerType_Jesus:
-            getpDeckPlay()->addCard(getCreatureGraveyard().getCards()[getCreatureGraveyard().getCards().size() - 1]);
+            getDeckPlay()->addCard(getCreatureGraveyard().getCards()[getCreatureGraveyard().getCards().size() - 1]);
             getpCreatureGraveyard()->getCards().pop_back();
             break;
         case PowerType_President:
@@ -90,10 +97,10 @@ void Board::playPower(PowerCard* cardPlay){
 
 void Board::endGame(){
     for(const auto & elem : getCreatureGraveyard().getCards()){
-        getpDeckPlay()->addCard(elem);
+        getDeckPlay()->addCard(elem);
     }
 
     for(const auto & elem : getpPowerEnergyGraveyard()->getCards()){
-        getpDeckPlay()->addCard(elem);
+        getDeckPlay()->addCard(elem);
     }
 }

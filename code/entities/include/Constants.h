@@ -86,6 +86,10 @@ namespace Constants {
     inline int DefaultDamageAttack(){
         return 0;
     }
+
+    inline int DefaultLifePointBoard(){
+        return 500;
+    }
 };
 
 #endif
