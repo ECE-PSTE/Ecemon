@@ -11,7 +11,7 @@
 #include "Utils.h"
 
 namespace GameUtils {
-    inline const std::map<int, const Card*> LoadGameCards(){
+    inline const std::map<int, const Card*> loadGameCards(){
         std::map<int, const Card*> cards;
         std::ifstream file(Constants::DefaultCardsFilename().c_str());
         if(file){
@@ -42,35 +42,21 @@ namespace GameUtils {
         return cards;
     }
 
-    const std::map<int, const Card*> Cards = LoadGameCards();
-
-    inline bool addCardToGame(Card *card){
-        // std::string cardsFile;
-        // if(Utils::fileToString(Constants::DefaultCardsFilename().c_str(), cardsFile)){
-        //     std::stringstream ss(cardsFile);
-        //     std::string line;
-        //     getline(ss, line);
-        //     int nbCards = Utils::toInt(line) + 1;
-        //
-        //     std::ofstream file(Constants::DefaultCardsFilename().c_str());
-        //     if(file){
-        //         file << nbCards << std::endl;
-        //         while(!ss.eof()){
-        //             getline(ss, line);
-        //             file << line << std::endl;
-        //         }
-        //         file << card->type() << std::endl;
-        //         card->writeCard(file);
-        //         file.close();
-        //         return true;
-        //     }
-        //     else{
-        //         return false;
-        //     }
-        // }
-        // return false;
+    inline bool saveGameCards(std::vector<const Card*> cards){
+        std::ofstream file(Constants::DefaultCardsFilename().c_str());
+        if(file){
+            file << cards.size() << std::endl;
+            for(auto card : cards){
+                file << card->type() << std::endl;
+                card->writeCard(file);
+            }
+            file.close();
+            return true;
+        }
         return false;
     }
+
+    const std::map<int, const Card*> Cards = loadGameCards();
 
     inline std::vector<const Card*> cardsVector(){
         std::vector<const Card*> cards;
@@ -78,6 +64,12 @@ namespace GameUtils {
             cards.push_back(it.second);
         }
         return cards;
+    }
+
+    inline bool addCardToGame(const Card *newCard){
+        std::vector<const Card*> cards = GameUtils::cardsVector();
+        cards.push_back(newCard);
+        return GameUtils::saveGameCards(cards);
     }
 
     inline void freeCards(){
