@@ -3,6 +3,8 @@
 
 #include <fstream>
 #include "../entities/include/Profile.h"
+#include "../entities/include/Constants.h"
+#include "Utils.h"
 
 namespace ProfileUtils {
     bool saveProfile(const char *filename, Profile &profile){
@@ -19,6 +21,39 @@ namespace ProfileUtils {
         std::ifstream file(filename);
         if(file){
             file >> profile;
+            file.close();
+            return true;
+        }
+        return false;
+    }
+
+    bool saveProfiles(std::vector<Profile> &profiles){
+        std::ofstream file(Constants::DefaultProfilesFilename().c_str());
+        if(file){
+            int length = profiles.size();
+            file << length << std::endl;
+            for(int i=0 ; i<length ; i++){
+                file << profiles[i];
+                if(i!=length-1){
+                    file << std::endl;
+                }
+            }
+            file.close();
+            return true;
+        }
+        return false;
+    }
+
+    bool loadProfiles(std::vector<Profile> &profiles){
+        std::ifstream file(Constants::DefaultProfilesFilename().c_str());
+        if(file){
+            std::string line;
+            getline(file, line);
+            int length = Utils::toInt(line);
+            profiles.resize(length);
+            for(int i=0 ; i<length ; i++){
+                file >> profiles[i];
+            }
             file.close();
             return true;
         }

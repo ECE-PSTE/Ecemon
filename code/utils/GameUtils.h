@@ -8,6 +8,8 @@
 #include "../../entities/include/EnergyCard.h"
 #include "../../entities/include/CreatureCard.h"
 
+#include "Utils.h"
+
 namespace GameUtils {
     inline const std::map<int, const Card*> LoadGameCards(){
         std::map<int, const Card*> cards;
@@ -43,16 +45,31 @@ namespace GameUtils {
     const std::map<int, const Card*> Cards = LoadGameCards();
 
     inline bool addCardToGame(Card *card){
-        std::ofstream file(Constants::DefaultCardsFilename().c_str(), std::ios::app);
-        if(file){
-            file << card->type() << std::endl;
-            card->writeCard(file);
-            file.close();
-            return true;
-        }
-        else{
-            return false;
-        }
+        // std::string cardsFile;
+        // if(Utils::fileToString(Constants::DefaultCardsFilename().c_str(), cardsFile)){
+        //     std::stringstream ss(cardsFile);
+        //     std::string line;
+        //     getline(ss, line);
+        //     int nbCards = Utils::toInt(line) + 1;
+        //
+        //     std::ofstream file(Constants::DefaultCardsFilename().c_str());
+        //     if(file){
+        //         file << nbCards << std::endl;
+        //         while(!ss.eof()){
+        //             getline(ss, line);
+        //             file << line << std::endl;
+        //         }
+        //         file << card->type() << std::endl;
+        //         card->writeCard(file);
+        //         file.close();
+        //         return true;
+        //     }
+        //     else{
+        //         return false;
+        //     }
+        // }
+        // return false;
+        return false;
     }
 
     inline std::vector<const Card*> cardsVector(){
