@@ -13,6 +13,7 @@ void GCard::init(){
     m_position.y = 0;
 
     m_cardShape = sf::RectangleShape(m_size);
+    m_cardShape.setOrigin(m_size.x/2, m_size.y/2);
 
     assert(m_font.loadFromFile("../graphics/font/Prototype.ttf"));
     m_nameText.setFont(m_font);
