@@ -43,8 +43,7 @@ int CreatureCard::getLife() const{
     return m_life;
 }
 
-std::vector<Attack> CreatureCard::getAttacks()
-{
+std::vector<Attack> CreatureCard::getAttacks() const{
     return m_attacks;
 }
 

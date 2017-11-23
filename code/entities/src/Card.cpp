@@ -33,15 +33,15 @@ CardType Card::type() const{
     return Constants::DefaultCardType();
 }
 
-int Card::getId(){
+int Card::getId() const{
     return m_id;
 }
 
-std::string Card::getName(){
+std::string Card::getName() const{
     return m_name;
 }
 
-std::string Card::getDescription(){
+std::string Card::getDescription() const{
     return m_description;
 }
 

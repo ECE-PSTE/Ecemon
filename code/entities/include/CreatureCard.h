@@ -25,7 +25,7 @@ class CreatureCard : public Card {
         CardType type() const;
 
         int getLife() const;
-        std::vector<Attack> getAttacks();
+        std::vector<Attack> getAttacks() const;
 
         void setLife(int life);
         void addAttack(Attack attack);

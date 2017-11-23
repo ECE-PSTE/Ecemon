@@ -33,11 +33,11 @@ CardType PowerCard::type() const{
     return CardType_Power;
 }
 
-int PowerCard::getStats(){
+int PowerCard::getStats() const{
     return m_stats;
 }
 
-PowerType PowerCard::getPowerType(){
+PowerType PowerCard::getPowerType() const{
     return m_powerType;
 }
 

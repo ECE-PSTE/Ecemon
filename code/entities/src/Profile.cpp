@@ -14,7 +14,7 @@ Profile::~Profile(){
     }
 }
 
-std::string Profile::getName(){
+std::string Profile::getName() const{
     return m_name;
 }
 
@@ -22,7 +22,7 @@ std::vector<Deck*>* Profile::getpDecks(){
     return &m_decks;
 }
 
-std::vector<Deck*> Profile::getDecks(){
+std::vector<Deck*> Profile::getDecks() const{
     return m_decks;
 }
 
@@ -30,7 +30,7 @@ Deck* Profile::getpCards(){
     return &m_cards;
 }
 
-Deck Profile::getCards(){
+Deck Profile::getCards() const{
     return m_cards;
 }
 

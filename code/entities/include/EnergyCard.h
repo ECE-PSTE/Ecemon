@@ -24,8 +24,8 @@ class EnergyCard : public Card {
         void readCard(std::istream &is);
         CardType type() const;
 
-        EnergyType getEnergyType();
-        int getEnergy();
+        EnergyType getEnergyType() const;
+        int getEnergy() const;
 
         void setEnergyType(EnergyType energyType);
         void setEnergy(int energy);
