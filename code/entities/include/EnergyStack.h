@@ -21,12 +21,10 @@ class EnergyStack{
         void setIceCream(int val){m_iceCream = val;}
         void setBlueberries(int val){m_blueverries = val;}
 
-        int getChili(){return m_chili ;}
-        int getTacos(){return m_tacos ;}
-        int getIceCream(){return m_iceCream ;}
-        int getBlueberries(){return m_blueverries ;}
-
-
+        int getChili() const{return m_chili ;}
+        int getTacos() const{return m_tacos ;}
+        int getIceCream() const{return m_iceCream ;}
+        int getBlueberries() const{return m_blueverries ;}
 
         void addEnergy(EnergyType eType, int quantity);
 };

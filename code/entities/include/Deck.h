@@ -20,9 +20,9 @@ class Deck{
         Deck(const Deck &deck);
         Deck(std::string name);
 
-        std::string getName();
+        std::string getName() const;
         std::vector<const Card*>* getpCards();
-        std::vector<const Card*> getCards();
+        std::vector<const Card*> getCards() const;
 
         void addCard(const Card* card);
         void addCards(std::vector<const Card*> cards);
@@ -31,7 +31,7 @@ class Deck{
         bool removeCard(const Card* card);
         const CreatureCard* creatureRandom();
 
-        bool isComplete();
+        bool isComplete() const;
 
         friend std::ostream& operator<<(std::ostream& os, const Deck& deck);
         friend std::istream& operator>>(std::istream& is, Deck& deck);

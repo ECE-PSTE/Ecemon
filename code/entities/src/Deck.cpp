@@ -13,7 +13,7 @@ Deck::Deck(std::string name){
     m_name = name;
 }
 
-std::string Deck::getName(){
+std::string Deck::getName() const{
     return m_name;
 }
 
@@ -21,7 +21,7 @@ std::vector<const Card*>* Deck::getpCards(){
     return &m_cards;
 }
 
-std::vector<const Card*> Deck::getCards(){
+std::vector<const Card*> Deck::getCards() const{
     return m_cards;
 }
 
@@ -37,7 +37,7 @@ void Deck::setName(std::string name){
     m_name = name;
 }
 
-bool Deck::isComplete(){
+bool Deck::isComplete() const{
     return (m_cards.size() == Constants::DefaultDeckSize());
 }
 
