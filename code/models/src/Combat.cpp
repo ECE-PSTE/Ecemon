@@ -26,8 +26,8 @@ void Combat::startCombat(Profile* player1, std::string nameDeckP1, Profile* play
 
     for(const auto & elem : player1->getDecks()){
         if(elem->getName() == nameDeckP1){
-            std::cout << "Yes add to game\n";
-            getBoardP1().setDeckPlay(elem);
+            std::cout << "Yes add to game P1\n";
+            m_boardP1.setDeckPlay(elem);
             break;
         }
     }
@@ -36,7 +36,8 @@ void Combat::startCombat(Profile* player1, std::string nameDeckP1, Profile* play
 
     for(const auto & elem : player2->getDecks()){
         if(elem->getName() == nameDeckP2){
-            getBoardP2().setDeckPlay(elem);
+            std::cout << "Yes add to game P2\n";
+            m_boardP2.setDeckPlay(elem);
             break;
         }
     }
@@ -44,9 +45,8 @@ void Combat::startCombat(Profile* player1, std::string nameDeckP1, Profile* play
     getBoardP1().startGame();
     getBoardP2().startGame();
 
-
-
     setPlayerTurn(Utils::getRand(1,2));
+    
 }
 
 void Combat::endGame(){

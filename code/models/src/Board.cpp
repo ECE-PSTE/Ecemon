@@ -1,7 +1,6 @@
 #include "../include/Board.h"
 
 Board::Board(){
-    //A voir ...
 }
 
 Board::~Board(){
@@ -32,15 +31,16 @@ bool Board::playerAlive(){
 void Board::startGame(){
 
     setCardBet(askCard());
-    if(!getDeckPlay().removeCard(getCardBet())){
+    if(!getDeckPlay()->removeCard(getCardBet())){
         std::cout << "ERROR : TAKE OFF CARD BET BY PLAYER \n";
     }
 
-    setCreatureOnBoard(getpDeckPlay()->creatureRandom());
-    if(!getpDeckPlay()->removeCard(getCreatureOnBoard())){
+    setCreatureOnBoard(getDeckPlay()->creatureRandom());
+    if(!getDeckPlay()->removeCard(getCreatureOnBoard())){
         std::cout<< "ERROR : CREATURE ON BOARD NO TAKE OF DECK PLAY" << std::endl;
     }
 
+    std::cout << "Id card bet :"<< *m_cardBet << "\nActual Deck play : " << *m_deckPlay << "\n\n";
 
     setLifePoint(Constants::DefaultLifePointBoard());
 }
@@ -56,7 +56,7 @@ bool Board::stillAliveCreatureDeck(){
 }
 
 const Card* Board::askCard(){
-    //std::cout << *m_deckPlay << "\n";
+    //std::cout << m_deckPlay << "\n";
     //std::cout << m_deckPlay->getName() << "\n";
     return m_deckPlay->getCards()[Utils::getRand(0, getDeckPlay()->getCards().size()-1)];
 
