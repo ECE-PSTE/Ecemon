@@ -33,7 +33,7 @@ class GCard {
         void setWindow(sf::RenderWindow *window);
         void setPosition(sf::Vector2f position);
         void setSize(sf::Vector2f size);
-        void setImage(std::string imagePath, float scaleX, float scaleY);
+        void setCardImage(std::string imagePath, float scaleX, float scaleY);
 
         virtual void update();
         virtual void draw();

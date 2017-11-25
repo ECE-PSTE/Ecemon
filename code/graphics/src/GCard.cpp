@@ -62,7 +62,7 @@ void GCard::setSize(sf::Vector2f size){
     m_size = size;
 }
 
-void GCard::setImage(std::string imagePath, float scaleX, float scaleY){
+void GCard::setCardImage(std::string imagePath, float scaleX, float scaleY){
     assert(m_imageTexture.loadFromFile(imagePath));
     m_imageTexture.setSmooth(true);
     m_imageSprite.setTexture(m_imageTexture);

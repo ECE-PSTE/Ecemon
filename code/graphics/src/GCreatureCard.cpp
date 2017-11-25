@@ -19,7 +19,7 @@ GCreatureCard::GCreatureCard(const Card *card, sf::RenderWindow *window){
 }
 
 void GCreatureCard::update(){
-    m_lifeText.setPosition(m_position.x, m_position.y-m_size.y/2 + 60);
+    m_lifeText.setPosition(m_position.x, m_position.y-m_size.y/2 + 80);
 }
 
 void GCreatureCard::draw(){
