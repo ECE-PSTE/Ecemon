@@ -86,6 +86,23 @@ namespace Constants {
     inline int DefaultDamageAttack(){
         return 0;
     }
+
+    // GRAPHICS
+    inline int DefaultCardWidth(){
+        return 250;
+    }
+    inline int DefaultCardHeight(){
+        return 450;
+    }
+    inline int DefaultCardOutlineThickness(){
+        return 3;
+    }
+    inline int DefaultCharacterSize(){
+        return 24;
+    }
+    inline std::string DefaultFont(){
+        return "Prototype.ttf";
+    }
 };
 
 #endif
