@@ -8,11 +8,12 @@ class GCreatureCard : public GCard {
     private:
         sf::Text m_lifeText;
 
+        void update();
+
     public:
         GCreatureCard();
         GCreatureCard(const Card *card, sf::RenderWindow *window);
 
-        void update();
         void draw();
 };
 

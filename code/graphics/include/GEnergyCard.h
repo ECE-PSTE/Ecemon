@@ -8,13 +8,14 @@ class GEnergyCard : public GCard {
     private:
         sf::Text m_energyText;
 
+        void update();
+
     public:
         GEnergyCard();
         GEnergyCard(const Card* card, sf::RenderWindow *window);
 
         void setEnergyImage(std::string imagePath, float scaleX, float scaleY);
 
-        void update();
         void draw();
 };
 

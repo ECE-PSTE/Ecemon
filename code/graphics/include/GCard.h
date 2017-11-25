@@ -20,6 +20,7 @@ class GCard {
         const Card* m_card;
 
         void init(const Card* card, sf::RenderWindow* window);
+        virtual void update();
 
     public:
         GCard();
@@ -35,7 +36,6 @@ class GCard {
         void setSize(sf::Vector2f size);
         void setCardImage(std::string imagePath, float scaleX, float scaleY);
 
-        virtual void update();
         virtual void draw();
 };
 
