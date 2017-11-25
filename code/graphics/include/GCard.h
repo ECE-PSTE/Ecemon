@@ -9,6 +9,8 @@ class GCard {
     protected:
         sf::RenderWindow *m_window;
         sf::RectangleShape m_cardShape;
+        sf::Texture m_imageTexture;
+        sf::Sprite m_imageSprite;
         sf::Text m_nameText;
         sf::Text m_descriptionText;
         sf::Font m_font;
@@ -17,10 +19,12 @@ class GCard {
 
         const Card* m_card;
 
-        void init();
+        void init(const Card* card, sf::RenderWindow* window);
+        virtual void update();
 
     public:
         GCard();
+        GCard(const Card *card, sf::RenderWindow *window);
         virtual ~GCard();
 
         sf::RenderWindow* getWindow() const;
@@ -30,8 +34,8 @@ class GCard {
         void setWindow(sf::RenderWindow *window);
         void setPosition(sf::Vector2f position);
         void setSize(sf::Vector2f size);
+        void setCardImage(std::string imagePath, float scaleX, float scaleY);
 
-        virtual void update();
         virtual void draw();
 };
 

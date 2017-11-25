@@ -6,18 +6,14 @@
 
 class GCreatureCard : public GCard {
     private:
-        sf::Texture m_texture;
-        sf::Sprite m_sprite;
         sf::Text m_lifeText;
-        std::string m_imagePath;
+
+        void update();
 
     public:
         GCreatureCard();
         GCreatureCard(const Card *card, sf::RenderWindow *window);
 
-        void setImage(std::string imagePath, float scaleX, float scaleY);
-
-        void update();
         void draw();
 };
 
