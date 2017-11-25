@@ -14,24 +14,24 @@ void GCard::init(const Card* card, sf::RenderWindow* window){
     m_card = card;
     m_window = window;
 
-    m_size.x = 250;
-    m_size.y = 450;
+    m_size.x = Constants::DefaultCardWidth();
+    m_size.y = Constants::DefaultCardHeight();
     m_position.x = 0;
     m_position.y = 0;
 
     m_cardShape = sf::RectangleShape(m_size);
     m_cardShape.setOrigin(m_size.x/2, m_size.y/2);
 
-    assert(m_font.loadFromFile("../graphics/fonts/Prototype.ttf"));
+    assert(m_font.loadFromFile("../graphics/fonts/"+Constants::DefaultFont()));
     m_nameText.setFont(m_font);
-    m_nameText.setCharacterSize(24);
+    m_nameText.setCharacterSize(Constants::DefaultCharacterSize());
     m_nameText.setColor(sf::Color::Red);
     m_nameText.setString(card->getName());
     sf::FloatRect nameRect = m_nameText.getLocalBounds();
     m_nameText.setOrigin(nameRect.left + nameRect.width/2.0f, nameRect.top  + nameRect.height/2.0f);
 
     m_descriptionText.setFont(m_font);
-    m_descriptionText.setCharacterSize(24);
+    m_descriptionText.setCharacterSize(Constants::DefaultCharacterSize());
     m_descriptionText.setColor(sf::Color::Red);
     m_descriptionText.setString(card->getDescription());
     sf::FloatRect descRect = m_descriptionText.getLocalBounds();
