@@ -8,10 +8,10 @@ GCreatureCard::GCreatureCard(const Card *card, sf::RenderWindow *window){
 
     m_cardShape.setFillColor(sf::Color(150, 50, 250));
     m_cardShape.setOutlineColor(sf::Color(250, 150, 100));
-    m_cardShape.setOutlineThickness(3);
+    m_cardShape.setOutlineThickness(Constants::DefaultCardOutlineThickness());
 
     m_lifeText.setFont(m_font);
-    m_lifeText.setCharacterSize(24);
+    m_lifeText.setCharacterSize(Constants::DefaultCharacterSize());
     m_lifeText.setColor(sf::Color::Red);
     m_lifeText.setString(std::to_string(((const CreatureCard*)card)->getLife()));
     sf::FloatRect lifeRect = m_lifeText.getLocalBounds();

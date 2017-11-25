@@ -4,6 +4,7 @@
 #include <cassert>
 #include <SFML/Graphics.hpp>
 #include "../../entities/include/Card.h"
+#include "../../entities/include/Constants.h"
 
 class GCard {
     protected:

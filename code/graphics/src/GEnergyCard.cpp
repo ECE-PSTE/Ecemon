@@ -8,13 +8,13 @@ GEnergyCard::GEnergyCard(const Card* card, sf::RenderWindow* window){
 
     m_cardShape.setFillColor(sf::Color(150, 50, 250));
     m_cardShape.setOutlineColor(sf::Color(250, 10, 20));
-    m_cardShape.setOutlineThickness(3);
+    m_cardShape.setOutlineThickness(Constants::DefaultCardOutlineThickness());
 
     m_nameText.setColor(sf::Color(250, 128, 114));
     m_descriptionText.setColor(sf::Color(250, 128, 114));
 
     m_energyText.setFont(m_font);
-    m_energyText.setCharacterSize(24);
+    m_energyText.setCharacterSize(Constants::DefaultCharacterSize());
     m_energyText.setColor(sf::Color(255, 218, 185));
     m_energyText.setString(std::to_string(((const EnergyCard*)card)->getEnergy()));
     sf::FloatRect energyRect = m_energyText.getLocalBounds();
