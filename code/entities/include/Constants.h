@@ -98,8 +98,8 @@ namespace Constants {
     inline int DefaultCardHeight(){
         return 450;
     }
-    inline int DefaultCardOutlineThickness(){
-        return 3;
+    inline float DefaultCardOutlineThickness(){
+        return -3.0f; // inline
     }
     inline int DefaultCharacterSize(){
         return 24;

@@ -15,6 +15,7 @@ class GCreatureCard : public GCard {
         GCreatureCard(const Card *card, sf::RenderWindow *window);
 
         void draw();
+        virtual void setCharacterSize(unsigned int size);
 };
 
 #endif
