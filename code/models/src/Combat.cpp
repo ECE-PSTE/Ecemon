@@ -9,7 +9,6 @@ Combat::~Combat(){
 }
 
 int Combat::askEndGame(){
-
     std::cout << "P1 : ";
     if(!m_boardP1.playerAlive()){
         return 2;
@@ -18,9 +17,6 @@ int Combat::askEndGame(){
     if(!m_boardP2.playerAlive()){
         return 1;
     }
-
-
-
 
     return 0;
 }
@@ -37,9 +33,6 @@ void Combat::startCombat(Profile* player1, std::string nameDeckP1, Profile* play
         }
     }
 
-
-
-
     for(const auto & elem : player2->getDecks()){
         if(elem->getName() == nameDeckP2){
             m_boardP2.setDeckPlay(elem);
@@ -47,20 +40,13 @@ void Combat::startCombat(Profile* player1, std::string nameDeckP1, Profile* play
         }
     }
 
-
-
     m_boardP1.startGame();
     m_boardP2.startGame();
-
 
     m_boardP1.setpEnemyBoard(&m_boardP2);
     m_boardP2.setpEnemyBoard(&m_boardP1);
 
-    // std::cout << "P1 Card Bet : " << *m_boardP1.getCardBet() << "\n";
-    // std::cout << "P1 Card Bet : " << *m_boardP1.getCardBet() << "\n";
-
     setPlayerTurn(Utils::getRand(1,2));
-
 }
 
 void Combat::endGame(){
