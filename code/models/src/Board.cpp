@@ -1,7 +1,6 @@
 #include "../include/Board.h"
 
 Board::Board(){
-    //A voir ...
 }
 
 Board::~Board(){
@@ -9,15 +8,25 @@ Board::~Board(){
 }
 
 void Board::endTurn(){
-    if(getCreatureOnBoard()->getLife() - getEffectsOnPlayer().getDamage() <= 0){
-        if(getCreatureOnBoard()->getLife() - getEffectsOnPlayer().getDamage() < 0){
-            setLifePoint(getLifePoint() + (getCreatureOnBoard()->getLife() - getEffectsOnPlayer().getDamage()));
+    std::cout << "LP creature : " <<getCreatureOnBoard()->getLife() - getpEffectsOnPlayer()->getDamage() << "\n";
+
+    // std::cout << "Damage : " << getEffectsOnPlayer().getDamage() << "\n";
+
+
+    if(getCreatureOnBoard()->getLife() - getpEffectsOnPlayer()->getDamage() <= 0){
+        std::cout << "Dead \n";
+        if(getCreatureOnBoard()->getLife() - getpEffectsOnPlayer()->getDamage() < 0){
+            setLifePoint(getLifePoint() + (getCreatureOnBoard()->getLife() - getpEffectsOnPlayer()->getDamage()));
         }
         getCreatureGraveyard().addCard(getCreatureOnBoard());
         setCreatureOnBoard(NULL);
-        getEffectsOnPlayer().newCreature();
+        getpEffectsOnPlayer()->newCreature();
     }
-    getEffectsOnPlayer().endTurn();
+    else{
+        std::cout << "Not Dead\n";
+    }
+
+    getpEffectsOnPlayer()->endTurn();
 }
 
 bool Board::playerAlive(){
@@ -32,55 +41,90 @@ bool Board::playerAlive(){
 void Board::startGame(){
 
     setCardBet(askCard());
-    if(!getDeckPlay().removeCard(getCardBet())){
+    if(!getDeckPlay()->removeCard(getCardBet())){
         std::cout << "ERROR : TAKE OFF CARD BET BY PLAYER \n";
     }
 
-    setCreatureOnBoard(getpDeckPlay()->creatureRandom());
-    if(!getpDeckPlay()->removeCard(getCreatureOnBoard())){
+    setCreatureOnBoard(getDeckPlay()->creatureRandom());
+    if(!getDeckPlay()->removeCard(getCreatureOnBoard())){
         std::cout<< "ERROR : CREATURE ON BOARD NO TAKE OF DECK PLAY" << std::endl;
     }
+
+    m_effectsOnPlayer.newCreature();
+
+    // std::cout<< "Player " << m_namePlayer << " ID Card On Board : " << *m_creatureOnBoard << "\n";
+
+    setLifePoint(Constants::DefaultLifePointBoard());
 }
 
 bool Board::stillAliveCreatureDeck(){
-    for(auto & elem : getDeckPlay().getCards()){
+    if(m_creatureOnBoard != NULL){
+        std::cout << "Creature on Board\n";
+        return true;
+    }
+
+    for(auto & elem : m_deckPlay->getCards()){
         if(elem->type() == CardType_Creature){
+            std::cout << "Creature in Deck\n";
             return true;
         }
     }
-
+    std::cout<< "Dead\n";
     return false;
 }
 
 const Card* Board::askCard(){
-    return ((getDeckPlay().getCards())[Utils::getRand(0, getDeckPlay().getCards().size()-1)]);
+    return m_deckPlay->getCards()[Utils::getRand(0, getDeckPlay()->getCards().size()-1)];
+
 }
 
-void Board::playCreature(CreatureCard* cardPlay){
+void Board::playCard(const Card* card){
+    switch (card->type()) {
+        case CardType_Power:
+            playPower((const PowerCard*) card);
+            m_deckPlay->removeCard(card);
+            m_powerEnergyGraveyard.addCard(card);
+            break;
+        case CardType_Energy:
+            playEnergy((const EnergyCard*) card);
+            m_deckPlay->removeCard(card);
+            m_powerEnergyGraveyard.addCard(card);
+            break;
+        case CardType_Creature:
+            playCreature((const CreatureCard*) card);
+            m_deckPlay->removeCard(card);
+            m_creatureGraveyard.addCard(card);
+            break;
+        default :
+            std::cout << "ERROR TYPE OF CARD PLAY IN PLAYCARD\n";
+    }
+}
+
+void Board::playCreature(const CreatureCard* cardPlay){
     getpCreatureGraveyard()->addCard(getCreatureOnBoard());
     setCreatureOnBoard(cardPlay);
-    getEffectsOnPlayer().newCreature();
+    getpEffectsOnPlayer()->newCreature();
 }
 
-void Board::playEnergy(EnergyCard* cardPlay){
-    getQuantityEnergy().addEnergy(cardPlay->getEnergyType(), cardPlay->getEnergy());
+void Board::playEnergy(const EnergyCard* cardPlay){
+    getpQuantityEnergy()->addEnergy(cardPlay->getEnergyType(), cardPlay->getEnergy());
     getpPowerEnergyGraveyard()->addCard(cardPlay);
 }
 
-void Board::playPower(PowerCard* cardPlay){
+void Board::playPower(const PowerCard* cardPlay){
     switch (cardPlay->getPowerType()) {
         case PowerType_Cold:
-            getpEnemyBoard()->getEffectsOnPlayer().setFreez(true);
+            getpEnemyBoard()->getpEffectsOnPlayer()->setFreez(true);
             break;
         case PowerType_OmgKenny:
             getpEnemyBoard()->setLifePoint(getLifePoint() - cardPlay->getStats());
             break;
         case PowerType_Jesus:
-            getpDeckPlay()->addCard(getCreatureGraveyard().getCards()[getCreatureGraveyard().getCards().size() - 1]);
+            getDeckPlay()->addCard(getCreatureGraveyard().getCards()[getCreatureGraveyard().getCards().size() - 1]);
             getpCreatureGraveyard()->getCards().pop_back();
             break;
         case PowerType_President:
-            getEffectsOnPlayer().setDamage(0);
+            getpEffectsOnPlayer()->setDamage(0);
             break;
 
         default:
@@ -90,10 +134,10 @@ void Board::playPower(PowerCard* cardPlay){
 
 void Board::endGame(){
     for(const auto & elem : getCreatureGraveyard().getCards()){
-        getpDeckPlay()->addCard(elem);
+        getDeckPlay()->addCard(elem);
     }
 
     for(const auto & elem : getpPowerEnergyGraveyard()->getCards()){
-        getpDeckPlay()->addCard(elem);
+        getDeckPlay()->addCard(elem);
     }
 }

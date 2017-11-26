@@ -19,8 +19,8 @@ public:
     Combat();
     ~Combat ();
 
-    Board getBoardP1(){return m_boardP1;}
-    Board getBoardP2(){return m_boardP2;}
+    Board* getpBoardP1(){return &m_boardP1;}
+    Board* getpBoardP2(){return &m_boardP2;}
     int getPlayerTrun(){return m_playerTurn;}
 
     void setPlayerTurn(int val){m_playerTurn = val;}

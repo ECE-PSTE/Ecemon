@@ -7,8 +7,8 @@
 
 class EffectStack{
     private:
-        bool m_freez = false;
-        int m_damage = 0;
+        bool m_freez;
+        int m_damage;
 
     public:
 

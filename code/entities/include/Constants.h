@@ -21,6 +21,10 @@ namespace Constants {
         return "GameProfiles";
     }
 
+    inline int DefaultLifePointBoard(){
+        return 100;
+    }
+
     // PROFILE
     inline std::string DefaultProfileName(){
         return "Default Profile Name";
