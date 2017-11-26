@@ -17,6 +17,7 @@ class GEnergyCard : public GCard {
         void setEnergyImage(std::string imagePath, float scaleX, float scaleY);
 
         void draw();
+        virtual void setCharacterSize(unsigned int size);
 };
 
 #endif

@@ -21,8 +21,15 @@ GEnergyCard::GEnergyCard(const Card* card, sf::RenderWindow* window){
     m_energyText.setOrigin(energyRect.left + energyRect.width/2.0f, energyRect.top  + energyRect.height/2.0f);
 }
 
+void GEnergyCard::setCharacterSize(unsigned int size){
+    GCard::setCharacterSize(size);
+    m_energyText.setCharacterSize(size);
+    sf::FloatRect energyRect = m_energyText.getLocalBounds();
+    m_energyText.setOrigin(energyRect.left + energyRect.width/2.0f, energyRect.top  + energyRect.height/2.0f);
+}
+
 void GEnergyCard::update(){
-    m_energyText.setPosition(m_position.x, m_position.y-m_size.y/2 + 80);
+    m_energyText.setPosition(m_position.x, m_position.y-m_size.y/2 + 0.2*m_size.y);
 }
 
 void GEnergyCard::draw(){

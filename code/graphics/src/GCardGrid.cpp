@@ -13,14 +13,14 @@ void GCardGrid::addGCards(std::vector<GCard*> gcards){
 }
 
 void GCardGrid::update(){
-    int cardWidth = Constants::DefaultCardWidth();
-    int cardHeight = Constants::DefaultCardHeight();
-    int space = 10;
+    int cardWidth = m_gcards[0]->getSize().x;
+    int cardHeight = m_gcards[0]->getSize().y;
+    int space = 5;
     int nbCardPerLine = m_gridSize.x/(cardWidth+space);
 
     int x=0,y=0;
     for(int i=0 ; i<m_gcards.size() ; i++){
-        m_gcards[i]->setPosition(sf::Vector2f(cardWidth/2+x*cardWidth, cardHeight/2+y*cardHeight));
+        m_gcards[i]->setPosition(sf::Vector2f(cardWidth/2+x*cardWidth+(x+1)*space, cardHeight/2+y*cardHeight+(y+1)*space));
         x++;
         if(i+1==nbCardPerLine){
             y++;
