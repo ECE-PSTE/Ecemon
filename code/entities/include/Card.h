@@ -19,9 +19,9 @@ class Card {
         virtual void readCard(std::istream &is);
         virtual CardType type() const;
 
-        int getId();
-        std::string getName();
-        std::string getDescription();
+        int getId() const;
+        std::string getName() const;
+        std::string getDescription() const;
 
         void setId(int id);
         void setName(std::string name);

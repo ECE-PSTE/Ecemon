@@ -33,11 +33,11 @@ CardType EnergyCard::type() const{
     return CardType_Energy;
 }
 
-EnergyType EnergyCard::getEnergyType(){
+EnergyType EnergyCard::getEnergyType() const{
     return m_energyType;
 }
 
-int EnergyCard::getEnergy(){
+int EnergyCard::getEnergy() const{
     return m_energy;
 }
 

@@ -8,10 +8,6 @@ EffectStack::~EffectStack(){
     //Chalut
 }
 
-int EffectStack::getDamage(){
-    return m_damage;
-}
-
 void EffectStack::endTurn(){
     setFreez(false);
 }

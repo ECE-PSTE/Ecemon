@@ -11,23 +11,23 @@ Attack::Attack(){
 Attack::~Attack(){
 }
 
-std::string Attack::getName(){
+std::string Attack::getName() const{
     return m_name;
 }
 
-std::string Attack::getDescription(){
+std::string Attack::getDescription() const{
     return m_description;
 }
 
-EnergyType Attack::getAttackType(){
+EnergyType Attack::getAttackType() const{
     return m_attackType;
 }
 
-int Attack::getCost(){
+int Attack::getCost() const{
     return m_cost;
 }
 
-int Attack::getDamage(){
+int Attack::getDamage() const{
     return m_damage;
 }
 

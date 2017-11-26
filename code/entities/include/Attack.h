@@ -19,11 +19,11 @@ class Attack {
         Attack();
         ~Attack();
 
-        std::string getName();
-        std::string getDescription();
-        EnergyType getAttackType();
-        int getCost();
-        int getDamage();
+        std::string getName() const;
+        std::string getDescription() const;
+        EnergyType getAttackType() const;
+        int getCost() const;
+        int getDamage() const;
 
         void setName(std::string name);
         void setDescription(std::string description);

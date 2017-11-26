@@ -21,11 +21,11 @@ class Profile{
         Profile(std::string nom);
         ~Profile();
 
-        std::string getName();
+        std::string getName() const;
         std::vector<Deck*>* getpDecks();
-        std::vector<Deck*> getDecks();
+        std::vector<Deck*> getDecks() const;
         Deck* getpCards();
-        Deck getCards();
+        Deck getCards() const;
 
         void addDeck(Deck *deck);
         void setName(std::string name);

@@ -24,8 +24,8 @@ class PowerCard : public Card {
         void readCard(std::istream &is);
         CardType type() const;
 
-        int getStats();
-        PowerType getPowerType();
+        int getStats() const;
+        PowerType getPowerType() const;
 
         void setStats(int stats);
         void setPowerType(PowerType powerType);

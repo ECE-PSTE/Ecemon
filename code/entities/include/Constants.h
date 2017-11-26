@@ -21,6 +21,10 @@ namespace Constants {
         return "GameProfiles";
     }
 
+    inline int DefaultLifePointBoard(){
+        return 100;
+    }
+
     // PROFILE
     inline std::string DefaultProfileName(){
         return "Default Profile Name";
@@ -87,8 +91,21 @@ namespace Constants {
         return 0;
     }
 
-    inline int DefaultLifePointBoard(){
-        return 500;
+    // GRAPHICS
+    inline int DefaultCardWidth(){
+        return 250;
+    }
+    inline int DefaultCardHeight(){
+        return 450;
+    }
+    inline int DefaultCardOutlineThickness(){
+        return 3;
+    }
+    inline int DefaultCharacterSize(){
+        return 24;
+    }
+    inline std::string DefaultFont(){
+        return "Prototype.ttf";
     }
 };
 
