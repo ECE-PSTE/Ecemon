@@ -1,6 +1,6 @@
 #include "../include/EffectStack.h"
 
-EffectStack::EffectStack(): m_freez(false), m_damage(0){
+EffectStack::EffectStack() {
     //Coucou
 }
 
@@ -8,15 +8,20 @@ EffectStack::~EffectStack(){
     //Chalut
 }
 
+int EffectStack::getDamage(){
+    return m_damage;
+}
+
 void EffectStack::endTurn(){
     setFreez(false);
 }
 
 void EffectStack::takeDamage(int damage){
-    setDamage(getDamage() + damage);
+    m_damage += damage;
 }
 
 void EffectStack::newCreature(){
+    std::cout<< "New creature\n";
     setFreez(false);
     setDamage(0);
 }

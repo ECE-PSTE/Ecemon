@@ -7,19 +7,19 @@
 
 class EffectStack{
     private:
-        bool m_freez = false;
-        int m_damage = 0;
+        bool m_freez;
+        int m_damage;
 
     public:
 
         EffectStack();
         ~EffectStack();
 
+        bool getFreez(){return m_freez;}
+        int getDamage();
+
         void setFreez(bool val){m_freez = val;}
         void setDamage(int val){m_damage = val;}
-
-        bool getFreez(){return m_freez;}
-        int getDamage(){return m_damage;}
 
          //Clean effects like m_freez
         void endTurn();
