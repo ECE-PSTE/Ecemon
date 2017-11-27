@@ -25,6 +25,10 @@ namespace Constants {
         return 100;
     }
 
+    inline std::string DefaultPasswordAdmin(){
+        return "omarlebg";
+    }
+
     // PROFILE
     inline std::string DefaultProfileName(){
         return "Default Profile Name";
