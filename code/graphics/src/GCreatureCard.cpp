@@ -3,8 +3,8 @@
 GCreatureCard::GCreatureCard(){
 }
 
-GCreatureCard::GCreatureCard(const Card *card, sf::RenderWindow *window){
-    GCard::init(card, window);
+GCreatureCard::GCreatureCard(sf::RenderWindow *window, sf::Vector2f size, const Card *card){
+    GCard::init(window, size, card);
 
     m_cardShape.setFillColor(sf::Color(150, 50, 250));
     m_cardShape.setOutlineColor(sf::Color(250, 150, 100));
@@ -18,8 +18,8 @@ GCreatureCard::GCreatureCard(const Card *card, sf::RenderWindow *window){
     m_lifeText.setOrigin(lifeRect.left + lifeRect.width/2.0f, lifeRect.top  + lifeRect.height/2.0f);
 }
 
-void GCreatureCard::setCharacterSize(unsigned int size){
-    GCard::setCharacterSize(size);
+void GCreatureCard::setFontSize(unsigned int size){
+    GCard::setFontSize(size);
     m_lifeText.setCharacterSize(size);
     sf::FloatRect lifeRect = m_lifeText.getLocalBounds();
     m_lifeText.setOrigin(lifeRect.left + lifeRect.width/2.0f, lifeRect.top  + lifeRect.height/2.0f);

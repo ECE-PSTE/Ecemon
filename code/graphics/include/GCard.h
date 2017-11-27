@@ -21,25 +21,23 @@ class GCard {
 
         const Card* m_card;
 
-        void init(const Card* card, sf::RenderWindow* window);
+        void init(sf::RenderWindow* window, sf::Vector2f size, const Card *card);
         float getSpriteScale() const;
         virtual void update();
 
     public:
         GCard();
-        GCard(const Card *card, sf::RenderWindow *window);
+        GCard(sf::RenderWindow *window, sf::Vector2f size, const Card *card);
         virtual ~GCard();
 
-        sf::RenderWindow* getWindow() const;
         sf::Vector2f getPosition() const;
         sf::Vector2f getSize() const;
-        unsigned int getCharacterSize() const;
 
         void setWindow(sf::RenderWindow *window);
         void setPosition(sf::Vector2f position);
         void setSize(sf::Vector2f size);
         void setCardImage(std::string imagePath);
-        virtual void setCharacterSize(unsigned int size);
+        virtual void setFontSize(unsigned int size);
 
         virtual void draw();
 };

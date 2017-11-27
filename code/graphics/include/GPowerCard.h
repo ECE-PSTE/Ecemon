@@ -10,7 +10,7 @@ class GPowerCard : public GCard {
 
     public:
         GPowerCard();
-        GPowerCard(const Card* card, sf::RenderWindow* window);
+        GPowerCard(sf::RenderWindow *window, sf::Vector2f size, const Card *card);
 
         void draw();
     };

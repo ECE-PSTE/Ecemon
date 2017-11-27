@@ -3,8 +3,8 @@
 GEnergyCard::GEnergyCard(){
 }
 
-GEnergyCard::GEnergyCard(const Card* card, sf::RenderWindow* window){
-    GCard::init(card, window);
+GEnergyCard::GEnergyCard(sf::RenderWindow *window, sf::Vector2f size, const Card *card){
+    GCard::init(window, size, card);
 
     m_cardShape.setFillColor(sf::Color(150, 50, 250));
     m_cardShape.setOutlineColor(sf::Color(250, 10, 20));
@@ -21,8 +21,8 @@ GEnergyCard::GEnergyCard(const Card* card, sf::RenderWindow* window){
     m_energyText.setOrigin(energyRect.left + energyRect.width/2.0f, energyRect.top  + energyRect.height/2.0f);
 }
 
-void GEnergyCard::setCharacterSize(unsigned int size){
-    GCard::setCharacterSize(size);
+void GEnergyCard::setFontSize(unsigned int size){
+    GCard::setFontSize(size);
     m_energyText.setCharacterSize(size);
     sf::FloatRect energyRect = m_energyText.getLocalBounds();
     m_energyText.setOrigin(energyRect.left + energyRect.width/2.0f, energyRect.top  + energyRect.height/2.0f);

@@ -12,10 +12,10 @@ class GCreatureCard : public GCard {
 
     public:
         GCreatureCard();
-        GCreatureCard(const Card *card, sf::RenderWindow *window);
+        GCreatureCard(sf::RenderWindow *window, sf::Vector2f size, const Card *card);
 
         void draw();
-        virtual void setCharacterSize(unsigned int size);
+        virtual void setFontSize(unsigned int size);
 };
 
 #endif
