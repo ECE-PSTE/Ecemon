@@ -7,23 +7,20 @@ Board::~Board(){
     //hello my dear
 }
 
+
+void Board::playerTakeDamage(int damage){
+    m_lifePoint += damage;
+    (*m_listenerLifePointPlayer)(m_lifePoint);
+}
+
 void Board::endTurn(){
-    std::cout << "LP creature : " <<getCreatureOnBoard()->getLife() - getpEffectsOnPlayer()->getDamage() << "\n";
-
-    // std::cout << "Damage : " << getEffectsOnPlayer().getDamage() << "\n";
-
-
     if(getCreatureOnBoard()->getLife() - getpEffectsOnPlayer()->getDamage() <= 0){
-        std::cout << "Dead \n";
         if(getCreatureOnBoard()->getLife() - getpEffectsOnPlayer()->getDamage() < 0){
-            setLifePoint(getLifePoint() + (getCreatureOnBoard()->getLife() - getpEffectsOnPlayer()->getDamage()));
+            playerTakeDamage(getCreatureOnBoard()->getLife() - getpEffectsOnPlayer()->getDamage());
         }
         getCreatureGraveyard().addCard(getCreatureOnBoard());
         setCreatureOnBoard(NULL);
         getpEffectsOnPlayer()->newCreature();
-    }
-    else{
-        std::cout << "Not Dead\n";
     }
 
     getpEffectsOnPlayer()->endTurn();
@@ -117,7 +114,7 @@ void Board::playPower(const PowerCard* cardPlay){
             getpEnemyBoard()->getpEffectsOnPlayer()->setFreez(true);
             break;
         case PowerType_OmgKenny:
-            getpEnemyBoard()->setLifePoint(getLifePoint() - cardPlay->getStats());
+            getpEnemyBoard()->playerTakeDamage(cardPlay->getStats());
             break;
         case PowerType_Jesus:
             getDeckPlay()->addCard(getCreatureGraveyard().getCards()[getCreatureGraveyard().getCards().size() - 1]);

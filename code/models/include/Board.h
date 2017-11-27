@@ -29,6 +29,8 @@ class Board{
         Board* m_pEnemyBoard;
         int m_lifePoint;
 
+        void (*m_listenerLifePointPlayer) (int);
+
         void playCreature(const CreatureCard* cardPlay);
 
         void playEnergy(const EnergyCard* cardPlay);
@@ -42,25 +44,16 @@ class Board{
         ~Board();
 
         std::string getNamePlayer(){return m_namePlayer;}
-
         const Card* getCardBet(){return m_cardBet;}
-
         Deck* getDeckPlay(){return m_deckPlay;}
-
         Deck* getpCreatureGraveyard(){return &m_creatureGraveyard;}
         Deck getCreatureGraveyard(){return m_creatureGraveyard;}
-
         Deck* getpPowerEnergyGraveyard(){return &m_powerEnergyGraveyard;}
         Deck getPowerEnergyGraveyard(){return m_powerEnergyGraveyard;}
-
         const CreatureCard* getCreatureOnBoard(){return m_creatureOnBoard;}
-
         EffectStack* getpEffectsOnPlayer(){return &m_effectsOnPlayer;}
-
         EnergyStack* getpQuantityEnergy(){return &m_quantityEnergy;}
-
         Board* getpEnemyBoard(){return m_pEnemyBoard;}
-
         int getLifePoint(){return m_lifePoint;}
 
         void setNamePlayer(std::string val){m_namePlayer = val;}
@@ -69,6 +62,10 @@ class Board{
         void setCreatureOnBoard(const CreatureCard* val){m_creatureOnBoard = val;}
         void setpEnemyBoard(Board* val){m_pEnemyBoard = val;}
         void setLifePoint(int val){m_lifePoint = val;}
+
+        void setListenerLifePointPlayer(void (*listener) (int newValue)){m_listenerLifePointPlayer = listener;}
+
+        void playerTakeDamage(int damage);
 
 
         void endTurn();
