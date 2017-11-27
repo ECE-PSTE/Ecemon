@@ -29,7 +29,10 @@ class Board{
         Board* m_pEnemyBoard;
         int m_lifePoint;
 
-        void (*m_listenerLifePointPlayer) (int);
+        void (*m_listenerPlayerLifePoint) (int);
+        void (*m_listenerCreatureLifePoint) (int);
+        void (*m_listenerCardPick) (const Card*);
+        void (*m_listenerNumberCardDeck) (int);
 
         void playCreature(const CreatureCard* cardPlay);
 
@@ -63,9 +66,15 @@ class Board{
         void setpEnemyBoard(Board* val){m_pEnemyBoard = val;}
         void setLifePoint(int val){m_lifePoint = val;}
 
-        void setListenerLifePointPlayer(void (*listener) (int newValue)){m_listenerLifePointPlayer = listener;}
+        void setListenerPlayerLifePoint(void (*listener) (int)){m_listenerPlayerLifePoint = listener;}
+        void setListenerCreatureLifePoint(void (*listener) (int)){m_listenerCreatureLifePoint = listener;}
+        void setListenerCardPick(void (*listener) (const Card*)){m_listenerCardPick = listener;}
+        void setListenerNumberCardDeck(void (*listener) (int)){m_listenerNumberCardDeck = listener;}
+
 
         void playerTakeDamage(int damage);
+
+        void creatureTakeDamage(int damage);
 
 
         void endTurn();

@@ -10,7 +10,7 @@ Board::~Board(){
 
 void Board::playerTakeDamage(int damage){
     m_lifePoint += damage;
-    (*m_listenerLifePointPlayer)(m_lifePoint);
+    (*m_listenerPlayerLifePoint)(m_lifePoint);
 }
 
 void Board::endTurn(){
@@ -71,7 +71,10 @@ bool Board::stillAliveCreatureDeck(){
 }
 
 const Card* Board::askCard(){
-    return m_deckPlay->getCards()[Utils::getRand(0, getDeckPlay()->getCards().size()-1)];
+    int i = Utils::getRand(0, getDeckPlay()->getCards().size()-1);
+    (*m_listenerCardPick)(m_deckPlay->getCards()[i]);
+    return m_deckPlay->getCards()[i];
+
 
 }
 
@@ -95,6 +98,7 @@ void Board::playCard(const Card* card){
         default :
             std::cout << "ERROR TYPE OF CARD PLAY IN PLAYCARD\n";
     }
+    (*m_listenerNumberCardDeck)(m_deckPlay->getCards().size());
 }
 
 void Board::playCreature(const CreatureCard* cardPlay){
@@ -137,4 +141,9 @@ void Board::endGame(){
     for(const auto & elem : getpPowerEnergyGraveyard()->getCards()){
         getDeckPlay()->addCard(elem);
     }
+}
+
+void Board::creatureTakeDamage(int damage){
+    m_effectsOnPlayer.takeDamage(damage);
+    (*m_listenerCreatureLifePoint)(m_creatureOnBoard->getLife() - m_effectsOnPlayer.getDamage());
 }
