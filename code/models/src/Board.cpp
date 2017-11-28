@@ -7,23 +7,20 @@ Board::~Board(){
     //hello my dear
 }
 
+
+void Board::playerTakeDamage(int damage){
+    m_lifePoint += damage;
+    (*m_listenerPlayerLifePoint)(m_lifePoint);
+}
+
 void Board::endTurn(){
-    std::cout << "LP creature : " <<getCreatureOnBoard()->getLife() - getpEffectsOnPlayer()->getDamage() << "\n";
-
-    // std::cout << "Damage : " << getEffectsOnPlayer().getDamage() << "\n";
-
-
     if(getCreatureOnBoard()->getLife() - getpEffectsOnPlayer()->getDamage() <= 0){
-        std::cout << "Dead \n";
         if(getCreatureOnBoard()->getLife() - getpEffectsOnPlayer()->getDamage() < 0){
-            setLifePoint(getLifePoint() + (getCreatureOnBoard()->getLife() - getpEffectsOnPlayer()->getDamage()));
+            playerTakeDamage(getCreatureOnBoard()->getLife() - getpEffectsOnPlayer()->getDamage());
         }
         getCreatureGraveyard().addCard(getCreatureOnBoard());
         setCreatureOnBoard(NULL);
         getpEffectsOnPlayer()->newCreature();
-    }
-    else{
-        std::cout << "Not Dead\n";
     }
 
     getpEffectsOnPlayer()->endTurn();
@@ -74,7 +71,10 @@ bool Board::stillAliveCreatureDeck(){
 }
 
 const Card* Board::askCard(){
-    return m_deckPlay->getCards()[Utils::getRand(0, getDeckPlay()->getCards().size()-1)];
+    int i = Utils::getRand(0, getDeckPlay()->getCards().size()-1);
+    (*m_listenerCardPick)(m_deckPlay->getCards()[i]);
+    return m_deckPlay->getCards()[i];
+
 
 }
 
@@ -98,12 +98,15 @@ void Board::playCard(const Card* card){
         default :
             std::cout << "ERROR TYPE OF CARD PLAY IN PLAYCARD\n";
     }
+    (*m_listenerNumberCardDeck)(m_deckPlay->getCards().size());
 }
 
 void Board::playCreature(const CreatureCard* cardPlay){
     getpCreatureGraveyard()->addCard(getCreatureOnBoard());
     setCreatureOnBoard(cardPlay);
     getpEffectsOnPlayer()->newCreature();
+    (*m_listenerCreatureOnBoard)(m_creatureOnBoard);
+    (*m_listenerCreatureLifePoint)(m_creatureOnBoard->getLife());
 }
 
 void Board::playEnergy(const EnergyCard* cardPlay){
@@ -117,14 +120,16 @@ void Board::playPower(const PowerCard* cardPlay){
             getpEnemyBoard()->getpEffectsOnPlayer()->setFreez(true);
             break;
         case PowerType_OmgKenny:
-            getpEnemyBoard()->setLifePoint(getLifePoint() - cardPlay->getStats());
+            getpEnemyBoard()->playerTakeDamage(cardPlay->getStats());
             break;
         case PowerType_Jesus:
             getDeckPlay()->addCard(getCreatureGraveyard().getCards()[getCreatureGraveyard().getCards().size() - 1]);
             getpCreatureGraveyard()->getCards().pop_back();
+            (*m_listenerNumberCardDeck)(m_deckPlay->getCards().size());
             break;
         case PowerType_President:
             getpEffectsOnPlayer()->setDamage(0);
+            (*m_listenerCreatureLifePoint)(m_creatureOnBoard->getLife());
             break;
 
         default:
@@ -139,5 +144,65 @@ void Board::endGame(){
 
     for(const auto & elem : getpPowerEnergyGraveyard()->getCards()){
         getDeckPlay()->addCard(elem);
+    }
+}
+
+void Board::creatureTakeDamage(int damage){
+    m_effectsOnPlayer.takeDamage(damage);
+    (*m_listenerCreatureLifePoint)(m_creatureOnBoard->getLife() - m_effectsOnPlayer.getDamage());
+}
+
+bool Board::askAttack(){
+    if(m_creatureOnBoard && !m_effectsOnPlayer.getFreez()){
+        return true;
+    }
+    return false;
+}
+
+bool Board::askSpecialAttack(){
+    if(m_effectsOnPlayer.getFreez()){
+        return false;
+    }
+
+    if(!m_pEnemyBoard->getCreatureOnBoard()){
+        return false;
+    }
+
+    switch (m_creatureOnBoard->getAttacks()[1].getAttackType()){
+        case EnergyType_Chili:
+            if(m_quantityEnergy.getChili() < m_creatureOnBoard->getAttacks()[1].getCost()){
+                return false;
+            }
+            break;
+        case EnergyType_Tacos:
+            if(m_quantityEnergy.getTacos() < m_creatureOnBoard->getAttacks()[1].getCost()){
+                return false;
+            }
+            break;
+        case EnergyType_IceCream:
+            if(m_quantityEnergy.getIceCream() < m_creatureOnBoard->getAttacks()[1].getCost()){
+                return false;
+            }
+            break;
+        case EnergyType_Blueberries:
+            if(m_quantityEnergy.getBlueberries() < m_creatureOnBoard->getAttacks()[1].getCost()){
+                return false;
+            }
+            break;
+        default:
+            std::cout << "ERROR TYPE ENERGY ATTACK IN ASKSPECIALATTACK\n\n";
+    }
+    return true;
+}
+
+void Board::attackEnemie(bool specialAttack){
+    if(specialAttack){
+        m_pEnemyBoard->creatureTakeDamage(m_creatureOnBoard->getAttacks()[1].getDamage());
+    }
+    else if(m_pEnemyBoard->getCreatureOnBoard()){
+        m_pEnemyBoard->creatureTakeDamage(m_creatureOnBoard->getAttacks()[0].getDamage());
+    }
+    else{
+        m_pEnemyBoard->playerTakeDamage(m_creatureOnBoard->getAttacks()[0].getDamage());
     }
 }
