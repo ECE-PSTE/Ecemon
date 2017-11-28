@@ -33,6 +33,7 @@ class Board{
         void (*m_listenerCreatureLifePoint) (int);
         void (*m_listenerCardPick) (const Card*);
         void (*m_listenerNumberCardDeck) (int);
+        void (*m_listenerCreatureOnBoard) (const CreatureCard*);
 
         void playCreature(const CreatureCard* cardPlay);
 
@@ -70,6 +71,7 @@ class Board{
         void setListenerCreatureLifePoint(void (*listener) (int)){m_listenerCreatureLifePoint = listener;}
         void setListenerCardPick(void (*listener) (const Card*)){m_listenerCardPick = listener;}
         void setListenerNumberCardDeck(void (*listener) (int)){m_listenerNumberCardDeck = listener;}
+        void setListenerCreatureOnBoard(void (*listener) (const CreatureCard*)){m_listenerCreatureOnBoard = listener;}
 
 
         void playerTakeDamage(int damage);
@@ -81,6 +83,12 @@ class Board{
 
         //True if lifepoint > 0 or still creature in deck
         bool playerAlive();
+
+        bool askAttack();
+
+        bool askSpecialAttack();
+
+        void attackEnemie(bool specialAttack);
 
         //To discut : because it call every other methode to play a turn by player
         void playCard(const Card* card);
