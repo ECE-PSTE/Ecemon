@@ -14,22 +14,23 @@ void GCard::init(sf::RenderWindow* window, sf::Vector2f size){
     m_window = window;
     m_size = size;
 
-    assert(m_font.loadFromFile("../graphics/fonts/Prototype.ttf"));
+    assert(m_font.loadFromFile("../graphics/fonts/"+Constants::DefaultFont()));
 
     m_position.x = 0;
     m_position.y = 0;
-    m_characterSize = 24;
+    m_fontSize = Constants::DefaultCardFontSize();
+    m_fontColor = Constants::DefaultCardTextColor();
 
     m_cardShape = sf::RectangleShape(m_size);
     m_cardShape.setOrigin(m_size.x/2, m_size.y/2);
 
     m_nameText.setFont(m_font);
-    m_nameText.setCharacterSize(m_characterSize);
-    m_nameText.setColor(sf::Color::Red);
+    m_nameText.setCharacterSize(m_fontSize);
+    m_nameText.setColor(m_fontColor);
 
     m_descriptionText.setFont(m_font);
-    m_descriptionText.setCharacterSize(m_characterSize);
-    m_descriptionText.setColor(sf::Color::Red);
+    m_descriptionText.setCharacterSize(m_fontSize);
+    m_descriptionText.setColor(m_fontColor);
 }
 
 float GCard::getSpriteScale() const{
@@ -72,7 +73,7 @@ void GCard::setCardImage(std::string imagePath){
 }
 
 void GCard::setFontSize(unsigned int size){
-    m_characterSize = size;
+    m_fontSize = size;
 
     m_nameText.setCharacterSize(size);
     sf::FloatRect nameRect = m_nameText.getLocalBounds();
@@ -81,6 +82,12 @@ void GCard::setFontSize(unsigned int size){
     m_descriptionText.setCharacterSize(size);
     sf::FloatRect descRect = m_descriptionText.getLocalBounds();
     m_descriptionText.setOrigin(descRect.left + descRect.width/2.0f, descRect.top  + descRect.height/2.0f);
+}
+
+void GCard::setFontColor(sf::Color fontColor){
+    m_fontColor = fontColor;
+    m_nameText.setColor(fontColor);
+    m_descriptionText.setColor(fontColor);
 }
 
 void GCard::update(){

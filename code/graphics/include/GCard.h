@@ -15,7 +15,8 @@ class GCard : public Drawable {
         sf::Text m_nameText;
         sf::Text m_descriptionText;
         sf::Font m_font;
-        unsigned int m_characterSize;
+        sf::Color m_fontColor;
+        unsigned int m_fontSize;
 
         const Card* m_card;
 
@@ -32,6 +33,7 @@ class GCard : public Drawable {
         void setCardImage(std::string imagePath);
         virtual void setCard(const Card *card);
         virtual void setFontSize(unsigned int size);
+        virtual void setFontColor(sf::Color fontColor);
 
         virtual void draw();
 };

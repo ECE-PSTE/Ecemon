@@ -6,16 +6,20 @@ GEnergyCard::GEnergyCard(){
 GEnergyCard::GEnergyCard(sf::RenderWindow *window, sf::Vector2f size){
     GCard::init(window, size);
 
-    m_cardShape.setFillColor(sf::Color(150, 50, 250));
-    m_cardShape.setOutlineColor(sf::Color(250, 10, 20));
+    m_cardShape.setFillColor(Constants::DefaultEnergyCardColor());
+    m_cardShape.setOutlineColor(Constants::DefaultEnergyCardOutlineColor());
     m_cardShape.setOutlineThickness(Constants::DefaultCardOutlineThickness());
 
-    m_nameText.setColor(sf::Color(250, 128, 114));
-    m_descriptionText.setColor(sf::Color(250, 128, 114));
+    m_fontColor = Constants::DefaultEnergyCardTextColor();
+
+    m_nameText.setColor(m_fontColor);
+    m_descriptionText.setColor(m_fontColor);
 
     m_energyText.setFont(m_font);
-    m_energyText.setCharacterSize(Constants::DefaultCharacterSize());
-    m_energyText.setColor(sf::Color(255, 218, 185));
+    m_energyText.setCharacterSize(m_fontSize);
+    m_energyText.setColor(m_fontColor);
+
+    GCard::setFontColor(m_fontColor);
 }
 
 void GEnergyCard::setCard(const Card* card){
@@ -30,6 +34,11 @@ void GEnergyCard::setFontSize(unsigned int size){
     m_energyText.setCharacterSize(size);
     sf::FloatRect energyRect = m_energyText.getLocalBounds();
     m_energyText.setOrigin(energyRect.left + energyRect.width/2.0f, energyRect.top  + energyRect.height/2.0f);
+}
+
+void GEnergyCard::setFontColor(sf::Color fontColor){
+    GCard::setFontColor(fontColor);
+    m_energyText.setColor(fontColor);
 }
 
 void GEnergyCard::update(){

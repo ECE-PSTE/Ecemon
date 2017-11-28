@@ -5,6 +5,7 @@
 #include <cassert>
 #include <SFML/Graphics.hpp>
 #include "../../entities/include/EnergyStack.h"
+#include "../../entities/include/Constants.h"
 
 class GEnergy {
     private:
