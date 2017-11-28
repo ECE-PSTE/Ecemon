@@ -34,12 +34,20 @@ Deck Profile::getCards() const{
     return m_cards;
 }
 
+int Profile::getMoney()const {
+    return m_money;
+}
+
 void Profile::addDeck(Deck *deck){
     m_decks.push_back(deck);
 }
 
 void Profile::setName(std::string name){
     m_name = name;
+}
+
+void Profile::setMoney(int val){
+    m_money = val;
 }
 
 bool Profile::deleteDeck(std::string name)
@@ -54,8 +62,13 @@ bool Profile::deleteDeck(std::string name)
     return false;
 }
 
+void Profile::addMoney(int money){
+    m_money+= money;
+}
+
 std::ostream& operator<<(std::ostream& os, const Profile& profile){
     os << profile.m_name << std::endl;
+    os << profile.m_money << std::endl;
     os << profile.m_cards << std::endl;
 
     int length = profile.m_decks.size();
@@ -73,6 +86,7 @@ std::ostream& operator<<(std::ostream& os, const Profile& profile){
 
 std::istream& operator>>(std::istream& is, Profile& profile){
     getline(is, profile.m_name);
+    is >> profile.m_money;
     is >> profile.m_cards;
 
     std::string line;

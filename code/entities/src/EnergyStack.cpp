@@ -1,6 +1,6 @@
 #include "../include/EnergyStack.h"
 
-EnergyStack::EnergyStack(): m_chili(0), m_tacos(0), m_iceCream(0), m_blueverries(0){
+EnergyStack::EnergyStack(): m_chili(0), m_tacos(0), m_iceCream(0), m_blueberries(0){
     //Yooo
 }
 
@@ -25,4 +25,6 @@ void EnergyStack::addEnergy(EnergyType eType, int quantity){
         default:
             std::cout<<"Error EnergyType in addEnergy" << std::endl;
     }
+
+    (*m_listenerEnergyStack)(this);
 }
