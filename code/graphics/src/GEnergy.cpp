@@ -14,7 +14,7 @@ void GEnergy::init(){
     assert(m_font.loadFromFile("../graphics/fonts/Prototype.ttf"));
 
     m_imageScale = m_size.y/(4*256);
-    m_size.x = 100;
+    m_size.x *= m_imageScale;
     m_fontSize = 24;
 
     m_textures.resize(4);
