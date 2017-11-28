@@ -11,11 +11,10 @@ GEnergy::GEnergy(sf::RenderWindow* window, sf::Vector2f size){
 }
 
 void GEnergy::init(){
-    assert(m_font.loadFromFile("../graphics/fonts/Prototype.ttf"));
+    assert(m_font.loadFromFile("../graphics/fonts/"+Constants::DefaultFont()));
 
-    m_imageScale = m_size.y/(4*256);
-    m_size.x *= m_imageScale;
-    m_fontSize = 24;
+    m_imageScale = m_size.y/(4*Constants::DefaultEnergyImageSize());
+    m_fontSize = Constants::DefaultEnergyFontSize();
 
     m_textures.resize(4);
     m_sprites.resize(4);
@@ -28,10 +27,10 @@ void GEnergy::init(){
     }
 
     // icones 256x256 pixels
-    loadEnergy(m_textures[0], m_sprites[0], "../graphics/images/chili.png");
-    loadEnergy(m_textures[1], m_sprites[1], "../graphics/images/taco.png");
-    loadEnergy(m_textures[2], m_sprites[2], "../graphics/images/ice-cream.png");
-    loadEnergy(m_textures[3], m_sprites[3], "../graphics/images/blueberries.png");
+    loadEnergy(m_textures[0], m_sprites[0], "../graphics/images/"+Constants::DefaultEnergyChili());
+    loadEnergy(m_textures[1], m_sprites[1], "../graphics/images/"+Constants::DefaultEnergyTaco());
+    loadEnergy(m_textures[2], m_sprites[2], "../graphics/images/"+Constants::DefaultEnergyIceCream());
+    loadEnergy(m_textures[3], m_sprites[3], "../graphics/images/"+Constants::DefaultEnergyBlueberries());
 }
 
 void GEnergy::loadEnergy(sf::Texture &texture, sf::Sprite &sprite, std::string imagePath){

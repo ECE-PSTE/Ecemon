@@ -47,7 +47,7 @@ void GBoard::setCemetryCardsCount(int cemeteryCardsCount){
 }
 
 void GBoard::init(){
-    assert(m_font.loadFromFile("../graphics/fonts/Prototype.ttf"));
+    assert(m_font.loadFromFile("../graphics/fonts/"+Constants::DefaultFont()));
     m_fontSize = 24;
     m_deckScale = 0.3f;
     m_cemeteryScale = 0.5f;

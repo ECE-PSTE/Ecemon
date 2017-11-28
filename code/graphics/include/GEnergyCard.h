@@ -19,6 +19,7 @@ class GEnergyCard : public GCard {
         void draw();
         void setCard(const Card* card);
         void setFontSize(unsigned int size);
+        void setFontColor(sf::Color fontColor);
 };
 
 #endif

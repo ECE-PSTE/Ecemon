@@ -6,8 +6,8 @@ GPowerCard::GPowerCard(){
 GPowerCard::GPowerCard(sf::RenderWindow *window, sf::Vector2f size){
     GCard::init(window, size);
 
-    m_cardShape.setFillColor(sf::Color(150, 50, 250));
-    m_cardShape.setOutlineColor(sf::Color(0, 255, 10));
+    m_cardShape.setFillColor(Constants::DefaultPowerCardColor());
+    m_cardShape.setOutlineColor(Constants::DefaultPowerCardOutlineColor());
     m_cardShape.setOutlineThickness(Constants::DefaultCardOutlineThickness());
 
     m_nameText.setColor(sf::Color(0, 255, 0));
