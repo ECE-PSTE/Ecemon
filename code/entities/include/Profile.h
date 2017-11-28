@@ -13,6 +13,7 @@
 class Profile{
     private:
         std::string m_name;
+        int m_money;
         std::vector<Deck*> m_decks;
         Deck m_cards;
 
@@ -26,12 +27,16 @@ class Profile{
         std::vector<Deck*> getDecks() const;
         Deck* getpCards();
         Deck getCards() const;
+        int getMoney()const ;
 
         void addDeck(Deck *deck);
         void setName(std::string name);
+        void setMoney(int val);
 
         // delete a deck by its name, return true if success
         bool deleteDeck(std::string name);
+
+        void addMoney(int money);
 
         friend std::ostream& operator<<(std::ostream& os, const Profile& profile);
         friend std::istream& operator>>(std::istream& is, Profile& profile);
