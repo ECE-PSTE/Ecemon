@@ -3,8 +3,8 @@
 GPowerCard::GPowerCard(){
 }
 
-GPowerCard::GPowerCard(const Card* card, sf::RenderWindow* window){
-    GCard::init(card, window);
+GPowerCard::GPowerCard(sf::RenderWindow *window, sf::Vector2f size){
+    GCard::init(window, size);
 
     m_cardShape.setFillColor(sf::Color(150, 50, 250));
     m_cardShape.setOutlineColor(sf::Color(0, 255, 10));
@@ -12,13 +12,4 @@ GPowerCard::GPowerCard(const Card* card, sf::RenderWindow* window){
 
     m_nameText.setColor(sf::Color(0, 255, 0));
     m_descriptionText.setColor(sf::Color(0, 255, 0));
-}
-
-void GPowerCard::update(){
-
-}
-
-void GPowerCard::draw(){
-    GCard::draw();
-    GPowerCard::update();
 }
