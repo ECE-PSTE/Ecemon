@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <string>
+#include <SFML/Graphics.hpp>
 
 #include "CardType.h"
 #include "EnergyType.h"
@@ -92,6 +93,11 @@ namespace Constants {
     }
 
     // GRAPHICS
+    inline std::string DefaultFont(){
+        return "Prototype.ttf";
+    }
+
+    // GCARDS
     inline int DefaultCardWidth(){
         return 250;
     }
@@ -101,12 +107,63 @@ namespace Constants {
     inline float DefaultCardOutlineThickness(){
         return -3.0f; // inline
     }
-    inline int DefaultCharacterSize(){
+    inline int DefaultCardFontSize(){
         return 24;
     }
-    inline std::string DefaultFont(){
-        return "Prototype.ttf";
+    inline sf::Color DefaultCardTextColor(){
+        return sf::Color::White;
     }
+
+    // G ENERGY CARD
+    inline sf::Color DefaultEnergyCardColor(){
+        return sf::Color(150, 50, 250);
+    }
+    inline sf::Color DefaultEnergyCardOutlineColor(){
+        return sf::Color(50, 255, 0);
+    }
+    inline sf::Color DefaultEnergyCardTextColor(){
+        return sf::Color::White;
+    }
+
+    // G CREATURE CARD
+    inline sf::Color DefaultCreatureCardColor(){
+        return sf::Color(0, 0, 100);
+    }
+    inline sf::Color DefaultCreatureCardOutlineColor(){
+        return sf::Color(250, 150, 100);
+    }
+    inline sf::Color DefaultCreatureCardTextColor(){
+        return sf::Color(255, 0, 0);
+    }
+
+    // G POWER CARD
+    inline sf::Color DefaultPowerCardColor(){
+        return sf::Color(150, 50, 250);
+    }
+    inline sf::Color DefaultPowerCardOutlineColor(){
+        return sf::Color(0, 255, 10);
+    }
+
+    // G ENERGY
+    inline int DefaultEnergyImageSize(){
+        return 256; // 256x256
+    }
+    inline int DefaultEnergyFontSize(){
+        return 18;
+    }
+    inline std::string DefaultEnergyChili(){
+        return "chili.png";
+    }
+    inline std::string DefaultEnergyTaco(){
+        return "taco.png";
+    }
+    inline std::string DefaultEnergyIceCream(){
+        return "ice-cream.png";
+    }
+    inline std::string DefaultEnergyBlueberries(){
+        return "blueberries.png";
+    }
+
 };
 
 #endif
