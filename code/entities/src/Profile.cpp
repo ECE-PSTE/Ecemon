@@ -46,8 +46,12 @@ void Profile::setName(std::string name){
     m_name = name;
 }
 
-void Profile::setMoney(int val){
-    m_money = val;
+void Profile::setMoney(int money){
+    m_money = money;
+}
+
+void Profile::addMoney(int money){
+    m_money += money;
 }
 
 bool Profile::deleteDeck(std::string name)
@@ -60,10 +64,6 @@ bool Profile::deleteDeck(std::string name)
     }
 
     return false;
-}
-
-void Profile::addMoney(int money){
-    m_money+= money;
 }
 
 std::ostream& operator<<(std::ostream& os, const Profile& profile){
@@ -85,11 +85,13 @@ std::ostream& operator<<(std::ostream& os, const Profile& profile){
 }
 
 std::istream& operator>>(std::istream& is, Profile& profile){
+    std::string line;
+
     getline(is, profile.m_name);
-    is >> profile.m_money;
+    getline(is, line);
+    profile.m_money = Utils::toInt(line);
     is >> profile.m_cards;
 
-    std::string line;
     getline(is, line);
     int length = Utils::toInt(line);
 
