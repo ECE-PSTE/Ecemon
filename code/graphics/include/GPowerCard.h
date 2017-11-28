@@ -6,13 +6,10 @@
 
 class GPowerCard : public GCard {
     private:
-        void update();
 
     public:
         GPowerCard();
-        GPowerCard(sf::RenderWindow *window, sf::Vector2f size, const Card *card);
-
-        void draw();
+        GPowerCard(sf::RenderWindow *window, sf::Vector2f size);
     };
 
 #endif

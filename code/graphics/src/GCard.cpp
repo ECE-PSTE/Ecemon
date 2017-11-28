@@ -3,17 +3,16 @@
 GCard::GCard(){
 }
 
-GCard::GCard(sf::RenderWindow *window, sf::Vector2f size, const Card *card){
-    init(window, size, card);
+GCard::GCard(sf::RenderWindow *window, sf::Vector2f size){
+    init(window, size);
 }
 
 GCard::~GCard(){
 }
 
-void GCard::init(sf::RenderWindow* window, sf::Vector2f size, const Card *card){
+void GCard::init(sf::RenderWindow* window, sf::Vector2f size){
     m_window = window;
     m_size = size;
-    m_card = card;
 
     assert(m_font.loadFromFile("../graphics/fonts/Prototype.ttf"));
 
@@ -27,24 +26,10 @@ void GCard::init(sf::RenderWindow* window, sf::Vector2f size, const Card *card){
     m_nameText.setFont(m_font);
     m_nameText.setCharacterSize(m_characterSize);
     m_nameText.setColor(sf::Color::Red);
-    m_nameText.setString(m_card->getName());
-    sf::FloatRect nameRect = m_nameText.getLocalBounds();
-    m_nameText.setOrigin(nameRect.left + nameRect.width/2.0f, nameRect.top  + nameRect.height/2.0f);
 
     m_descriptionText.setFont(m_font);
     m_descriptionText.setCharacterSize(m_characterSize);
     m_descriptionText.setColor(sf::Color::Red);
-    m_descriptionText.setString(m_card->getDescription());
-    sf::FloatRect descRect = m_descriptionText.getLocalBounds();
-    m_descriptionText.setOrigin(descRect.left + descRect.width/2.0f, descRect.top  + descRect.height/2.0f);
-}
-
-sf::Vector2f GCard::getPosition() const{
-    return m_position;
-}
-
-sf::Vector2f GCard::getSize() const{
-    return m_size;
 }
 
 float GCard::getSpriteScale() const{
@@ -57,20 +42,24 @@ float GCard::getSpriteScale() const{
     return 0.1f;
 }
 
-void GCard::setWindow(sf::RenderWindow *window){
-    m_window = window;
-}
-
-void GCard::setPosition(sf::Vector2f position){
-    m_position = position;
-}
-
 void GCard::setSize(sf::Vector2f size){
     m_size = size;
     m_cardShape.setSize(size);
     m_cardShape.setOrigin(m_size.x/2, m_size.y/2);
     float scale = getSpriteScale();
     m_imageSprite.setScale(scale, scale);
+}
+
+void GCard::setCard(const Card *card){
+    m_card = card;
+
+    m_nameText.setString(m_card->getName());
+    sf::FloatRect nameRect = m_nameText.getLocalBounds();
+    m_nameText.setOrigin(nameRect.left + nameRect.width/2.0f, nameRect.top  + nameRect.height/2.0f);
+
+    m_descriptionText.setString(m_card->getDescription());
+    sf::FloatRect descRect = m_descriptionText.getLocalBounds();
+    m_descriptionText.setOrigin(descRect.left + descRect.width/2.0f, descRect.top  + descRect.height/2.0f);
 }
 
 void GCard::setCardImage(std::string imagePath){

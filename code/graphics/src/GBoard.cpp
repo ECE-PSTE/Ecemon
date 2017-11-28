@@ -10,22 +10,6 @@ GBoard::GBoard(sf::RenderWindow* window, sf::Vector2f size){
     init();
 }
 
-sf::Vector2f GBoard::getPosition() const{
-    return m_position;
-}
-
-sf::Vector2f GBoard::getSize() const{
-    return m_size;
-}
-
-void GBoard::setPosition(sf::Vector2f position){
-    m_position = position;
-}
-
-void GBoard::setSize(sf::Vector2f size){
-    m_size = size;
-}
-
 void GBoard::setGEnergy(GEnergy genergy){
     m_genergy = genergy;
 }
@@ -100,41 +84,65 @@ void GBoard::init(){
 void GBoard::update(){
     m_playerNameText.setPosition(sf::Vector2f(
         m_position.x,
-        m_position.y + m_size.y/2 - m_playerNameText.getLocalBounds().top
-        - m_playerNameText.getLocalBounds().height/2.0f - m_size.y*0.03
+        bottom() - m_playerNameText.getLocalBounds().top
+        - m_playerNameText.getLocalBounds().height/2.0f - hp(3)
     ));
     m_playerLifePointsText.setPosition(sf::Vector2f(
         m_position.x,
-        m_playerNameText.getPosition().y - m_size.y*0.03
+        m_playerNameText.getPosition().y - hp(3)
     ));
     m_gcardBet->setPosition(sf::Vector2f(
-        m_position.x-m_size.x/2 + m_gcardBet->getSize().x/2 + m_size.x*0.03,
+        left() + m_gcardBet->getSize().x/2 + wp(3),
         m_position.y
     ));
     m_genergy.setPosition(sf::Vector2f(
-        m_position.x-m_size.x/2 + m_genergy.getSize().x/2 + m_size.x*0.03,
-        m_position.y+m_size.y/2 - m_genergy.getSize().y/2
+        left() + m_genergy.getSize().x/2 + wp(3),
+        bottom() - m_genergy.getSize().y/2
     ));
     m_gcreature.setPosition(sf::Vector2f(
         m_position.x,
         m_position.y
     ));
     m_deckSprite.setPosition(sf::Vector2f(
-        m_position.x + m_size.x/2 - m_deckScale*m_deckTexture.getSize().x/2 - m_size.x*0.03,
+        right() - m_deckScale*m_deckTexture.getSize().x/2 - wp(3),
         m_position.y
     ));
     m_deckCountText.setPosition(sf::Vector2f(
         m_deckSprite.getPosition().x,
-        m_position.y+m_deckScale*m_deckTexture.getSize().y/2+m_size.y*0.03
+        m_position.y+m_deckScale*m_deckTexture.getSize().y/2+hp(3)
     ));
     m_cemeterySprite.setPosition(sf::Vector2f(
-        m_position.x-m_size.x/2 + m_cemeteryScale*m_cemeteryTexture.getSize().x/2+m_size.x*0.03,
-        m_position.y-m_size.y/2 + m_cemeteryScale*m_cemeteryTexture.getSize().y/2+m_size.x*0.03
+        left() + m_cemeteryScale*m_cemeteryTexture.getSize().x/2 + wp(2),
+        top() + m_cemeteryScale*m_cemeteryTexture.getSize().y/2 + wp(2)
     ));
     m_cemeteryCountText.setPosition(sf::Vector2f(
-        m_position.x-m_size.x/2 + m_cemeteryScale*m_cemeteryTexture.getSize().x/2+m_size.x*0.03,
-        m_cemeterySprite.getPosition().y+m_cemeteryScale*m_cemeteryTexture.getSize().y/2+m_size.y*0.03
+        left() + m_cemeteryScale*m_cemeteryTexture.getSize().x/2 + wp(2),
+        top() + m_cemeteryScale*m_cemeteryTexture.getSize().y + 2*wp(2)
     ));
+}
+
+float GBoard::left(){
+    return m_position.x-m_size.x/2.0f;
+}
+
+float GBoard::right(){
+    return m_position.x+m_size.x/2.0f;
+}
+
+float GBoard::bottom(){
+    return m_position.y+m_size.y/2.0f;
+}
+
+float GBoard::top(){
+    return m_position.y-m_size.y/2.0f;
+}
+
+float GBoard::wp(float p){
+    return m_size.x * (p/100.0f);
+}
+
+float GBoard::hp(float p){
+    return m_size.y * (p/100.0f);
 }
 
 void GBoard::draw(){

@@ -12,12 +12,13 @@ class GEnergyCard : public GCard {
 
     public:
         GEnergyCard();
-        GEnergyCard(sf::RenderWindow *window, sf::Vector2f size, const Card *card);
+        GEnergyCard(sf::RenderWindow *window, sf::Vector2f size);
 
         void setEnergyImage(std::string imagePath, float scaleX, float scaleY);
 
         void draw();
-        virtual void setFontSize(unsigned int size);
+        void setCard(const Card* card);
+        void setFontSize(unsigned int size);
 };
 
 #endif
