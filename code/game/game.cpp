@@ -25,14 +25,14 @@
 using namespace std;
 
 int main(int argc, char const *argv[]) {
-    Deck *player1Deck = new Deck("player 1 Deck");
+    Deck *player1Deck = new Deck("deck1");
     for(int i=0 ; i<10 ; i++){
         player1Deck->addCard(GameUtils::Cards.at(1));
     }
     player1Deck->addCards({GameUtils::Cards.at(3), GameUtils::Cards.at(5)});
 
 
-    Deck *player2Deck = new Deck("player 2 Deck");
+    Deck *player2Deck = new Deck("deck2");
     for(int i=0 ; i<10 ; i++){
         player2Deck->addCard(GameUtils::Cards.at(2));
     }
@@ -40,7 +40,18 @@ int main(int argc, char const *argv[]) {
 
 
     Profile profile1("Player 1");
-    profile1.setCards()
+    profile1.setCards(*player1Deck);
+    profile1.addDeck(player1Deck);
+
+    Profile profile2("Player 2");
+    profile2.setCards(*player2Deck);
+    profile2.addDeck(player2Deck);
+
+    std::vector<Profile> profiles = {profile1, profile2};
+    ProfileUtils::saveProfiles(profiles);
+
+    delete player1Deck;
+    delete player2Deck;
 
     GameUtils::freeCards();
 
