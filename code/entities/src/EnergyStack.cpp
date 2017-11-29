@@ -25,6 +25,4 @@ void EnergyStack::addEnergy(EnergyType eType, int quantity){
         default:
             std::cout<<"Error EnergyType in addEnergy" << std::endl;
     }
-
-    (*m_listenerEnergyStack)(this);
 }
