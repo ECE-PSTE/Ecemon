@@ -10,6 +10,10 @@ GBoard::GBoard(sf::RenderWindow* window, sf::Vector2f size){
     init();
 }
 
+void GBoard::setBoard(Board *board){
+    m_board = board;
+}
+
 void GBoard::setGEnergy(GEnergy genergy){
     m_genergy = genergy;
 }
@@ -18,7 +22,7 @@ void GBoard::setGCreatureCard(GCreatureCard gcreature){
     m_gcreature = gcreature;
 }
 
-void GBoard::setGCardBet(GCard* gcardBet){
+void GBoard::setGCardBet(GCard gcardBet){
     m_gcardBet = gcardBet;
 }
 
@@ -40,13 +44,17 @@ void GBoard::setDeckCardsLeft(int deckCardsLeft){
     m_deckCountText.setOrigin(rect.left + rect.width/2.0f, rect.top  + rect.height/2.0f);
 }
 
-void GBoard::setCemetryCardsCount(int cemeteryCardsCount){
+void GBoard::setCemeteryCardsCount(int cemeteryCardsCount){
     m_cemeteryCountText.setString(std::to_string(cemeteryCardsCount));
     sf::FloatRect rect = m_cemeteryCountText.getLocalBounds();
     m_cemeteryCountText.setOrigin(rect.left + rect.width/2.0f, rect.top  + rect.height/2.0f);
 }
 
 void GBoard::init(){
+    m_genergy = GEnergy(m_window, sf::Vector2f(100, 200));
+    m_gcreature = GCreatureCard(m_window, sf::Vector2f(Constants::DefaultCardWidth(), Constants::DefaultCardHeight()));
+    m_gcardBet = GCard(m_window, sf::Vector2f(100, 180));
+
     assert(m_font.loadFromFile("../graphics/fonts/"+Constants::DefaultFont()));
     m_fontSize = 24;
     m_deckScale = 0.3f;
@@ -81,6 +89,18 @@ void GBoard::init(){
     m_deckCountText.setColor(sf::Color::White);
 }
 
+void GBoard::updateContent(){
+    m_genergy.setEnergyStack(*m_board->getpQuantityEnergy());
+    m_gcreature.setCard(m_board->getCreatureOnBoard());
+    m_gcreature.setCardImage("../graphics/images/cartman.png");
+    m_gcardBet.setCard(m_board->getCardBet());
+    m_gcardBet.setCardImage("../graphics/images/jesus.png"); // should load path from card id ...
+    setPlayerName(m_board->getNamePlayer());
+    setPlayerLifePoints(m_board->getLifePoint());
+    setDeckCardsLeft(m_board->getDeckPlay()->getpCards()->size());
+    setCemeteryCardsCount(m_board->getpCreatureGraveyard()->getpCards()->size());
+}
+
 void GBoard::update(){
     m_playerNameText.setPosition(sf::Vector2f(
         m_position.x,
@@ -91,8 +111,8 @@ void GBoard::update(){
         m_position.x,
         m_playerNameText.getPosition().y - hp(3)
     ));
-    m_gcardBet->setPosition(sf::Vector2f(
-        left() + m_gcardBet->getSize().x/2 + wp(3),
+    m_gcardBet.setPosition(sf::Vector2f(
+        left() + m_gcardBet.getSize().x/2 + wp(3),
         m_position.y
     ));
     m_genergy.setPosition(sf::Vector2f(
@@ -146,8 +166,9 @@ float GBoard::hp(float p){
 }
 
 void GBoard::draw(){
+    GBoard::updateContent();
     GBoard::update();
-    m_gcardBet->draw();
+    m_gcardBet.draw();
     m_gcreature.draw();
     m_genergy.draw();
     m_window->draw(m_playerNameText);
