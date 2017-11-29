@@ -33,6 +33,7 @@ class Profile{
         void setName(std::string name);
         void setMoney(int money);
         void addMoney(int money);
+        void setCards(Deck cards);
 
         // delete a deck by its name, return true if success
         bool deleteDeck(std::string name);
