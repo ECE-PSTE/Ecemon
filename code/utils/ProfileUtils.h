@@ -7,7 +7,7 @@
 #include "Utils.h"
 
 namespace ProfileUtils {
-    bool saveProfile(const char *filename, Profile &profile){
+    inline bool saveProfile(const char *filename, Profile &profile){
         std::ofstream file(filename);
         if(file){
             file << profile;
@@ -17,7 +17,7 @@ namespace ProfileUtils {
         return false;
     }
 
-    bool loadProfile(const char *filename, Profile &profile){
+    inline bool loadProfile(const char *filename, Profile &profile){
         std::ifstream file(filename);
         if(file){
             file >> profile;
@@ -27,7 +27,7 @@ namespace ProfileUtils {
         return false;
     }
 
-    bool saveProfiles(std::vector<Profile> &profiles){
+    inline bool saveProfiles(std::vector<Profile> &profiles){
         std::ofstream file(Constants::DefaultProfilesFilename().c_str());
         if(file){
             int length = profiles.size();
@@ -44,7 +44,7 @@ namespace ProfileUtils {
         return false;
     }
 
-    bool loadProfiles(std::vector<Profile> &profiles){
+    inline bool loadProfiles(std::vector<Profile> &profiles){
         std::ifstream file(Constants::DefaultProfilesFilename().c_str());
         if(file){
             std::string line;

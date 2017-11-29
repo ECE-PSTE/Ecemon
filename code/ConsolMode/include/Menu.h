@@ -2,30 +2,28 @@
 #define DEF_MENU
 
 #include "../../entities/include/Profile.h"
+#include "../../utils/ProfileUtils.h"
 
-class Menu {
-    private:
-        Profile* m_profileUse;
-        bool m_admin;
+typedef struct dataMenu{
+    Profile* m_profileUse;
+    std::vector<Profile>* m_profileGame;
+    bool m_admin;
+}s_DataMenu;
 
-        void setAdmin(bool val){m_admin = val;};
-        bool switchAdminOn(std::string password);
+int menuChoice(std::vector<int> vectorChoice);
 
-    public:
-        Menu();
-        virtual ~Menu ();
+bool menuChoiceGood(std::vector<int> vectorChoice, int lol);
 
-        Profile* getProfile() const {return m_profileUse;}
-        bool getAdmin() const {return m_admin;}
+void displayMenuFront(std::string nameMenu);
 
-        void setProfileUse(Profile* val){m_profileUse = val} 
+bool menuPrincipal(s_DataMenu* data);
 
-        virtual void displayMenu();
+void switchAdmin(s_DataMenu* data);
 
-        virtual bool switchMenu();
+void switchProfile(s_DataMenu* data);
 
-        void switchAdmin();
-};
+bool switchProfileGood(s_DataMenu* data, std::string name);
+
 
 
 #endif
