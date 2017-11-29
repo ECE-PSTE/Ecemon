@@ -9,7 +9,6 @@ Profile::Profile(std::string name){
 }
 
 Profile::~Profile(){
-    delete m_cards;
     for(auto pDeck : m_decks){
         delete pDeck;
     }
@@ -28,11 +27,11 @@ std::vector<Deck*> Profile::getDecks() const{
 }
 
 Deck* Profile::getpCards(){
-    return m_cards;
+    return &m_cards;
 }
 
 Deck Profile::getCards() const{
-    return *m_cards;
+    return m_cards;
 }
 
 int Profile::getMoney()const {
@@ -55,10 +54,6 @@ void Profile::addMoney(int money){
     m_money += money;
 }
 
-void Profile::setCards(Deck *cards){
-    m_cards = cards;
-}
-
 bool Profile::deleteDeck(std::string name)
 {
     for(int i=0 ; i<m_decks.size() ; i++){
@@ -74,7 +69,7 @@ bool Profile::deleteDeck(std::string name)
 std::ostream& operator<<(std::ostream& os, const Profile& profile){
     os << profile.m_name << std::endl;
     os << profile.m_money << std::endl;
-    os << *profile.m_cards << std::endl;
+    os << profile.m_cards << std::endl;
 
     int length = profile.m_decks.size();
     os << length << std::endl;
@@ -95,7 +90,7 @@ std::istream& operator>>(std::istream& is, Profile& profile){
     getline(is, profile.m_name);
     getline(is, line);
     profile.m_money = Utils::toInt(line);
-    is >> *profile.m_cards;
+    is >> profile.m_cards;
 
     getline(is, line);
     int length = Utils::toInt(line);
