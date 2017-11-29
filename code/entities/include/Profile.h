@@ -31,12 +31,11 @@ class Profile{
 
         void addDeck(Deck *deck);
         void setName(std::string name);
-        void setMoney(int val);
+        void setMoney(int money);
+        void addMoney(int money);
 
         // delete a deck by its name, return true if success
         bool deleteDeck(std::string name);
-
-        void addMoney(int money);
 
         friend std::ostream& operator<<(std::ostream& os, const Profile& profile);
         friend std::istream& operator>>(std::istream& is, Profile& profile);

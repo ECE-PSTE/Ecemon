@@ -3,43 +3,37 @@
 
 #include <cassert>
 #include <SFML/Graphics.hpp>
+#include "Drawable.h"
 #include "../../entities/include/Card.h"
 #include "../../entities/include/Constants.h"
 
-class GCard {
+class GCard : public Drawable {
     protected:
-        sf::RenderWindow *m_window;
         sf::RectangleShape m_cardShape;
         sf::Texture m_imageTexture;
         sf::Sprite m_imageSprite;
         sf::Text m_nameText;
         sf::Text m_descriptionText;
         sf::Font m_font;
-        sf::Vector2f m_size;
-        sf::Vector2f m_position;
-        unsigned int m_characterSize;
+        sf::Color m_fontColor;
+        unsigned int m_fontSize;
 
         const Card* m_card;
 
-        void init(const Card* card, sf::RenderWindow* window);
+        void init(sf::RenderWindow* window, sf::Vector2f size);
         float getSpriteScale() const;
         virtual void update();
 
     public:
         GCard();
-        GCard(const Card *card, sf::RenderWindow *window);
+        GCard(sf::RenderWindow *window, sf::Vector2f size);
         virtual ~GCard();
 
-        sf::RenderWindow* getWindow() const;
-        sf::Vector2f getPosition() const;
-        sf::Vector2f getSize() const;
-        unsigned int getCharacterSize() const;
-
-        void setWindow(sf::RenderWindow *window);
-        void setPosition(sf::Vector2f position);
         void setSize(sf::Vector2f size);
         void setCardImage(std::string imagePath);
-        virtual void setCharacterSize(unsigned int size);
+        virtual void setCard(const Card *card);
+        virtual void setFontSize(unsigned int size);
+        virtual void setFontColor(sf::Color fontColor);
 
         virtual void draw();
 };

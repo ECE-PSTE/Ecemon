@@ -2,8 +2,7 @@
 #define DEF_ENERGYSTACK
 
 #include <iostream>
-
-#include "../../entities/include/EnergyType.h"
+#include "EnergyType.h"
 
 class EnergyStack{
     private:
