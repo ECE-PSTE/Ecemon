@@ -39,14 +39,16 @@ int main(int argc, char const *argv[]) {
     player2Cards->addCards({GameUtils::Cards.at(4), GameUtils::Cards.at(6)});
 
     Profile profile1("Player 1");
-    profile1.setCards(player1Cards);
+    profile1.getpCards()->addCards(GameUtils::cardsVector());
     profile1.addDeck(player1Cards);
+    profile1.setMoney(0);
 
     Profile profile2("Player 2");
-    profile2.setCards(player2Cards);
+    profile2.getpCards()->addCards(GameUtils::cardsVector());
     profile2.addDeck(player2Cards);
+    profile2.setMoney(0);
 
-    std::vector<Profile> profiles = {profile1, profile2};
+    std::vector<Profile*> profiles = {&profile1, &profile2};
     ProfileUtils::saveProfiles(profiles);
 
     GameUtils::freeCards();
