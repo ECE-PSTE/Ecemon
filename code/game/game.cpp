@@ -19,30 +19,52 @@
 #include "../graphics/include/GEnergy.h"
 #include "../graphics/include/GBoard.h"
 
+#include "../models/include/Combat.h"
+
 #include "../utils/GameUtils.h"
 #include "../utils/ProfileUtils.h"
 
 using namespace std;
 
+
 int main(int argc, char const *argv[]) {
-    Deck *player1Deck = new Deck("player 1 Deck");
-    for(int i=0 ; i<10 ; i++){
-        player1Deck->addCard(GameUtils::Cards.at(1));
+    std::vector<Profile> profiles;
+    if(ProfileUtils::loadProfiles(profiles)){
+        std::string deckName1 = profiles[0].getpDecks()->at(0)->getName();
+        std::string deckName2 = profiles[1].getpDecks()->at(0)->getName();
+
+        Combat combat;
+        combat.startCombat(&profiles[0], deckName1, &profiles[1], deckName2);
+
+        // graphics
+        sf::RenderWindow window(sf::VideoMode(1000, 700), "Ecemon");
+
+        GBoard gboard(&window, sf::Vector2f(window.getSize().x, window.getSize().y));
+        gboard.setBoard(combat.getpBoardP1());
+
+        while (window.isOpen())
+        {
+            sf::Event event;
+            while (window.pollEvent(event))
+            {
+                if(event.type == sf::Event::Closed){
+                    window.close();
+                }
+            }
+
+            window.clear();
+            gboard.draw();
+            window.display();
+        }
+
     }
-    player1Deck->addCards({GameUtils::Cards.at(3), GameUtils::Cards.at(5)});
-
-
-    Deck *player2Deck = new Deck("player 2 Deck");
-    for(int i=0 ; i<10 ; i++){
-        player2Deck->addCard(GameUtils::Cards.at(2));
-    }
-    player2Deck->addCards({GameUtils::Cards.at(4), GameUtils::Cards.at(6)});
-
-
-    Profile profile1("Player 1");
-    profile1.setCards()
 
     GameUtils::freeCards();
+
+
+
+
+
 
 
 
@@ -58,11 +80,11 @@ int main(int argc, char const *argv[]) {
     // energy.setEnergyStack(stack);
     //
     // GCreatureCard creature(&window, sf::Vector2f(250*0.7, 450*0.7));
-    // creature.setCard(GameUtils::Cards.at(10));
+    // creature.setCard(GameUtils::Cards.at(1));
     // creature.setCardImage("../graphics/images/cartman.png");
     //
     // GEnergyCard bet(&window, sf::Vector2f(100, 180));
-    // bet.setCard(GameUtils::Cards.at(54));
+    // bet.setCard(GameUtils::Cards.at(3));
     // bet.setCardImage("../graphics/images/jesus.png");
     // bet.setFontSize(20);
     //
@@ -112,8 +134,8 @@ int main(int argc, char const *argv[]) {
     //     window.display();
     // }
     //
-    //
     // GameUtils::freeCards();
+
 
     return 0;
 }

@@ -5,12 +5,13 @@
 #include "GCard.h"
 #include "GCreatureCard.h"
 #include "GEnergy.h"
+#include "../../models/include/Board.h"
 
 class GBoard : public Drawable{
     private:
         GEnergy m_genergy;
         GCreatureCard m_gcreature;
-        GCard* m_gcardBet;
+        GCard m_gcardBet;
         sf::Text m_playerNameText;
         sf::Text m_playerLifePointsText;
         sf::Texture m_deckTexture;
@@ -24,8 +25,11 @@ class GBoard : public Drawable{
         float m_deckScale;
         float m_cemeteryScale;
 
+        Board* m_board;
+
         void init();
         void update();
+        void updateContent();
 
         float left();
         float right();
@@ -38,13 +42,15 @@ class GBoard : public Drawable{
         GBoard();
         GBoard(sf::RenderWindow* window, sf::Vector2f size);
 
+        void setBoard(Board *board);
+
         void setGEnergy(GEnergy genergy);
         void setGCreatureCard(GCreatureCard gcreature);
-        void setGCardBet(GCard* gcardBet);
+        void setGCardBet(GCard gcardBet);
         void setPlayerName(std::string playerName);
         void setPlayerLifePoints(int playerLifePoints);
         void setDeckCardsLeft(int deckCardsLeft);
-        void setCemetryCardsCount(int cemeteryCardsCount);
+        void setCemeteryCardsCount(int cemeteryCardsCount);
 
         void draw();
 };
