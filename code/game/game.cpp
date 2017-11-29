@@ -25,18 +25,18 @@
 using namespace std;
 
 int main(int argc, char const *argv[]) {
-    Deck player1Deck("player 1 Deck");
+    Deck *player1Deck = new Deck("player 1 Deck");
     for(int i=0 ; i<10 ; i++){
-        player1Deck.addCard(GameUtils::Cards.at(1));
+        player1Deck->addCard(GameUtils::Cards.at(1));
     }
-    player1Deck.addCards({GameUtils::Cards.at(3), GameUtils::Cards.at(5)});
+    player1Deck->addCards({GameUtils::Cards.at(3), GameUtils::Cards.at(5)});
 
 
-    Deck player2Deck("player 2 Deck");
+    Deck *player2Deck = new Deck("player 2 Deck");
     for(int i=0 ; i<10 ; i++){
-        player2Deck.addCard(GameUtils::Cards.at(2));
+        player2Deck->addCard(GameUtils::Cards.at(2));
     }
-    player2Deck.addCards({GameUtils::Cards.at(4), GameUtils::Cards.at(6)});
+    player2Deck->addCards({GameUtils::Cards.at(4), GameUtils::Cards.at(6)});
 
 
     Profile profile1("Player 1");
