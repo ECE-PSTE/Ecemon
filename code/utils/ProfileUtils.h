@@ -27,13 +27,13 @@ namespace ProfileUtils {
         return false;
     }
 
-    inline bool saveProfiles(std::vector<Profile> &profiles){
+    inline bool saveProfiles(std::vector<Profile*> &profiles){
         std::ofstream file(Constants::DefaultProfilesFilename().c_str());
         if(file){
             int length = profiles.size();
             file << length << std::endl;
             for(int i=0 ; i<length ; i++){
-                file << profiles[i];
+                file << *profiles[i];
                 if(i!=length-1){
                     file << std::endl;
                 }
