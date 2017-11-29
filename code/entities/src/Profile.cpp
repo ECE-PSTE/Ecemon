@@ -54,6 +54,10 @@ void Profile::addMoney(int money){
     m_money += money;
 }
 
+void Profile::setCards(Deck cards){
+    m_cards = cards;
+}
+
 bool Profile::deleteDeck(std::string name)
 {
     for(int i=0 ; i<m_decks.size() ; i++){
