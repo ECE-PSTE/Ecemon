@@ -10,7 +10,6 @@ Board::~Board(){
 
 void Board::playerTakeDamage(int damage){
     m_lifePoint += damage;
-    (*m_listenerPlayerLifePoint)(m_lifePoint);
 }
 
 void Board::endTurn(){
@@ -72,7 +71,6 @@ bool Board::stillAliveCreatureDeck(){
 
 const Card* Board::askCard(){
     int i = Utils::getRand(0, getDeckPlay()->getCards().size()-1);
-    (*m_listenerCardPick)(m_deckPlay->getCards()[i]);
     return m_deckPlay->getCards()[i];
 
 
@@ -98,15 +96,12 @@ void Board::playCard(const Card* card){
         default :
             std::cout << "ERROR TYPE OF CARD PLAY IN PLAYCARD\n";
     }
-    (*m_listenerNumberCardDeck)(m_deckPlay->getCards().size());
 }
 
 void Board::playCreature(const CreatureCard* cardPlay){
     getpCreatureGraveyard()->addCard(getCreatureOnBoard());
     setCreatureOnBoard(cardPlay);
     getpEffectsOnPlayer()->newCreature();
-    (*m_listenerCreatureOnBoard)(m_creatureOnBoard);
-    (*m_listenerCreatureLifePoint)(m_creatureOnBoard->getLife());
 }
 
 void Board::playEnergy(const EnergyCard* cardPlay){
@@ -125,11 +120,9 @@ void Board::playPower(const PowerCard* cardPlay){
         case PowerType_Jesus:
             getDeckPlay()->addCard(getCreatureGraveyard().getCards()[getCreatureGraveyard().getCards().size() - 1]);
             getpCreatureGraveyard()->getCards().pop_back();
-            (*m_listenerNumberCardDeck)(m_deckPlay->getCards().size());
             break;
         case PowerType_President:
             getpEffectsOnPlayer()->setDamage(0);
-            (*m_listenerCreatureLifePoint)(m_creatureOnBoard->getLife());
             break;
 
         default:
@@ -149,7 +142,6 @@ void Board::endGame(){
 
 void Board::creatureTakeDamage(int damage){
     m_effectsOnPlayer.takeDamage(damage);
-    (*m_listenerCreatureLifePoint)(m_creatureOnBoard->getLife() - m_effectsOnPlayer.getDamage());
 }
 
 bool Board::askAttack(){
