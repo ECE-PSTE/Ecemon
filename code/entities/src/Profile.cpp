@@ -9,9 +9,7 @@ Profile::Profile(std::string name){
 }
 
 Profile::~Profile(){
-    for(auto pDeck : m_decks){
-        delete pDeck;
-    }
+    delete m_cards;
 }
 
 std::string Profile::getName() const{
@@ -73,7 +71,7 @@ bool Profile::deleteDeck(std::string name)
 std::ostream& operator<<(std::ostream& os, const Profile& profile){
     os << profile.m_name << std::endl;
     os << profile.m_money << std::endl;
-    os << profile.m_cards << std::endl;
+    os << *profile.m_cards << std::endl;
 
     int length = profile.m_decks.size();
     os << length << std::endl;
@@ -94,7 +92,7 @@ std::istream& operator>>(std::istream& is, Profile& profile){
     getline(is, profile.m_name);
     getline(is, line);
     profile.m_money = Utils::toInt(line);
-    is >> profile.m_cards;
+    is >> *profile.m_cards;
 
     getline(is, line);
     int length = Utils::toInt(line);
