@@ -6,9 +6,9 @@ int main(int argc, char const *argv[]) {
 
     Menu m1;
 
-    m1.displayMenu();
-    m1.switchAdmin();
-    m1.switchAdmin();
+    do{
+        m1.displayMenu();
+    }while(m1.switchMenu());
 
     return 0;
 }

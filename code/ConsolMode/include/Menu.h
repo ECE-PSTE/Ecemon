@@ -18,9 +18,11 @@ class Menu {
         Profile* getProfile() const {return m_profileUse;}
         bool getAdmin() const {return m_admin;}
 
+        void setProfileUse(Profile* val){m_profileUse = val} 
+
         virtual void displayMenu();
 
-        virtual void switchMenu(){}
+        virtual bool switchMenu();
 
         void switchAdmin();
 };
