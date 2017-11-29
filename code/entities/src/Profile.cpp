@@ -10,6 +10,9 @@ Profile::Profile(std::string name){
 
 Profile::~Profile(){
     delete m_cards;
+    for(auto pDeck : m_decks){
+        delete pDeck;
+    }
 }
 
 std::string Profile::getName() const{
