@@ -27,11 +27,11 @@ std::vector<Deck*> Profile::getDecks() const{
 }
 
 Deck* Profile::getpCards(){
-    return &m_cards;
+    return m_cards;
 }
 
 Deck Profile::getCards() const{
-    return m_cards;
+    return *m_cards;
 }
 
 int Profile::getMoney()const {
@@ -54,7 +54,7 @@ void Profile::addMoney(int money){
     m_money += money;
 }
 
-void Profile::setCards(Deck cards){
+void Profile::setCards(Deck *cards){
     m_cards = cards;
 }
 

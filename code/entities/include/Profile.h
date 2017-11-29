@@ -15,7 +15,7 @@ class Profile{
         std::string m_name;
         int m_money;
         std::vector<Deck*> m_decks;
-        Deck m_cards;
+        Deck *m_cards;
 
     public:
         Profile();
@@ -33,7 +33,7 @@ class Profile{
         void setName(std::string name);
         void setMoney(int money);
         void addMoney(int money);
-        void setCards(Deck cards);
+        void setCards(Deck *cards);
 
         // delete a deck by its name, return true if success
         bool deleteDeck(std::string name);
