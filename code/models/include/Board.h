@@ -66,6 +66,7 @@ class Board{
 
         void creatureTakeDamage(int damage);
 
+        int getCreatureLifePoint();
 
         void endTurn();
 
