@@ -59,28 +59,38 @@ void GDialog::setNegativeButton(std::string negativeButton){
     m_negativeBox.setOutlineColor(sf::Color::Red);
 }
 
-int GDialog::whichArea(sf::Vector2f position){
+int GDialog::getState(sf::Vector2f position){
     sf::FloatRect pos = m_positiveButtonText.getGlobalBounds();
     sf::FloatRect neg = m_negativeButtonText.getGlobalBounds();
 
     if(position.x >= pos.left && position.x <= pos.left+pos.width){
         if(position.y >= pos.top && position.y <= pos.top+pos.height){
-            m_positiveHovered = true;
-            m_negativeHovered = false;
             return 1;
         }
     }
     if(position.x >= neg.left && position.x <= neg.left+neg.width){
         if(position.y >= neg.top && position.y <= neg.top+neg.height){
-            m_positiveHovered = false;
-            m_negativeHovered = true;
             return -1;
         }
     }
 
-    m_positiveHovered = false;
-    m_negativeHovered = false;
     return 0;
+}
+
+void GDialog::mouseHoverProcess(sf::Vector2f position){
+    int r = getState(position);
+    if(r==1){
+        m_positiveHovered = true;
+        m_negativeHovered = false;
+    }
+    else if(r==-1){
+        m_positiveHovered = false;
+        m_negativeHovered = true;
+    }
+    else{
+        m_positiveHovered = false;
+        m_negativeHovered = false;
+    }
 }
 
 void GDialog::update(){

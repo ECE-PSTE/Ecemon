@@ -32,7 +32,8 @@ class GDialog : public Drawable {
         void setPositiveButton(std::string positiveButton);
         void setNegativeButton(std::string negativeButton);
 
-        int whichArea(sf::Vector2f position);
+        int getState(sf::Vector2f position);
+        void mouseHoverProcess(sf::Vector2f position);
 
         void draw();
 };
