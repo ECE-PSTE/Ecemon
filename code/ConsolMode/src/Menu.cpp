@@ -263,7 +263,7 @@ bool gestionDeck(Profile* p){
 
     std::cout << "\n\nProfil use : " << p->getName() << "\n\nList of deck in profile : \n";
     displayDecks(p);
-    std::cout << "\n\n\t1) Display Deck\n\t2) Modify Deck \n\t3) Creat Deck\n\t4) Delete Deck\n\t0) Return\n";
+    std::cout << "\n\n\t1) Display Deck\n\t2) Modify Deck \n\t3) Creat Deck\n\t4) Delete Deck\n\t5) Return\n";
 
     switch (menuChoice({5,1,2,3,4})) {
         case 1:
