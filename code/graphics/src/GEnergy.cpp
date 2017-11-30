@@ -63,6 +63,10 @@ void GEnergy::setFontSize(int fontSize){
 void GEnergy::setEnergyStack(EnergyStack energyStack){
     m_energyStack = energyStack;
 
+    for(auto &text : m_texts){
+        text.setFont(m_font);
+    }
+
     m_texts[0].setString(std::to_string(m_energyStack.getChili()));
     m_texts[1].setString(std::to_string(m_energyStack.getTacos()));
     m_texts[2].setString(std::to_string(m_energyStack.getIceCream()));

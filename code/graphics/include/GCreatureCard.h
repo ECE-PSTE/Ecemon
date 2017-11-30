@@ -14,6 +14,8 @@ class GCreatureCard : public GCard {
         GCreatureCard();
         GCreatureCard(sf::RenderWindow *window, sf::Vector2f size);
 
+        void setLife(int life);
+
         void draw();
         void setCard(const Card* card);
         void setFontSize(unsigned int size);
