@@ -23,7 +23,7 @@ namespace Utils {
         return n;
     }
 
-    inline int toString(int n){
+    inline std::string toString(int n){
         std::stringstream ss;
         ss << n;
         return ss.str();
