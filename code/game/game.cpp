@@ -37,10 +37,17 @@ int main(int argc, char const *argv[]) {
         combat.startCombat(&profiles[0], deckName1, &profiles[1], deckName2);
 
         // graphics
-        sf::RenderWindow window(sf::VideoMode(1000, 700), "Ecemon");
+        sf::RenderWindow window(sf::VideoMode(1920, 1080), "FUCKING ECEMON !!!");
 
-        GBoard gboard(&window, sf::Vector2f(window.getSize().x, window.getSize().y));
-        gboard.setBoard(combat.getpBoardP1());
+        GBoard gboardP1(&window, sf::Vector2f(window.getSize().x/2, window.getSize().y));
+        gboardP1.setPosition(sf::Vector2f(window.getSize().x/4, window.getSize().y/2));
+        gboardP1.setBoard(combat.getpBoardP1());
+
+        GBoard gboardP2(&window, sf::Vector2f(window.getSize().x/2, window.getSize().y));
+        gboardP2.setPosition(sf::Vector2f(3*window.getSize().x/4, window.getSize().y/2));
+        gboardP2.setBoard(combat.getpBoardP2());
+
+        int playerTurn = 1;
 
         while (window.isOpen())
         {
@@ -52,8 +59,41 @@ int main(int argc, char const *argv[]) {
                 }
             }
 
+            // Board *playerBoard = playerTurn==1?combat.getpBoardP1():combat.getpBoardP2();
+            // const Card* card = playerBoard->askCard();
+            // std::cout << "card : " << card->getName() << std::endl;
+            // std::cout << "play ? (y/n)";
+            // char c;
+            // cin >> c;
+            //
+            // if(c=='y'){
+            //     playerBoard->playCard(card);
+            // }
+            //
+            // if(playerBoard->getCreatureOnBoard()!=NULL){
+            //     if(playerBoard->askAttack() || playerBoard->askSpecialAttack()){
+            //         std::cout << "Attack ? (y/n)";
+            //         cin >> c;
+            //         if(c=='y'){
+            //             std::cout << "1- basic   :: " << playerBoard->askAttack() << std::endl;
+            //             std::cout << "2- special    :: " << playerBoard->askSpecialAttack() << std::endl;
+            //             std::cout << "> ";
+            //             cin >> c;
+            //             if(c=='1'){
+            //                 playerBoard->attackEnemie(false);
+            //             }
+            //             else{
+            //                 playerBoard->attackEnemie(true);
+            //             }
+            //         }
+            //     }
+            // }
+            //
+            // playerTurn = playerTurn==1?2:1;
+
             window.clear();
-            gboard.draw();
+            gboardP1.draw();
+            gboardP2.draw();
             window.display();
         }
 
