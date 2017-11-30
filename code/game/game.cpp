@@ -90,7 +90,7 @@ int main(int argc, char const *argv[]) {
                     if (event.mouseButton.button == sf::Mouse::Left){
                         sf::Vector2f mousePos(event.mouseButton.x, event.mouseButton.y);
                         if(gameState==GameState_DIALOG_CARD){
-                            int resp = dialogPlayCard.whichArea(mousePos);
+                            int resp = dialogPlayCard.getState(mousePos);
                             if(resp==1){
                                 gameState = GameState_PLAY_CARD;
                             }
@@ -99,7 +99,7 @@ int main(int argc, char const *argv[]) {
                             }
                         }
                         else if(gameState==GameState_DIALOG_ATTACK){
-                            int resp = dialogPlayCard.whichArea(mousePos);
+                            int resp = dialogPlayCard.getState(mousePos);
                             if(resp==1){
                                 gameState = GameState_DO_ATTACK;
                                 if(attackState==AttackState_BOTH){
@@ -121,10 +121,10 @@ int main(int argc, char const *argv[]) {
                 else if (event.type == sf::Event::MouseMoved){
                     sf::Vector2f mousePos(event.mouseMove.x, event.mouseMove.y);
                     if(gameState==GameState_DIALOG_CARD){
-                        dialogPlayCard.whichArea(mousePos);
+                        dialogPlayCard.mouseHoverProcess(mousePos);
                     }
                     else if(gameState==GameState_DIALOG_ATTACK){
-                        dialogAttack.whichArea(mousePos);
+                        dialogAttack.mouseHoverProcess(mousePos);
                     }
                 }
             }
