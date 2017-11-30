@@ -30,6 +30,28 @@ bool buyCardsGood(s_DataMenu* data);
 
 bool gestionCollection(s_DataMenu* data);
 
+void displayCollection(Profile* p);
+
+bool gestionDeck(Profile* p);
+
+void displayDecks(Profile* p);
+
+void createDeck(Profile* p);
+
+bool creatDeckInProgresse(Profile* p, Deck* d);
+
+bool checkNameDeck(Profile* p , std::string name);
+
+void displayDeck(Deck* d);
+
+void modifyDeck(Profile* p);
+
+void displayADeck(Profile* p);
+
+void deleteDeck(Profile* p);
+
+void emptyDeckIntoCollection(Profile* p,Deck* d);
+
 
 
 #endif

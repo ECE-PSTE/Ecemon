@@ -18,11 +18,10 @@ int main(int argc, char const *argv[]) {
         }
 
         data.m_profileGame = &vecProf;
-        data.m_profileUse = &vecProf[1];
+        data.m_profileUse = &vecProf[0];
         data.m_admin = false;
 
         while(menuPrincipal(&data)){
-            std::cout << "\n\n\n\n";
         }
 
         std::vector<Profile*> vecpProf;
