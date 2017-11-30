@@ -71,6 +71,12 @@ namespace Constants {
         return CardType_Undefined;
     }
 
+    inline int DefaultRandomCardPrice(){
+        return 10;
+    }
+
+
+
     // CREATURE
     inline int DefaultCreatureLife(){
         return 100;

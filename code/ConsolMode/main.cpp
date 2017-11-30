@@ -2,8 +2,12 @@
 
 #include "include/Menu.h"
 #include "../../utils/ProfileUtils.h"
+#include <time.h>
+
 
 int main(int argc, char const *argv[]) {
+
+        srand(time(NULL));
 
         s_DataMenu data;
 
@@ -21,7 +25,12 @@ int main(int argc, char const *argv[]) {
             std::cout << "\n\n\n\n";
         }
 
-        if(!ProfileUtils::saveProfiles(vecProf)){
+        std::vector<Profile*> vecpProf;
+        for(auto & elem : vecProf){
+            vecpProf.push_back(&elem);
+        }
+
+        if(!ProfileUtils::saveProfiles(vecpProf)){
             std::cout << "Error saving vector profile\n\n";
         }
 

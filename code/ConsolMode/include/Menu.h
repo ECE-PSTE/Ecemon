@@ -24,6 +24,12 @@ void switchProfile(s_DataMenu* data);
 
 bool switchProfileGood(s_DataMenu* data, std::string name);
 
+bool buyCards(s_DataMenu* data);
+
+bool buyCardsGood(s_DataMenu* data);
+
+bool gestionCollection(s_DataMenu* data);
+
 
 
 #endif
