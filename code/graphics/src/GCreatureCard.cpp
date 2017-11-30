@@ -19,11 +19,15 @@ GCreatureCard::GCreatureCard(sf::RenderWindow *window, sf::Vector2f size){
     GCard::setFontColor(m_fontColor);
 }
 
-void GCreatureCard::setCard(const Card* card){
-    GCard::setCard(card);
-    m_lifeText.setString(std::to_string(((const CreatureCard*)card)->getLife()));
+void GCreatureCard::setLife(int life){
+    m_lifeText.setString(std::to_string(life));
     sf::FloatRect lifeRect = m_lifeText.getLocalBounds();
     m_lifeText.setOrigin(lifeRect.left + lifeRect.width/2.0f, lifeRect.top  + lifeRect.height/2.0f);
+}
+
+void GCreatureCard::setCard(const Card* card){
+    GCard::setCard(card);
+    GCreatureCard::setLife(((const CreatureCard*)card)->getLife());
 }
 
 void GCreatureCard::setFontSize(unsigned int size){
