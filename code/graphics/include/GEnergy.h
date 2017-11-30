@@ -6,6 +6,7 @@
 #include <SFML/Graphics.hpp>
 #include "../../entities/include/EnergyStack.h"
 #include "../../entities/include/Constants.h"
+#include "../../utils/Utils.h"
 
 class GEnergy {
     private:

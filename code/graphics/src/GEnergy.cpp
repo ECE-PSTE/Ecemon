@@ -67,10 +67,10 @@ void GEnergy::setEnergyStack(EnergyStack energyStack){
         text.setFont(m_font);
     }
 
-    m_texts[0].setString(std::to_string(m_energyStack.getChili()));
-    m_texts[1].setString(std::to_string(m_energyStack.getTacos()));
-    m_texts[2].setString(std::to_string(m_energyStack.getIceCream()));
-    m_texts[3].setString(std::to_string(m_energyStack.getBlueberries()));
+    m_texts[0].setString(Utils::toString(m_energyStack.getChili()));
+    m_texts[1].setString(Utils::toString(m_energyStack.getTacos()));
+    m_texts[2].setString(Utils::toString(m_energyStack.getIceCream()));
+    m_texts[3].setString(Utils::toString(m_energyStack.getBlueberries()));
 }
 
 void GEnergy::update(){
