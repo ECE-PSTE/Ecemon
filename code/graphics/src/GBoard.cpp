@@ -33,19 +33,19 @@ void GBoard::setPlayerName(std::string playerName){
 }
 
 void GBoard::setPlayerLifePoints(int playerLifePoints){
-    m_playerLifePointsText.setString(std::to_string(playerLifePoints));
+    m_playerLifePointsText.setString(Utils::toString(playerLifePoints));
     sf::FloatRect rect = m_playerLifePointsText.getLocalBounds();
     m_playerLifePointsText.setOrigin(rect.left + rect.width/2.0f, rect.top  + rect.height/2.0f);
 }
 
 void GBoard::setDeckCardsLeft(int deckCardsLeft){
-    m_deckCountText.setString(std::to_string(deckCardsLeft));
+    m_deckCountText.setString(Utils::toString(deckCardsLeft));
     sf::FloatRect rect = m_deckCountText.getLocalBounds();
     m_deckCountText.setOrigin(rect.left + rect.width/2.0f, rect.top  + rect.height/2.0f);
 }
 
 void GBoard::setCemeteryCardsCount(int cemeteryCardsCount){
-    m_cemeteryCountText.setString(std::to_string(cemeteryCardsCount));
+    m_cemeteryCountText.setString(Utils::toString(cemeteryCardsCount));
     sf::FloatRect rect = m_cemeteryCountText.getLocalBounds();
     m_cemeteryCountText.setOrigin(rect.left + rect.width/2.0f, rect.top  + rect.height/2.0f);
 }
