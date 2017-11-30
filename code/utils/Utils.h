@@ -23,6 +23,12 @@ namespace Utils {
         return n;
     }
 
+    inline int toString(int n){
+        std::stringstream ss;
+        ss << n;
+        return ss.str();
+    }
+
     inline bool fileToString(const char* filename, std::string &str){
         std::ifstream file(filename);
         if(file){
