@@ -93,6 +93,7 @@ void GBoard::updateContent(){
     m_genergy.setEnergyStack(*m_board->getpQuantityEnergy());
     m_gcreature.setCard(m_board->getCreatureOnBoard());
     m_gcreature.setCardImage("../graphics/images/cartman.png");  // should load path from card id ...
+    m_gcreature.setLife(m_board->getCreatureLifePoint());
     m_gcardBet.setCard(m_board->getCardBet());
     m_gcardBet.setCardImage("../graphics/images/block.png");
     setPlayerName(m_board->getNamePlayer());
