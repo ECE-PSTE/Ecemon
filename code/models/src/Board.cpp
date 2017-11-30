@@ -198,3 +198,7 @@ void Board::attackEnemie(bool specialAttack){
         m_pEnemyBoard->playerTakeDamage(m_creatureOnBoard->getAttacks()[0].getDamage());
     }
 }
+
+int Board::getCreatureLifePoint(){
+    return m_creatureOnBoard->getLife() - m_effectsOnPlayer.getDamage();
+}
