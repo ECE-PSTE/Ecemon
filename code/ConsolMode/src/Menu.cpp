@@ -478,7 +478,7 @@ void lunchGame(s_DataMenu* data){
     }
     else{
         system("cls");
-        std::cout <<"Omar va nous danser la dance du ... Ah ba non , il va juste lancer le jeu ;-p\n";
+        gameLoop(profileP1, nameDeckP1, profileP2, nameDeckP2);
     }
 
 }

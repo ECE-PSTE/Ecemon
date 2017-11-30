@@ -3,6 +3,7 @@
 
 #include "../../entities/include/Profile.h"
 #include "../../utils/ProfileUtils.h"
+#include "../../game/game.cpp"
 
 typedef struct dataMenu{
     Profile* m_profileUse;
