@@ -478,7 +478,9 @@ void lunchGame(s_DataMenu* data){
     }
     else{
         system("cls");
+        std::cout << "Game in progress...\n";
         gameLoop(profileP1, nameDeckP1, profileP2, nameDeckP2);
+        std::cout<< "End of game !\n\n";
     }
 
 }
