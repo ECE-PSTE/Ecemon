@@ -26,6 +26,10 @@ namespace Constants {
         return 100;
     }
 
+    inline std::string DefaultPasswordAdmin(){
+        return "omarlebg";
+    }
+
     // PROFILE
     inline std::string DefaultProfileName(){
         return "Default Profile Name";
@@ -33,7 +37,7 @@ namespace Constants {
 
     // DECK
     inline int DefaultDeckSize(){
-        return 30;
+        return 20;
     }
     inline std::string DefaultDeckName(){
         return "Default Deck Name";
@@ -66,6 +70,12 @@ namespace Constants {
     inline CardType DefaultCardType(){
         return CardType_Undefined;
     }
+
+    inline int DefaultRandomCardPrice(){
+        return 10;
+    }
+
+
 
     // CREATURE
     inline int DefaultCreatureLife(){
