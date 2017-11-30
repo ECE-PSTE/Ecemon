@@ -21,7 +21,7 @@ GCreatureCard::GCreatureCard(sf::RenderWindow *window, sf::Vector2f size){
 
 void GCreatureCard::setLife(int life){
     m_lifeText.setFont(m_font);
-    m_lifeText.setString(std::to_string(life));
+    m_lifeText.setString(Utils::toString(life));
     sf::FloatRect lifeRect = m_lifeText.getLocalBounds();
     m_lifeText.setOrigin(lifeRect.left + lifeRect.width/2.0f, lifeRect.top  + lifeRect.height/2.0f);
 }

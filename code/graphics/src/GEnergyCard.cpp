@@ -24,7 +24,7 @@ GEnergyCard::GEnergyCard(sf::RenderWindow *window, sf::Vector2f size){
 
 void GEnergyCard::setCard(const Card* card){
     GCard::setCard(card);
-    m_energyText.setString(std::to_string(((const EnergyCard*)card)->getEnergy()));
+    m_energyText.setString(Utils::toString(((const EnergyCard*)card)->getEnergy()));
     sf::FloatRect energyRect = m_energyText.getLocalBounds();
     m_energyText.setOrigin(energyRect.left + energyRect.width/2.0f, energyRect.top  + energyRect.height/2.0f);
 }
