@@ -45,7 +45,7 @@ bool menuPrincipal(s_DataMenu* data){
         std::cout << data->m_profileUse->getName();
     }
 
-    std::cout << "\n\n\t"
+    std::cout << "\n\n\t1) Play a Game !"
     <<"\n\t2) Change admin mode"
     <<"\n\t3) Add Money Profile"
     <<"\n\t4) Change/Create Profile Use"
