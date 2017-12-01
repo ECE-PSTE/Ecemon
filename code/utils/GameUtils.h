@@ -39,6 +39,7 @@ namespace GameUtils {
                 cards[card->getId()] = card;
             }
         }
+        file.close();
         return cards;
     }
 
