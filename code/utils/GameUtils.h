@@ -39,6 +39,9 @@ namespace GameUtils {
                 cards[card->getId()] = card;
             }
         }
+        else{
+            std::cout << "Could not open file : " << Constants::DefaultCardsFilename() << std::endl;
+        }
         return cards;
     }
 
