@@ -10,7 +10,7 @@
 namespace GraphicUtils {
     inline const std::map<int, std::string> loadCardImages(){
         std::map<int, std::string> images;
-        std::ifstream file(Constants::DefaultCardImagesFilename().c_str()));
+        std::ifstream file(Constants::DefaultCardImagesFilename().c_str());
         if(file){
             std::string line;
             int nbCards;
@@ -25,6 +25,9 @@ namespace GraphicUtils {
                 getline(file, line);
                 images[id] = line;
             }
+        }
+        else{
+            std::cout << "Could not open file : " << Constants::DefaultCardImagesFilename() << std::endl;
         }
         file.close();
         return images;
