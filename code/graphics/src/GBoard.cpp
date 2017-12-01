@@ -90,12 +90,13 @@ void GBoard::init(){
 }
 
 void GBoard::updateContent(){
-    m_genergy.setEnergyStack(*m_board->getpQuantityEnergy());
-    m_gcreature.setCard(m_board->getCreatureOnBoard());
-    m_gcreature.setCardImage("../graphics/images/cartman.png");  // should load path from card id ...
+    const CreatureCard* creature = m_board->getCreatureOnBoard();
+    m_gcreature.setCard(creature);
+    m_gcreature.setCardImage("../graphics/images/"+GraphicUtils::CardImages.at(creature->getId()));  // should load path from card id ...
     m_gcreature.setLife(m_board->getCreatureLifePoint());
     m_gcardBet.setCard(m_board->getCardBet());
     m_gcardBet.setCardImage("../graphics/images/block.png");
+    m_genergy.setEnergyStack(*m_board->getpQuantityEnergy());
     setPlayerName(m_board->getNamePlayer());
     setPlayerLifePoints(m_board->getLifePoint());
     setDeckCardsLeft(m_board->getDeckPlay()->getpCards()->size());
