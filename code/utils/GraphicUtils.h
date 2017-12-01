@@ -4,10 +4,6 @@
 #include <map>
 #include <fstream>
 
-#include "../../entities/include/PowerCard.h"
-#include "../../entities/include/EnergyCard.h"
-#include "../../entities/include/CreatureCard.h"
-
 #include "Utils.h"
 
 namespace GameUtils {
@@ -34,8 +30,6 @@ namespace GameUtils {
     }
 
     const std::map<int, std::string> CardImages = loadCardImages();
-
-
 };
 
 #endif
