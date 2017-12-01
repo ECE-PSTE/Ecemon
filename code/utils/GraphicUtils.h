@@ -6,7 +6,7 @@
 
 #include "Utils.h"
 
-namespace GameUtils {
+namespace GraphicUtils {
     inline const std::map<int, std::string> loadCardImages(){
         std::map<int, std::string> images;
         std::ifstream file("CardImages"));
