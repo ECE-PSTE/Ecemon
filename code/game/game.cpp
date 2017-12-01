@@ -50,6 +50,11 @@ void gameLoop(Profile* profile1, std::string deck1, Profile* profile2, std::stri
 
     sf::RenderWindow window(sf::VideoMode(1920, 1080), "FUCKING ECEMON !!!");
 
+    sf::RectangleShape lineSeparator(sf::Vector2f(window.getSize().y, 3));
+    lineSeparator.setFillColor(sf::Color::White);
+    lineSeparator.setPosition(window.getSize().x/2, 0);
+    lineSeparator.rotate(90);
+
     GBoard gboardP1(&window, sf::Vector2f(window.getSize().x/2, window.getSize().y));
     gboardP1.setPosition(sf::Vector2f(window.getSize().x/4, window.getSize().y/2));
     gboardP1.setBoard(combat.getpBoardP1());
@@ -191,6 +196,7 @@ void gameLoop(Profile* profile1, std::string deck1, Profile* profile2, std::stri
         }
 
         window.clear();
+        window.draw(lineSeparator);
         gboardP1.draw();
         gboardP2.draw();
         if(gameState==GameState_DIALOG_CARD){
