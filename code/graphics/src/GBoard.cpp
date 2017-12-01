@@ -91,8 +91,9 @@ void GBoard::init(){
 
 void GBoard::updateContent(){
     const CreatureCard* creature = m_board->getCreatureOnBoard();
+    std::string filename = GraphicUtils::CardImages.at(creature->getId());
     m_gcreature.setCard(creature);
-    m_gcreature.setCardImage("../graphics/images/"+GraphicUtils::CardImages.at(creature->getId()));  // should load path from card id ...
+    m_gcreature.setCardImage("../graphics/images/"+filename);  // should load path from card id ...
     m_gcreature.setLife(m_board->getCreatureLifePoint());
     m_gcardBet.setCard(m_board->getCardBet());
     m_gcardBet.setCardImage("../graphics/images/block.png");
