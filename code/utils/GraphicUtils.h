@@ -5,11 +5,12 @@
 #include <fstream>
 
 #include "Utils.h"
+#include "../entities/include/Constants.h"
 
 namespace GraphicUtils {
     inline const std::map<int, std::string> loadCardImages(){
         std::map<int, std::string> images;
-        std::ifstream file("CardImages"));
+        std::ifstream file(Constants::DefaultCardImagesFilename().c_str()));
         if(file){
             std::string line;
             int nbCards;
