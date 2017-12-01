@@ -1,5 +1,5 @@
-#ifndef DEF_GAME
-#define DEF_GAME
+#ifndef DEF_GAMEUTILS
+#define DEF_GAMEUTILS
 
 #include <map>
 #include <fstream>
