@@ -506,7 +506,7 @@ void loadProfileAndDeck(s_DataMenu* data, Profile* pPlay, std::string* nNameDeck
     for(const auto & elem : pPlay->getDecks()){
         std::cout << "\t" << elem->getName();
         if(elem->isComplete()){
-            std::cout << "\t" << elem->getName();
+            std::cout << "\t" << "Can Be Play";
         }
         std::cout <<"\n";
     }
