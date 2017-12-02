@@ -14,11 +14,8 @@ void Board::playerTakeDamage(int damage){
 
 void Board::endCreatureTurn(){
     if(m_creatureOnBoard != NULL){
-        std::cout << "pdv creature : " << getCreatureLifePoint() << std::endl;
         if(getCreatureLifePoint() <= 0){
-            std::cout << "<= 0" << std::endl;
             if(getCreatureLifePoint() < 0){
-                std::cout << "< 0" << std::endl;
                 playerTakeDamage(-getCreatureLifePoint());
             }
             getCreatureGraveyard().addCard(getCreatureOnBoard());

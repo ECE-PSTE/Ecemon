@@ -28,7 +28,10 @@ void GCreatureCard::setLife(int life){
 
 void GCreatureCard::setCard(const Card* card){
     GCard::setCard(card);
-    GCreatureCard::setLife(((const CreatureCard*)card)->getLife());
+    m_cardShape.setFillColor(Constants::DefaultCreatureCardColor());    
+    if(card!=NULL){
+        GCreatureCard::setLife(((const CreatureCard*)card)->getLife());
+    }
 }
 
 void GCreatureCard::setFontSize(unsigned int size){
@@ -50,5 +53,7 @@ void GCreatureCard::update(){
 void GCreatureCard::draw(){
     GCard::draw();
     GCreatureCard::update();
-    m_window->draw(m_lifeText);
+    if(m_card!=NULL){
+        m_window->draw(m_lifeText);
+    }
 }

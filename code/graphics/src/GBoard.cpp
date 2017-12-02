@@ -97,6 +97,10 @@ void GBoard::updateContent(){
         m_gcreature.setCardImage("../graphics/images/"+filename);  // should load path from card id ...
         m_gcreature.setLife(m_board->getCreatureLifePoint());
     }
+    else{
+        m_gcreature.setCard(NULL);
+        m_gcreature.setCardColor(sf::Color::Black);
+    }
     m_gcardBet.setCard(m_board->getCardBet());
     m_gcardBet.setCardImage("../graphics/images/block.png");
     m_genergy.setEnergyStack(*m_board->getpQuantityEnergy());

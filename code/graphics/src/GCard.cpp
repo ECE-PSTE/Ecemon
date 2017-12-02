@@ -76,6 +76,10 @@ void GCard::setCardImage(std::string imagePath){
     m_imageSprite.setScale(scale, scale);
 }
 
+void GCard::setCardColor(sf::Color cardColor){
+    m_cardShape.setFillColor(cardColor);
+}
+
 void GCard::setFontSize(unsigned int size){
     m_fontSize = size;
 
@@ -104,7 +108,9 @@ void GCard::update(){
 void GCard::draw(){
     GCard::update();
     m_window->draw(m_cardShape);
-    m_window->draw(m_nameText);
-    m_window->draw(m_descriptionText);
-    m_window->draw(m_imageSprite);
+    if(m_card!=NULL){
+        m_window->draw(m_nameText);
+        m_window->draw(m_descriptionText);
+        m_window->draw(m_imageSprite);
+    }
 }
