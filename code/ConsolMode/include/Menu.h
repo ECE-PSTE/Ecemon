@@ -3,6 +3,7 @@
 
 #include "../../entities/include/Profile.h"
 #include "../../utils/ProfileUtils.h"
+#include "../../game/game.cpp"
 
 typedef struct dataMenu{
     Profile* m_profileUse;
@@ -51,6 +52,12 @@ void displayADeck(Profile* p);
 void deleteDeck(Profile* p);
 
 void emptyDeckIntoCollection(Profile* p,Deck* d);
+
+void lunchGame(s_DataMenu* data);
+
+void loadProfileAndDeck(s_DataMenu* data, Profile* pPlay, std::string* nNameDeck);
+
+Profile* askProfileWithName(s_DataMenu* data, std::string name);
 
 
 

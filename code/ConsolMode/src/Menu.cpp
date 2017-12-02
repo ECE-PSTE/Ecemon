@@ -45,19 +45,24 @@ bool menuPrincipal(s_DataMenu* data){
         std::cout << data->m_profileUse->getName();
     }
 
-    std::cout << "\n\n\t1) Change admin mode"
-    <<"\n\t2) Add Money Profile"
-    <<"\n\t3) Change/Create Profile Use"
-    <<"\n\t4) Buy Cards"
-    <<"\n\t5) Gestion Collection/Deck"
-    <<"\n\t6) Exit Game\n";
+    std::cout << "\n\n\t1) Play a Game !"
+    <<"\n\t2) Change admin mode"
+    <<"\n\t3) Add Money Profile"
+    <<"\n\t4) Change/Create Profile Use"
+    <<"\n\t5) Buy Cards"
+    <<"\n\t6) Gestion Collection/Deck"
+    <<"\n\t7) Exit Game\n";
 
-    switch (menuChoice({1,2,3,4,5, 6})) {
+    switch (menuChoice({1,2,3,4,5,6,7})) {
         case 1:
-            switchAdmin(data);
+            lunchGame(data);
             return true;
             break;
         case 2:
+            switchAdmin(data);
+            return true;
+            break;
+        case 3:
             if(data->m_profileUse == NULL){
                 std::cout << "\nImpossible : no profil select\n\n";
             }
@@ -74,10 +79,10 @@ bool menuPrincipal(s_DataMenu* data){
             }
             return true;
             break;
-        case 3:
+        case 4:
             switchProfile(data);
             return true;
-        case 4:
+        case 5:
             if(data->m_profileUse == NULL){
                 std::cout << "\nImpossible : no profil select";
             }
@@ -87,7 +92,7 @@ bool menuPrincipal(s_DataMenu* data){
             }
             return true;
             break;
-        case 5:
+        case 6:
             if(data->m_profileUse == NULL){
                 std::cout << "\nImpossible : no profil select";
             }
@@ -97,7 +102,7 @@ bool menuPrincipal(s_DataMenu* data){
             }
             return true;
             break;
-        case 6:
+        case 7:
             std::cout << "End of Game, all data Save \n";
             return false;
             break;
@@ -157,6 +162,15 @@ bool switchProfileGood(s_DataMenu* data, std::string name){
     }
 
     return false;
+}
+
+Profile* askProfileWithName(s_DataMenu* data, std::string name){
+    for(auto & elem : *data->m_profileGame){
+        if(elem.getName() == name){
+            return &elem;
+        }
+    }
+    return NULL;
 }
 
 bool buyCards(s_DataMenu* data){
@@ -249,7 +263,7 @@ bool gestionDeck(Profile* p){
 
     std::cout << "\n\nProfil use : " << p->getName() << "\n\nList of deck in profile : \n";
     displayDecks(p);
-    std::cout << "\n\n\t1) Display Deck\n\t2) Modify Deck \n\t3) Creat Deck\n\t4) Delete Deck\n\t0) Return\n";
+    std::cout << "\n\n\t1) Display Deck\n\t2) Modify Deck \n\t3) Creat Deck\n\t4) Delete Deck\n\t5) Return\n";
 
     switch (menuChoice({5,1,2,3,4})) {
         case 1:
@@ -446,4 +460,70 @@ void deleteDeck(Profile* p){
 void emptyDeckIntoCollection(Profile* p,Deck* d){
         p->getpCards()->addCards(d->getCards());
         delete d;
+}
+
+void lunchGame(s_DataMenu* data){
+    std::string nameDeckP1;
+    std::string nameDeckP2;
+
+    Profile* profileP1;
+    Profile* profileP2;
+
+    loadProfileAndDeck(data, profileP1, &nameDeckP1);
+    loadProfileAndDeck(data, profileP2, &nameDeckP2);
+
+    if(profileP1 == profileP2 && nameDeckP1 == nameDeckP2){
+        system("cls");
+        std::cout << "You can play with the same profile but it be must between two diffrent Deck\n";
+    }
+    else{
+        system("cls");
+        std::cout << "Game in progress...\n";
+        gameLoop(profileP1, nameDeckP1, profileP2, nameDeckP2);
+        std::cout<< "End of game !\n\n";
+    }
+
+}
+
+void loadProfileAndDeck(s_DataMenu* data, Profile* pPlay, std::string* nNameDeck){
+    std::string nameProfile;
+    *nNameDeck = "";
+
+    std::cout << "Enter one of this profile's name : \n";
+    for(auto & elem : *data->m_profileGame){
+        std::cout << "\t- " << elem.getName() << "\n";
+    }
+    std::cout << "\nName of profile To play with: ";
+    getline(std::cin, nameProfile);
+    pPlay  = askProfileWithName(data, nameProfile);
+    while(pPlay == NULL){
+        std::cout << "\nThis profile name doesnt exist, enter a new name of profile To play with: ";
+        getline(std::cin, nameProfile);
+        pPlay  = askProfileWithName(data, nameProfile);
+    }
+
+    std::cout << "This is the list of deck who can be play :\n";
+    for(const auto & elem : pPlay->getDecks()){
+        std::cout << "\t" << elem->getName();
+        if(elem->isComplete()){
+            std::cout << "\t" << "Can Be Play";
+        }
+        std::cout <<"\n";
+    }
+
+    do{
+        std::cout << "\nName of deck To play with: ";
+        getline(std::cin, nameProfile);
+        for(const auto & elem : pPlay->getDecks()){
+            if(!elem->isComplete() && elem->getName() == nameProfile){
+                std::cout << "Deck is existe but not complet to be play in a game\n\n";
+                break;
+            }
+            else if(elem->isComplete() && elem->getName() == nameProfile){
+                *nNameDeck = nameProfile;
+                std::cout << "Deck Found ! This player is ready\n\n";
+                break;
+            }
+        }
+    }while(*nNameDeck == "");
 }
