@@ -2,6 +2,7 @@
 #define DEF_DRAWABLE
 
 #include <SFML/Graphics.hpp>
+#include <cmath>
 
 class Drawable {
     protected:
@@ -20,7 +21,9 @@ class Drawable {
 
         void setPosition(sf::Vector2f position);
         virtual void setSize(sf::Vector2f size);
-        
+
+        void moveToward(sf::Vector2f position);
+
         virtual void draw();
 };
 #endif

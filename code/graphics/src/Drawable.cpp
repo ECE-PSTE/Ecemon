@@ -22,6 +22,18 @@ void Drawable::setSize(sf::Vector2f size){
     m_size = size;
 }
 
+void Drawable::moveToward(sf::Vector2f position){
+    int x = position.x;
+    int y = position.y;
+    float velocity = 0.2f;
+
+    float length = sqrt(pow(x-m_position.x, 2)+pow(y-m_position.y, 2));
+    if(length!=0){
+        m_position.x += (x-m_position.x)*velocity/length;
+        m_position.y += (y-m_position.y)*velocity/length;
+    }
+}
+
 void Drawable::update(){
 }
 
