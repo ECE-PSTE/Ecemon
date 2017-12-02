@@ -5,6 +5,8 @@
 #include "../../utils/ProfileUtils.h"
 #include "../src/game.cpp"
 
+static const char* clearConsoleCmd = "clear";
+
 typedef struct dataMenu{
     Profile* m_profileUse;
     std::vector<Profile>* m_profileGame;

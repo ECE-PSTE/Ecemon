@@ -14,7 +14,7 @@ int menuChoice(std::vector<int> vectorChoice){
         getline(std::cin, strChoice);
         intChoice = Utils::toInt(strChoice);
     }
-    system("cls");
+    system(clearConsoleCmd);
     return intChoice;
 }
 
@@ -349,12 +349,12 @@ bool creatDeckInProgresse(Profile* p, Deck* d){
             if(p->getpCards()->getCards()[i]->getId() == nb){
                 d->addCard(p->getpCards()->getCards()[i]);
                 p->getpCards()->removeCard(p->getpCards()->getCards()[i]);
-                system("cls");
+                system(clearConsoleCmd);
                 std::cout << "Add Done\n\n";
                 return true;
             }
         }
-        system("cls");
+        system(clearConsoleCmd);
         std::cout << "No add of a no existing ID in collection\n\n";
         return true;
     }
@@ -364,16 +364,16 @@ bool creatDeckInProgresse(Profile* p, Deck* d){
             if(d->getCards()[i]->getId() == nb){
                 p->getpCards()->addCard(d->getCards()[i]);
                 d->removeCard(d->getCards()[i]);
-                system("cls");
+                system(clearConsoleCmd);
                 std::cout << "Delete Done\n\n";
                 return true;
             }
         }
-        system("cls");
+        system(clearConsoleCmd);
         std::cout << "No delete of a no existing ID in collection\n\n";
         return true;
     }
-    system("cls");
+    system(clearConsoleCmd);
     std::cin.ignore();
     std::cout<< "Deck Save in your profile\n\n";
 
@@ -473,11 +473,11 @@ void lunchGame(s_DataMenu* data){
     loadProfileAndDeck(data, &profileP2, &nameDeckP2);
 
     if(profileP1 == profileP2 && nameDeckP1 == nameDeckP2){
-        system("cls");
+        system(clearConsoleCmd);
         std::cout << "You can play with the same profile but it be must between two diffrent Deck\n";
     }
     else{
-        system("cls");
+        system(clearConsoleCmd);
         std::cout << "Game in progress...\n";
         gameLoop(profileP1, nameDeckP1, profileP2, nameDeckP2);
         std::cout<< "End of game !\n\n";
