@@ -9,19 +9,23 @@ Board::~Board(){
 
 
 void Board::playerTakeDamage(int damage){
-    m_lifePoint += damage;
+    m_lifePoint -= damage;
+}
+
+void Board::endCreatureTurn(){
+    if(m_creatureOnBoard != NULL){
+        if(getCreatureLifePoint() <= 0){
+            if(getCreatureLifePoint() < 0){
+                playerTakeDamage(-getCreatureLifePoint());
+            }
+            getCreatureGraveyard().addCard(getCreatureOnBoard());
+            setCreatureOnBoard(NULL);
+            getpEffectsOnPlayer()->newCreature();
+        }
+    }
 }
 
 void Board::endTurn(){
-    if(getCreatureOnBoard()->getLife() - getpEffectsOnPlayer()->getDamage() <= 0){
-        if(getCreatureOnBoard()->getLife() - getpEffectsOnPlayer()->getDamage() < 0){
-            playerTakeDamage(getCreatureOnBoard()->getLife() - getpEffectsOnPlayer()->getDamage());
-        }
-        getCreatureGraveyard().addCard(getCreatureOnBoard());
-        setCreatureOnBoard(NULL);
-        getpEffectsOnPlayer()->newCreature();
-    }
-
     getpEffectsOnPlayer()->endTurn();
 }
 
@@ -89,9 +93,9 @@ void Board::playCard(const Card* card){
             m_powerEnergyGraveyard.addCard(card);
             break;
         case CardType_Creature:
+            m_creatureGraveyard.addCard(m_creatureOnBoard);
             playCreature((const CreatureCard*) card);
             m_deckPlay->removeCard(card);
-            m_creatureGraveyard.addCard(card);
             break;
         default :
             std::cout << "ERROR TYPE OF CARD PLAY IN PLAYCARD\n";
@@ -99,7 +103,7 @@ void Board::playCard(const Card* card){
 }
 
 void Board::playCreature(const CreatureCard* cardPlay){
-    getpCreatureGraveyard()->addCard(getCreatureOnBoard());
+    // getpCreatureGraveyard()->addCard(getCreatureOnBoard());
     setCreatureOnBoard(cardPlay);
     getpEffectsOnPlayer()->newCreature();
 }
@@ -123,6 +127,13 @@ void Board::playPower(const PowerCard* cardPlay){
             break;
         case PowerType_President:
             getpEffectsOnPlayer()->setDamage(0);
+            break;
+        case PowerType_Food:
+            getpQuantityEnergy()->addEnergy(EnergyType_Chili, 1);
+            getpQuantityEnergy()->addEnergy(EnergyType_Tacos, 1);
+            getpQuantityEnergy()->addEnergy(EnergyType_IceCream, 1);
+            getpQuantityEnergy()->addEnergy(EnergyType_Blueberries, 1);
+
             break;
 
         default:

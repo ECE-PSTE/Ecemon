@@ -33,6 +33,8 @@ public:
 
     void endGame();
 
+    void endTurn();
+
 
 };
 

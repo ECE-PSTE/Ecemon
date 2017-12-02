@@ -91,10 +91,16 @@ void GBoard::init(){
 
 void GBoard::updateContent(){
     const CreatureCard* creature = m_board->getCreatureOnBoard();
-    std::string filename = GraphicUtils::CardImages.at(creature->getId());
-    m_gcreature.setCard(creature);
-    m_gcreature.setCardImage("../graphics/images/"+filename);  // should load path from card id ...
-    m_gcreature.setLife(m_board->getCreatureLifePoint());
+    if(creature!=NULL){
+        std::string filename = GraphicUtils::CardImages.at(creature->getId());
+        m_gcreature.setCard(creature);
+        m_gcreature.setCardImage("../graphics/images/"+filename);  // should load path from card id ...
+        m_gcreature.setLife(m_board->getCreatureLifePoint());
+    }
+    else{
+        m_gcreature.setCard(NULL);
+        m_gcreature.setCardColor(sf::Color::Black);
+    }
     m_gcardBet.setCard(m_board->getCardBet());
     m_gcardBet.setCardImage("../graphics/images/block.png");
     m_genergy.setEnergyStack(*m_board->getpQuantityEnergy());

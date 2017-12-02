@@ -61,6 +61,7 @@ class Board{
         void setpEnemyBoard(Board* val){m_pEnemyBoard = val;}
         void setLifePoint(int val){m_lifePoint = val;}
 
+        void endCreatureTurn();
 
         void playerTakeDamage(int damage);
 

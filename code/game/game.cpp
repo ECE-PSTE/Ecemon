@@ -35,7 +35,8 @@ enum GameState {
     GameState_DIALOG_ATTACK,
     GameState_DO_ATTACK,
     GameState_DONT_ATTACK,
-    GameState_END_TURN
+    GameState_END_TURN,
+    GameState_END_GAME
 };
 
 enum AttackState {
@@ -190,9 +191,27 @@ inline void gameLoop(Profile* profile1, std::string deck1, Profile* profile2, st
                 gameState = GameState_END_TURN;
             break;
 
-            case GameState_END_TURN:
-                playerTurn = playerTurn==1?2:1;
-                gameState = GameState_PICK_CARD;
+            case GameState_END_GAME:
+            break;
+        }
+
+        if(gameState == GameState_END_TURN){
+            combat.endTurn();
+            playerBoard->endTurn();
+            playerTurn = playerTurn==1?2:1;
+            gameState = GameState_PICK_CARD;
+
+            int state = combat.askEndGame();
+            if(state==1){
+                std::cout << "Player 1 win !" << std::endl;
+                combat.endGame();
+                window.close();
+            }
+            else if(state==2){
+                std::cout << "Player 2 win !" << std::endl;
+                combat.endGame();
+                window.close();
+            }
         }
 
         window.clear();
