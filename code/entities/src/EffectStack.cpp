@@ -17,7 +17,6 @@ void EffectStack::takeDamage(int damage){
 }
 
 void EffectStack::newCreature(){
-    std::cout<< "New creature\n";
     setFreez(false);
     setDamage(0);
 }

@@ -12,18 +12,23 @@ void Board::playerTakeDamage(int damage){
     m_lifePoint -= damage;
 }
 
-void Board::endTurn(){
-    std::cout << "pdv creature : " << getCreatureLifePoint() << std::endl;
-    if(getCreatureLifePoint() <= 0){
-        if(getCreatureLifePoint() < 0){
-            std::cout << "<0" << std::endl;
-            playerTakeDamage(-getCreatureLifePoint());
+void Board::endCreatureTurn(){
+    if(m_creatureOnBoard != NULL){
+        std::cout << "pdv creature : " << getCreatureLifePoint() << std::endl;
+        if(getCreatureLifePoint() <= 0){
+            std::cout << "<= 0" << std::endl;
+            if(getCreatureLifePoint() < 0){
+                std::cout << "< 0" << std::endl;
+                playerTakeDamage(-getCreatureLifePoint());
+            }
+            getCreatureGraveyard().addCard(getCreatureOnBoard());
+            setCreatureOnBoard(NULL);
+            getpEffectsOnPlayer()->newCreature();
         }
-        getCreatureGraveyard().addCard(getCreatureOnBoard());
-        setCreatureOnBoard(NULL);
-        getpEffectsOnPlayer()->newCreature();
     }
+}
 
+void Board::endTurn(){
     getpEffectsOnPlayer()->endTurn();
 }
 

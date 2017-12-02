@@ -192,6 +192,7 @@ void gameLoop(Profile* profile1, std::string deck1, Profile* profile2, std::stri
         }
 
         if(gameState == GameState_END_TURN){
+            combat.endTurn();
             playerBoard->endTurn();
             playerTurn = playerTurn==1?2:1;
             gameState = GameState_PICK_CARD;
