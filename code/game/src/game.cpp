@@ -1,31 +1,29 @@
-#include <iostream>
-#include <sstream>
-#include <vector>
+#ifndef DEF_GAMELOOP
+#define DEF_GAMELOOP
 
+#include <iostream>
 #include <SFML/Graphics.hpp>
 
-#include "../entities/include/CreatureCard.h"
-#include "../entities/include/EnergyCard.h"
-#include "../entities/include/PowerCard.h"
-#include "../entities/include/Attack.h"
-#include "../entities/include/Profile.h"
-#include "../entities/include/Constants.h"
-#include "../entities/include/EnergyStack.h"
-#include "../entities/include/EnergyType.h"
+#include "../../entities/include/CreatureCard.h"
+#include "../../entities/include/EnergyCard.h"
+#include "../../entities/include/PowerCard.h"
+#include "../../entities/include/Attack.h"
+#include "../../entities/include/Profile.h"
+#include "../../entities/include/Constants.h"
+#include "../../entities/include/EnergyStack.h"
+#include "../../entities/include/EnergyType.h"
 
-#include "../graphics/include/GCreatureCard.h"
-#include "../graphics/include/GEnergyCard.h"
-#include "../graphics/include/GPowerCard.h"
-#include "../graphics/include/GEnergy.h"
-#include "../graphics/include/GBoard.h"
-#include "../graphics/include/GDialog.h"
+#include "../../graphics/include/GCreatureCard.h"
+#include "../../graphics/include/GEnergyCard.h"
+#include "../../graphics/include/GPowerCard.h"
+#include "../../graphics/include/GEnergy.h"
+#include "../../graphics/include/GBoard.h"
+#include "../../graphics/include/GDialog.h"
 
-#include "../models/include/Combat.h"
+#include "../../models/include/Combat.h"
 
-#include "../utils/GameUtils.h"
-#include "../utils/ProfileUtils.h"
-
-using namespace std;
+#include "../../utils/GameUtils.h"
+#include "../../utils/ProfileUtils.h"
 
 enum GameState {
     GameState_PICK_CARD,
@@ -227,3 +225,5 @@ inline void gameLoop(Profile* profile1, std::string deck1, Profile* profile2, st
         window.display();
     }
 }
+
+#endif

@@ -4,9 +4,7 @@
 #include "../../utils/ProfileUtils.h"
 #include <time.h>
 
-
 int main(int argc, char const *argv[]) {
-
         srand(time(NULL));
 
         s_DataMenu data;
@@ -21,8 +19,7 @@ int main(int argc, char const *argv[]) {
         data.m_profileUse = &vecProf[0];
         data.m_admin = false;
 
-        while(menuPrincipal(&data)){
-        }
+        while(menuPrincipal(&data));
 
         std::vector<Profile*> vecpProf;
         for(auto & elem : vecProf){
