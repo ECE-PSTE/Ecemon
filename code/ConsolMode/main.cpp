@@ -33,6 +33,7 @@ int main(int argc, char const *argv[]) {
             std::cout << "Error saving vector profile\n\n";
         }
 
+        GameUtils::freeCards();
 
     return 0;
 }

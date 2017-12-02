@@ -44,7 +44,7 @@ enum AttackState {
     AttackState_BOTH
 };
 
-void gameLoop(Profile* profile1, std::string deck1, Profile* profile2, std::string deck2){
+inline void gameLoop(Profile* profile1, std::string deck1, Profile* profile2, std::string deck2){
     Combat combat;
     combat.startCombat(profile1, deck1, profile2, deck2);
 
@@ -207,18 +207,4 @@ void gameLoop(Profile* profile1, std::string deck1, Profile* profile2, std::stri
         }
         window.display();
     }
-}
-
-int main(int argc, char const *argv[]) {
-    std::vector<Profile> profiles;
-    if(ProfileUtils::loadProfiles(profiles)){
-        std::string deckName1 = profiles[0].getpDecks()->at(0)->getName();
-        std::string deckName2 = profiles[1].getpDecks()->at(0)->getName();
-
-        gameLoop(&profiles[0], deckName1, &profiles[1], deckName2);
-    }
-
-    GameUtils::freeCards();
-
-    return 0;
 }
