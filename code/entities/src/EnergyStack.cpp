@@ -23,6 +23,6 @@ void EnergyStack::addEnergy(EnergyType eType, int quantity){
             setBlueberries(getBlueberries() + quantity);
             break;
         default:
-            std::cout<<"Error EnergyType in addEnergy" << std::endl;
+            std::cout<<"Error EnergyType in addEnergy : " << eType << std::endl;
     }
 }

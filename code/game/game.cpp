@@ -189,10 +189,12 @@ void gameLoop(Profile* profile1, std::string deck1, Profile* profile2, std::stri
             case GameState_DONT_ATTACK:
                 gameState = GameState_END_TURN;
             break;
+        }
 
-            case GameState_END_TURN:
-                playerTurn = playerTurn==1?2:1;
-                gameState = GameState_PICK_CARD;
+        if(gameState == GameState_END_TURN){
+            playerBoard->endTurn();
+            playerTurn = playerTurn==1?2:1;
+            gameState = GameState_PICK_CARD;
         }
 
         window.clear();
