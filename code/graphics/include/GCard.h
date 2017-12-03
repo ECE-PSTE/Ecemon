@@ -19,6 +19,7 @@ class GCard : public Drawable {
         unsigned int m_fontSize;
 
         const Card* m_card;
+        bool m_hideText;
 
         void init(sf::RenderWindow* window, sf::Vector2f size);
         float getSpriteScale() const;
@@ -32,6 +33,7 @@ class GCard : public Drawable {
         void setSize(sf::Vector2f size);
         void setCardImage(std::string imagePath);
         void setCardColor(sf::Color cardColor);
+        void setHideText(bool enabled);
         virtual void setCard(const Card *card);
         virtual void setFontSize(unsigned int size);
         virtual void setFontColor(sf::Color fontColor);

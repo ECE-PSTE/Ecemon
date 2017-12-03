@@ -18,6 +18,7 @@ void GCard::init(sf::RenderWindow* window, sf::Vector2f size){
 
     m_position.x = 0;
     m_position.y = 0;
+    m_hideText = false;
     m_fontSize = Constants::DefaultCardFontSize();
     m_fontColor = Constants::DefaultCardTextColor();
 
@@ -80,6 +81,10 @@ void GCard::setCardColor(sf::Color cardColor){
     m_cardShape.setFillColor(cardColor);
 }
 
+void GCard::setHideText(bool enabled){
+    m_hideText = enabled;
+}
+
 void GCard::setFontSize(unsigned int size){
     m_fontSize = size;
 
@@ -109,8 +114,10 @@ void GCard::draw(){
     GCard::update();
     m_window->draw(m_cardShape);
     if(m_card!=NULL){
-        m_window->draw(m_nameText);
-        m_window->draw(m_descriptionText);
+        if(!m_hideText){
+            m_window->draw(m_nameText);
+            m_window->draw(m_descriptionText);
+        }
         m_window->draw(m_imageSprite);
     }
 }

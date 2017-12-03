@@ -54,6 +54,7 @@ void GBoard::init(){
     m_genergy = GEnergy(m_window, sf::Vector2f(100, 200));
     m_gcreature = GCreatureCard(m_window, sf::Vector2f(Constants::DefaultCardWidth(), Constants::DefaultCardHeight()));
     m_gcardBet = GCard(m_window, sf::Vector2f(100, 180));
+    m_gcardBet.setHideText(true);
 
     assert(m_font.loadFromFile("../graphics/fonts/"+Constants::DefaultFont()));
     m_fontSize = 24;
