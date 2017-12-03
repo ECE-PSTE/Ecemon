@@ -48,7 +48,7 @@ bool menuPrincipal(s_DataMenu* data){
     std::cout << "\n\n\t1) Play a Game !"
     <<"\n\t2) Change admin mode"
     <<"\n\t3) Add Money Profile"
-    <<"\n\t4) Change/Create Profile Use"
+    <<"\n\t4) Change Profile Use"
     <<"\n\t5) Buy Cards"
     <<"\n\t6) Gestion Collection/Deck"
     <<"\n\t7) Exit Game\n";
