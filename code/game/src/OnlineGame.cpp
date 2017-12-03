@@ -113,7 +113,7 @@ inline void startOnlineGameLoop(Profile* profile, std::string deck){
 
     std::cout << "combat ok" << std::endl;
 
-    sf::RenderWindow window(sf::VideoMode(1000, 1080), "ECEMON", sf::Style::Fullscreen);
+    sf::RenderWindow window(sf::VideoMode(1500, 1080), "ECEMON");
 
     sf::Music music;
     assert(music.openFromFile("../graphics/sounds/"+Constants::DefaultIntroSound()));
