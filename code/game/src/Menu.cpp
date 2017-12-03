@@ -51,7 +51,8 @@ bool menuPrincipal(s_DataMenu* data){
     <<"\n\t4) Change/Create Profile Use"
     <<"\n\t5) Buy Cards"
     <<"\n\t6) Gestion Collection/Deck"
-    <<"\n\t7) Exit Game\n";
+    <<"\n\t7) Exit Game\n"
+    <<"\n\t8) Multiplayer Game";
 
     switch (menuChoice({1,2,3,4,5,6,7,8})) {
         case 1:

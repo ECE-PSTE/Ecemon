@@ -25,6 +25,15 @@ std::vector<const Card*> Deck::getCards() const{
     return m_cards;
 }
 
+const Card* Deck::getCardById(int id) const{
+    for(int i=0 ; i<m_cards.size() ; i++){
+        if(m_cards[i]->getId()==id){
+            return m_cards[i];
+        }
+    }
+    return NULL;
+}
+
 void Deck::addCard(const Card* card){
     m_cards.push_back(card);
 }

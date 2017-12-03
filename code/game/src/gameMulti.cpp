@@ -5,44 +5,117 @@
 #include "game.cpp"
 #include "../../Socket/lib/SocketClient.h"
 
-enum NetworkState {
-    NetworkState_WaitingForPlayer,
-    NetworkState_PlayerOnline
+struct Data {
+    GameState gameState = GameState_PickCard;
+    AttackState attackState;
+    Board *playerBoard = NULL;
+    bool playerFound = false;
+    bool gotUid = false;
+    int firstToPlay = -1;
+    const Card* cardOnBoard = NULL;
+    Profile onlinePlayerProfile;
+    std::string onlinePlayerDeck;
+    std::string onlinePlayerUid;
 };
 
-static NetworkState networkState;
-static Profile onlinePlayer;
-static std::string onlineDeckName;
+static Data DATA;
 
-inline void onPlayerConnected(SocketClient *socket, std::vector<std::string> messages){
-    std::stringstream ss(messages[0]);
-    ss >> onlinePlayer;
-    onlineDeckName = messages[1];
-    std::cout << "Player connected !" << std::endl;
+inline void onUid(SocketClient *socket, std::vector<std::string> messages){
+    std::cout << "[uid] : " << messages[0] << std::endl;
+    socket->setTag(new std::string(messages[0]));
+    DATA.gotUid = true;
 }
 
-inline void connectToServer(SocketClient *socket){
-    networkState = NetworkState_WaitingForPlayer;
-    socket = new SocketClient("127.0.0.1", 8888);
-    socket->addListener("player", onPlayerConnected);
-    if(!socket->connect()){
-        std::cout << "Could not connect to server" << std::endl;
+inline void onPlayerFound(SocketClient *socket, std::vector<std::string> messages){
+    std::cout << "player connected: " << messages[0] << std::endl;
+    DATA.onlinePlayerUid = messages[0];
+    std::stringstream ss2(messages[1]);
+    ss2 >> DATA.onlinePlayerProfile;
+    DATA.onlinePlayerDeck = messages[2];
+    DATA.playerFound = true;
+}
+
+inline void onFirstPlayer(SocketClient *socket, std::vector<std::string> messages){
+    DATA.firstToPlay = Utils::toInt(messages[0]);
+}
+
+inline void onCardPicked(SocketClient *socket, std::vector<std::string> messages){
+    int id = Utils::toInt(messages[0]);
+    DATA.cardOnBoard = DATA.playerBoard->getDeckPlay()->getCardById(id);
+    std::cout << "player picked : " << DATA.cardOnBoard->getName() << std::endl;
+    DATA.gameState = GameState_DialogCard;
+}
+
+inline void onCardPlayed(SocketClient *socket, std::vector<std::string> messages){
+    int resp = Utils::toInt(messages[0]);
+    if(resp==1){
+        DATA.gameState = GameState_PlayCard;
     }
-    else{
+    else if(resp==-1){
+        DATA.gameState = GameState_DontPlayCard;
+    }
+}
+
+inline void onAttack(SocketClient *socket, std::vector<std::string> messages){
+    int resp = Utils::toInt(messages[1]);
+    if(resp==1){
+        DATA.gameState = GameState_DoAttack;
+        if(DATA.attackState==AttackState_Both){
+            DATA.attackState = AttackState_Special;
+        }
+    }
+    else if(resp==-1){
+        if(DATA.attackState==AttackState_Basic || DATA.attackState==AttackState_Special){
+            DATA.gameState = GameState_DontAttack;
+        }
+        else{
+            DATA.gameState = GameState_DoAttack;
+            DATA.attackState = AttackState_Basic;
+        }
+    }
+}
+
+inline void gameLoopMultiplayer(Profile* profile, std::string deck){
+    SocketClient *socket = new SocketClient("127.0.0.1", 8888);
+    socket->addListener("uid", onUid);
+    socket->addListener("player", onPlayerFound);
+    socket->addListener("first", onFirstPlayer);
+    socket->addListener("pick", onCardPicked);
+    socket->addListener("playCardDialog", onCardPlayed);
+    socket->addListener("attackDialog", onAttack);
+    if(socket->connect()){
+        socket->listenOnBackground();
         std::cout << "Connected to server !" << std::endl;
     }
-}
+    else{
+        std::cout << "Could not connect to server" << std::endl;
+        return;
+    }
 
-inline void gameLoopMultiplayer(Profile* profile1, std::string deck1){
-    SocketClient *socket;
-    connectToServer(socket);
+    while(!DATA.gotUid);
 
-    while(networkState!=NetworkState_PlayerOnline);
+    std::stringstream ss1;
+    ss1 << *profile;
+    std::string *uid = (std::string*) socket->getTag();
+    socket->send("player", {*uid, ss1.str(), deck});
+
+    std::cout << "Waiting for a player..." << std::endl;
+
+    while(!DATA.playerFound);
+
+    while(DATA.firstToPlay==-1);
+
+    std::cout << "first to play : " << DATA.firstToPlay << std::endl;
+    std::cout << "starting graphics..." << std::endl;
+
+    // all set
 
     Combat combat;
-    combat.startCombat(profile1, deck1, &onlinePlayer, onlineDeckName);
+    combat.startCombat(profile, deck, &DATA.onlinePlayerProfile, DATA.onlinePlayerDeck);
 
-    sf::RenderWindow window(sf::VideoMode(1920, 1080), "ECEMON", sf::Style::Titlebar);
+    std::cout << "combat ok" << std::endl;
+
+    sf::RenderWindow window(sf::VideoMode(1000, 1080), "ECEMON", sf::Style::Titlebar);
 
     sf::RectangleShape lineSeparator(sf::Vector2f(window.getSize().y, 3));
     lineSeparator.setFillColor(sf::Color::White);
@@ -63,47 +136,52 @@ inline void gameLoopMultiplayer(Profile* profile1, std::string deck1){
 
     GDialog dialogAttack(&window, sf::Vector2f(400, 90));
 
-    GameState gameState = GameState_PickCard;
-    AttackState attackState;
-    Board *playerBoard;
-    const Card* card;
-    int playerTurn = 1;
+    int playerTurn = DATA.firstToPlay;
+
+    std::cout << "entering game loop..." << std::endl;
 
     while (window.isOpen())
     {
         sf::Event event;
-        while (window.pollEvent(event))
-        {
+        while (window.pollEvent(event)){
             if(event.type == sf::Event::Closed){
                 window.close();
             }
             else if(event.type == sf::Event::MouseButtonPressed){
                 if (event.mouseButton.button == sf::Mouse::Left){
                     sf::Vector2f mousePos(event.mouseButton.x, event.mouseButton.y);
-                    if(gameState==GameState_DialogCard){
-                        int resp = dialogPlayCard.getState(mousePos);
-                        if(resp==1){
-                            gameState = GameState_PlayCard;
-                        }
-                        else if(resp==-1){
-                            gameState = GameState_DontPlayCard;
-                        }
-                    }
-                    else if(gameState==GameState_DialogAttack){
-                        int resp = dialogPlayCard.getState(mousePos);
-                        if(resp==1){
-                            gameState = GameState_DoAttack;
-                            if(attackState==AttackState_Both){
-                                attackState = AttackState_Special;
+                    if(mousePos.x<=window.getSize().x/2){
+                        if(DATA.gameState==GameState_DialogCard){
+                            int resp = dialogPlayCard.getState(mousePos);
+                            socket->send("playCardDialog", {Utils::toString(resp)});
+                            std::cout << "play dialog : " << resp << std::endl;
+
+                            if(resp==1){
+                                DATA.gameState = GameState_PlayCard;
+                            }
+                            else if(resp==-1){
+                                DATA.gameState = GameState_DontPlayCard;
                             }
                         }
-                        else if(resp==-1){
-                            if(attackState==AttackState_Basic || attackState==AttackState_Special){
-                                gameState = GameState_DontAttack;
+                        else if(DATA.gameState==GameState_DialogAttack){
+                            int resp = dialogAttack.getState(mousePos);
+                            socket->send("attackDialog", {Utils::toString(resp)});
+                            std::cout << "attack dialog : " << resp << std::endl;
+
+                            if(resp==1){
+                                DATA.gameState = GameState_DoAttack;
+                                if(DATA.attackState==AttackState_Both){
+                                    DATA.attackState = AttackState_Special;
+                                }
                             }
-                            else{
-                                gameState = GameState_DoAttack;
-                                attackState = AttackState_Basic;
+                            else if(resp==-1){
+                                if(DATA.attackState==AttackState_Basic || DATA.attackState==AttackState_Special){
+                                    DATA.gameState = GameState_DontAttack;
+                                }
+                                else{
+                                    DATA.gameState = GameState_DoAttack;
+                                    DATA.attackState = AttackState_Basic;
+                                }
                             }
                         }
                     }
@@ -111,96 +189,101 @@ inline void gameLoopMultiplayer(Profile* profile1, std::string deck1){
             }
             else if (event.type == sf::Event::MouseMoved){
                 sf::Vector2f mousePos(event.mouseMove.x, event.mouseMove.y);
-                if(gameState==GameState_DialogCard){
-                    dialogPlayCard.mouseHoverProcess(mousePos);
-                }
-                else if(gameState==GameState_DialogAttack){
-                    dialogAttack.mouseHoverProcess(mousePos);
+                if(mousePos.x<=window.getSize().x/2){
+                    if(DATA.gameState==GameState_DialogCard){
+                        dialogPlayCard.mouseHoverProcess(mousePos);
+                    }
+                    else if(DATA.gameState==GameState_DialogAttack){
+                        dialogAttack.mouseHoverProcess(mousePos);
+                    }
                 }
             }
         }
 
         sf::Vector2f pos;
         if(playerTurn==1){
-            playerBoard = combat.getpBoardP1();
+            DATA.playerBoard = combat.getpBoardP1();
             pos = sf::Vector2f(window.getSize().x/4, dialogPlayCard.getSize().y);
         }
         else{
-            playerBoard = combat.getpBoardP2();
+            DATA.playerBoard = combat.getpBoardP2();
             pos = sf::Vector2f(3*window.getSize().x/4, dialogPlayCard.getSize().y);
         }
         dialogPlayCard.setPosition(pos);
         dialogAttack.setPosition(pos);
 
-        switch(gameState){
+        switch(DATA.gameState){
             case GameState_PickCard:
-                card = playerBoard->askCard();
-                gameState = GameState_DialogCard;
+                if(playerTurn==1){
+                    DATA.cardOnBoard = DATA.playerBoard->askCard();
+                    socket->send("pick", {Utils::toString(DATA.cardOnBoard->getId())});
+                    DATA.gameState = GameState_DialogCard;
+                }
             break;
 
             case GameState_DialogCard:
-                dialogPlayCard.setMessage("Do you want to play "+card->getName());
+                dialogPlayCard.setMessage("Do you want to play "+DATA.cardOnBoard->getName());
             break;
 
             case GameState_PlayCard:
-                playerBoard->playCard(card);
-                gameState = GameState_DialogAttack;
+                DATA.playerBoard->playCard(DATA.cardOnBoard);
+                DATA.gameState = GameState_DialogAttack;
             break;
 
             case GameState_DontPlayCard:
-                gameState = GameState_DialogAttack;
+                DATA.gameState = GameState_DialogAttack;
             break;
 
             case GameState_DialogAttack:
-                if(playerBoard->getCreatureOnBoard()!=NULL){
-                    bool hasBasic = playerBoard->askAttack();
-                    bool hasSpecial = playerBoard->askSpecialAttack();
+                if(DATA.playerBoard->getCreatureOnBoard()!=NULL){
+                    bool hasBasic = DATA.playerBoard->askAttack();
+                    bool hasSpecial = DATA.playerBoard->askSpecialAttack();
                     if(hasBasic && !hasSpecial){
                         dialogAttack.setMessage("You only have a basic attack. Attack ?");
                         dialogAttack.setPositiveButton("Yes");
                         dialogAttack.setNegativeButton("No");
-                        attackState = AttackState_Basic;
+                        DATA.attackState = AttackState_Basic;
                     }
                     else if(!hasBasic && hasSpecial){
                         dialogAttack.setMessage("You only have a special attack. Attack ?");
                         dialogAttack.setPositiveButton("Yes");
                         dialogAttack.setNegativeButton("No");
-                        attackState = AttackState_Special;
+                        DATA.attackState = AttackState_Special;
                     }
                     else if(hasBasic && hasSpecial){
                         dialogAttack.setMessage("Use basic or special attack ?");
                         dialogAttack.setPositiveButton("Special");
                         dialogAttack.setNegativeButton("Basic");
-                        attackState = AttackState_Both;
+                        DATA.attackState = AttackState_Both;
                     }
                 } else{
-                    gameState = GameState_EndTurn;
+                    DATA.gameState = GameState_EndTurn;
                 }
             break;
 
             case GameState_DoAttack:
-                if(attackState==AttackState_Basic){
-                    playerBoard->attackEnemie(false);
+                if(DATA.attackState==AttackState_Basic){
+                    DATA.playerBoard->attackEnemie(false);
                 }
                 else{
-                    playerBoard->attackEnemie(true);
+                    DATA.playerBoard->attackEnemie(true);
                 }
-                gameState = GameState_EndTurn;
+                DATA.gameState = GameState_EndTurn;
             break;
 
             case GameState_DontAttack:
-                gameState = GameState_EndTurn;
+                DATA.gameState = GameState_EndTurn;
             break;
 
             case GameState_EndGame:
             break;
         }
 
-        if(gameState == GameState_EndTurn){
+        if(DATA.gameState == GameState_EndTurn){
             combat.endTurn();
-            playerBoard->endTurn();
+            DATA.playerBoard->endTurn();
             playerTurn = playerTurn==1?2:1;
-            gameState = GameState_PickCard;
+            DATA.gameState = GameState_PickCard;
 
             int state = combat.askEndGame();
             if(state==1){
@@ -219,14 +302,17 @@ inline void gameLoopMultiplayer(Profile* profile1, std::string deck1){
         window.draw(lineSeparator);
         gboardP1.draw();
         gboardP2.draw();
-        if(gameState==GameState_DialogCard){
+        if(DATA.gameState==GameState_DialogCard){
             dialogPlayCard.draw();
         }
-        if(gameState==GameState_DialogAttack){
+        if(DATA.gameState==GameState_DialogAttack){
             dialogAttack.draw();
         }
         window.display();
     }
+
+    delete uid;
+    delete socket;
 }
 
 #endif

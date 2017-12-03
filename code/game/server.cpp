@@ -10,6 +10,7 @@
 using namespace std;
 
 std::vector<SocketClient*> clientsVector;
+std::vector<std::vector<std::string> > clientsData;
 
 std::string getUid(){
     std::string characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
@@ -31,13 +32,35 @@ void forward(string key, vector<string> messages, SocketClient *exception){
 	}
 }
 
-void onMessage(SocketClient *socket, vector<string> messages){
-	forward("message", messages, socket);
+void onPlayer(SocketClient *socket, vector<string> messages){
+	clientsData.push_back(messages);
+
+    if(clientsVector.size()==2){
+        clientsVector[0]->send("player", clientsData[1]);
+        clientsVector[1]->send("player", clientsData[0]);
+        clientsVector[0]->send("first", {"1"});
+        clientsVector[1]->send("first", {"0"});
+    }
+}
+
+void onPickCard(SocketClient *socket, vector<string> messages){
+    std::cout << "pick: " << messages[0] << std::endl;
+	forward("pick", messages, socket);
+}
+
+void onPlayCardDialog(SocketClient *socket, vector<string> messages){
+    std::cout << "play: " << messages[0] << std::endl;
+	forward("playCardDialog", messages, socket);
+}
+
+void onAttackDialog(SocketClient *socket, vector<string> messages){
+    std::cout << "attack: " << messages[0] << std::endl;
+	forward("attackDialog", messages, socket);
 }
 
 void onDisconnect(SocketClient *socket){
 	cout << "client disconnected !" << endl;
-	forward("message", {"Client disconnected"}, socket);
+	forward("disconnect", {"Client disconnected"}, socket);
 	std::string *_uid = (std::string*) socket->getTag();
 	for(int i=0 ; i<clientsVector.size() ; i++){
 		std::string *uid = (std::string*) clientsVector[i]->getTag();
@@ -66,9 +89,15 @@ int main(int argc , char *argv[]){
 			if(sock!=-1){
 				cout << "client connected !" << endl;
 				SocketClient *client = new SocketClient(sock);
-				client->addListener("message", onMessage);
+                std::string *uid = new std::string(getUid());
+                client->listenOnBackground();
+				client->addListener("player", onPlayer);
+				client->addListener("pick", onPickCard);
+				client->addListener("playCardDialog", onPlayCardDialog);
+				client->addListener("attackDialog", onAttackDialog);
 				client->setDisconnectListener(onDisconnect);
-				client->setTag(new std::string(getUid()));
+				client->setTag(uid);
+                client->send("uid", {*uid});
 				clientsVector.push_back(client);
 			}
 		}

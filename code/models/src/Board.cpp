@@ -76,8 +76,6 @@ bool Board::stillAliveCreatureDeck(){
 const Card* Board::askCard(){
     int i = Utils::getRand(0, getDeckPlay()->getCards().size()-1);
     return m_deckPlay->getCards()[i];
-
-
 }
 
 void Board::playCard(const Card* card){
