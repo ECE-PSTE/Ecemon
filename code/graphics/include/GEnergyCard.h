@@ -14,8 +14,6 @@ class GEnergyCard : public GCard {
         GEnergyCard();
         GEnergyCard(sf::RenderWindow *window, sf::Vector2f size);
 
-        void setEnergyImage(std::string imagePath, float scaleX, float scaleY);
-
         void draw();
         void setCard(const Card* card);
         void setFontSize(unsigned int size);

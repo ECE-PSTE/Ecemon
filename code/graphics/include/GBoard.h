@@ -28,7 +28,6 @@ class GBoard : public Drawable{
 
         Board* m_board;
 
-        void init();
         void update();
         void updateContent();
 

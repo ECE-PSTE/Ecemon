@@ -4,10 +4,44 @@ GBoard::GBoard(){
 
 }
 
-GBoard::GBoard(sf::RenderWindow* window, sf::Vector2f size){
-    m_window = window;
-    m_size = size;
-    init();
+GBoard::GBoard(sf::RenderWindow* window, sf::Vector2f size) : Drawable(window, size){
+    m_genergy = GEnergy(m_window, sf::Vector2f(100, 200));
+    m_gcreature = GCreatureCard(m_window, sf::Vector2f(Constants::DefaultCardWidth(), Constants::DefaultCardHeight()));
+    m_gcardBet = GCard(m_window, sf::Vector2f(100, 180));
+    m_gcardBet.setHideText(true);
+
+    assert(m_font.loadFromFile("../graphics/fonts/"+Constants::DefaultFont()));
+    m_fontSize = 24;
+    m_deckScale = 0.3f;
+    m_cemeteryScale = 0.5f;
+
+    assert(m_deckTexture.loadFromFile("../graphics/images/back-card.png"));
+    m_deckTexture.setSmooth(true);
+    m_deckSprite.setTexture(m_deckTexture);
+    m_deckSprite.setScale(m_deckScale, m_deckScale);
+    m_deckSprite.setOrigin(m_deckTexture.getSize().x/2, m_deckTexture.getSize().y/2);
+
+    assert(m_cemeteryTexture.loadFromFile("../graphics/images/cemetery.png"));
+    m_cemeteryTexture.setSmooth(true);
+    m_cemeterySprite.setTexture(m_cemeteryTexture);
+    m_cemeterySprite.setScale(m_cemeteryScale, m_cemeteryScale);
+    m_cemeterySprite.setOrigin(m_cemeteryTexture.getSize().x/2, m_cemeteryTexture.getSize().y/2);
+
+    m_playerNameText.setFont(m_font);
+    m_playerNameText.setCharacterSize(m_fontSize);
+    m_playerNameText.setColor(sf::Color::White);
+
+    m_playerLifePointsText.setFont(m_font);
+    m_playerLifePointsText.setCharacterSize(m_fontSize);
+    m_playerLifePointsText.setColor(sf::Color::White);
+
+    m_cemeteryCountText.setFont(m_font);
+    m_cemeteryCountText.setCharacterSize(m_fontSize);
+    m_cemeteryCountText.setColor(sf::Color::White);
+
+    m_deckCountText.setFont(m_font);
+    m_deckCountText.setCharacterSize(m_fontSize);
+    m_deckCountText.setColor(sf::Color::White);
 }
 
 void GBoard::setBoard(Board *board){
@@ -48,46 +82,6 @@ void GBoard::setCemeteryCardsCount(int cemeteryCardsCount){
     m_cemeteryCountText.setString(Utils::toString(cemeteryCardsCount));
     sf::FloatRect rect = m_cemeteryCountText.getLocalBounds();
     m_cemeteryCountText.setOrigin(rect.left + rect.width/2.0f, rect.top  + rect.height/2.0f);
-}
-
-void GBoard::init(){
-    m_genergy = GEnergy(m_window, sf::Vector2f(100, 200));
-    m_gcreature = GCreatureCard(m_window, sf::Vector2f(Constants::DefaultCardWidth(), Constants::DefaultCardHeight()));
-    m_gcardBet = GCard(m_window, sf::Vector2f(100, 180));
-    m_gcardBet.setHideText(true);
-
-    assert(m_font.loadFromFile("../graphics/fonts/"+Constants::DefaultFont()));
-    m_fontSize = 24;
-    m_deckScale = 0.3f;
-    m_cemeteryScale = 0.5f;
-
-    assert(m_deckTexture.loadFromFile("../graphics/images/back-card.png"));
-    m_deckTexture.setSmooth(true);
-    m_deckSprite.setTexture(m_deckTexture);
-    m_deckSprite.setScale(m_deckScale, m_deckScale);
-    m_deckSprite.setOrigin(m_deckTexture.getSize().x/2, m_deckTexture.getSize().y/2);
-
-    assert(m_cemeteryTexture.loadFromFile("../graphics/images/cemetery.png"));
-    m_cemeteryTexture.setSmooth(true);
-    m_cemeterySprite.setTexture(m_cemeteryTexture);
-    m_cemeterySprite.setScale(m_cemeteryScale, m_cemeteryScale);
-    m_cemeterySprite.setOrigin(m_cemeteryTexture.getSize().x/2, m_cemeteryTexture.getSize().y/2);
-
-    m_playerNameText.setFont(m_font);
-    m_playerNameText.setCharacterSize(m_fontSize);
-    m_playerNameText.setColor(sf::Color::White);
-
-    m_playerLifePointsText.setFont(m_font);
-    m_playerLifePointsText.setCharacterSize(m_fontSize);
-    m_playerLifePointsText.setColor(sf::Color::White);
-
-    m_cemeteryCountText.setFont(m_font);
-    m_cemeteryCountText.setCharacterSize(m_fontSize);
-    m_cemeteryCountText.setColor(sf::Color::White);
-
-    m_deckCountText.setFont(m_font);
-    m_deckCountText.setCharacterSize(m_fontSize);
-    m_deckCountText.setColor(sf::Color::White);
 }
 
 void GBoard::updateContent(){
