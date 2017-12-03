@@ -1,1 +1,0 @@
-g++ dataGestion.cpp -o data -I ../entities/include/ ../entities/src/*.cpp -I ../models/include/ ../models/src/*.cpp -I ../graphics/include/ ../graphics/src/*.cpp  -std=c++11 -lpthread -lsfml-graphics -lsfml-window -lsfml-system && data.exe
