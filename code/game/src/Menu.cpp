@@ -56,11 +56,11 @@ bool menuPrincipal(s_DataMenu* data){
 
     switch (menuChoice({1,2,3,4,5,6,7,8})) {
         case 1:
-            lunchGame(data);
+            startLocalGame(data);
             return true;
             break;
         case 8:
-            launchMultiplayerGame(data);
+            startOnlineGame(data);
             return true;
             break;
         case 2:
@@ -469,7 +469,7 @@ void emptyDeckIntoCollection(Profile* p,Deck* d){
         delete d;
 }
 
-void lunchGame(s_DataMenu* data){
+void startLocalGame(s_DataMenu* data){
     std::string nameDeckP1;
     std::string nameDeckP2;
 
@@ -486,19 +486,19 @@ void lunchGame(s_DataMenu* data){
     else{
         system(clearConsoleCmd);
         std::cout << "Game in progress...\n";
-        gameLoop(profileP1, nameDeckP1, profileP2, nameDeckP2);
+        startLocalGameLoop(profileP1, nameDeckP1, profileP2, nameDeckP2);
         std::cout<< "End of game !\n\n";
     }
 }
 
-void launchMultiplayerGame(s_DataMenu* data){
+void startOnlineGame(s_DataMenu* data){
     std::string nameDeckP1;
     Profile* profileP1 = NULL;
     loadProfileAndDeck(data, &profileP1, &nameDeckP1);
 
     system(clearConsoleCmd);
     std::cout << "Game in progress...\n";
-    gameLoopMultiplayer(profileP1, nameDeckP1);
+    startOnlineGameLoop(profileP1, nameDeckP1);
     std::cout<< "End of game !\n\n";
 }
 

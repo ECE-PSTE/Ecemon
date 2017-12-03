@@ -1,8 +1,8 @@
-#ifndef DEF_GAMELOOPMULTIPLAYER
-#define DEF_GAMELOOPMULTIPLAYER
+#ifndef DEF_ONLINEGAMELOOP
+#define DEF_ONLINEGAMELOOP
 
 #include <sstream>
-#include "game.cpp"
+#include "LocalGame.cpp"
 #include "../../Socket/lib/SocketClient.h"
 
 struct Data {
@@ -75,7 +75,7 @@ inline void onAttack(SocketClient *socket, std::vector<std::string> messages){
     }
 }
 
-inline void gameLoopMultiplayer(Profile* profile, std::string deck){
+inline void startOnlineGameLoop(Profile* profile, std::string deck){
     SocketClient *socket = new SocketClient("127.0.0.1", 8888);
     socket->addListener("uid", onUid);
     socket->addListener("player", onPlayerFound);

@@ -1,5 +1,5 @@
-#ifndef DEF_GAMELOOP
-#define DEF_GAMELOOP
+#ifndef DEF_LOCALGAMELOOP
+#define DEF_LOCALGAMELOOP
 
 #include <iostream>
 #include <SFML/Graphics.hpp>
@@ -43,7 +43,7 @@ enum AttackState {
     AttackState_Both
 };
 
-inline void gameLoop(Profile* profile1, std::string deck1, Profile* profile2, std::string deck2){
+inline void startLocalGameLoop(Profile* profile1, std::string deck1, Profile* profile2, std::string deck2){
     Combat combat;
     combat.startCombat(profile1, deck1, profile2, deck2);
 

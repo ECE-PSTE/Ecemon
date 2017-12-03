@@ -3,8 +3,8 @@
 
 #include "../../entities/include/Profile.h"
 #include "../../utils/ProfileUtils.h"
-#include "../src/game.cpp"
-#include "../src/gameMulti.cpp"
+#include "../src/LocalGame.cpp"
+#include "../src/OnlineGame.cpp"
 
 static const char* clearConsoleCmd = "clear";
 
@@ -56,9 +56,9 @@ void deleteDeck(Profile* p);
 
 void emptyDeckIntoCollection(Profile* p,Deck* d);
 
-void lunchGame(s_DataMenu* data);
+void startLocalGame(s_DataMenu* data);
 
-void launchMultiplayerGame(s_DataMenu* data);
+void startOnlineGame(s_DataMenu* data);
 
 void loadProfileAndDeck(s_DataMenu* data, Profile** pPlay, std::string* nNameDeck);
 
