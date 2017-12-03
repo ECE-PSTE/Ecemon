@@ -1,16 +1,9 @@
 #include "../include/GEnergy.h"
 
 GEnergy::GEnergy(){
-    init();
 }
 
-GEnergy::GEnergy(sf::RenderWindow* window, sf::Vector2f size){
-    m_window = window;
-    m_size = size;
-    init();
-}
-
-void GEnergy::init(){
+GEnergy::GEnergy(sf::RenderWindow* window, sf::Vector2f size) : Drawable(window, size){
     assert(m_font.loadFromFile("../graphics/fonts/"+Constants::DefaultFont()));
 
     m_imageScale = m_size.y/(4*Constants::DefaultEnergyImageSize());

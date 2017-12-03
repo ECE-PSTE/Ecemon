@@ -1,8 +1,6 @@
 #include "../include/GDialog.h"
 
-GDialog::GDialog(sf::RenderWindow* window, sf::Vector2f size){
-    m_window = window;
-    m_size = size;
+GDialog::GDialog(sf::RenderWindow* window, sf::Vector2f size) : Drawable(window, size){
     assert(m_font.loadFromFile("../graphics/fonts/Prototype.ttf"));
     m_fontColor = sf::Color::White;
     m_backgroundColor = sf::Color::Blue;

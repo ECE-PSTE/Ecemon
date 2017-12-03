@@ -3,17 +3,7 @@
 GCard::GCard(){
 }
 
-GCard::GCard(sf::RenderWindow *window, sf::Vector2f size){
-    init(window, size);
-}
-
-GCard::~GCard(){
-}
-
-void GCard::init(sf::RenderWindow* window, sf::Vector2f size){
-    m_window = window;
-    m_size = size;
-
+GCard::GCard(sf::RenderWindow *window, sf::Vector2f size) : Drawable(window, size){
     assert(m_font.loadFromFile("../graphics/fonts/"+Constants::DefaultFont()));
 
     m_position.x = 0;
@@ -32,6 +22,9 @@ void GCard::init(sf::RenderWindow* window, sf::Vector2f size){
     m_descriptionText.setFont(m_font);
     m_descriptionText.setCharacterSize(m_fontSize);
     m_descriptionText.setColor(m_fontColor);
+}
+
+GCard::~GCard(){
 }
 
 float GCard::getSpriteScale() const{

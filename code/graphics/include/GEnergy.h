@@ -20,7 +20,6 @@ class GEnergy : public Drawable{
 
         EnergyStack m_energyStack;
 
-        void init();
         void update();
         void loadEnergy(sf::Texture &texture, sf::Sprite &sprite, std::string imagePath);
 

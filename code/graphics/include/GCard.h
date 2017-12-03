@@ -21,7 +21,6 @@ class GCard : public Drawable {
         const Card* m_card;
         bool m_hideText;
 
-        void init(sf::RenderWindow* window, sf::Vector2f size);
         float getSpriteScale() const;
         virtual void update();
 

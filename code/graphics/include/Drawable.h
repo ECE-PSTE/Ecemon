@@ -14,6 +14,7 @@ class Drawable {
 
     public:
         Drawable();
+        Drawable(sf::RenderWindow* window, sf::Vector2f size);
         virtual ~Drawable();
 
         sf::Vector2f getPosition() const;

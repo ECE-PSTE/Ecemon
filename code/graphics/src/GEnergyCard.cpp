@@ -3,9 +3,7 @@
 GEnergyCard::GEnergyCard(){
 }
 
-GEnergyCard::GEnergyCard(sf::RenderWindow *window, sf::Vector2f size){
-    GCard::init(window, size);
-
+GEnergyCard::GEnergyCard(sf::RenderWindow *window, sf::Vector2f size) : GCard(window, size){
     m_cardShape.setFillColor(Constants::DefaultEnergyCardColor());
     m_cardShape.setOutlineColor(Constants::DefaultEnergyCardOutlineColor());
     m_cardShape.setOutlineThickness(Constants::DefaultCardOutlineThickness());

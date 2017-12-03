@@ -3,9 +3,7 @@
 GPowerCard::GPowerCard(){
 }
 
-GPowerCard::GPowerCard(sf::RenderWindow *window, sf::Vector2f size){
-    GCard::init(window, size);
-
+GPowerCard::GPowerCard(sf::RenderWindow *window, sf::Vector2f size) : GCard(window, size){
     m_cardShape.setFillColor(Constants::DefaultPowerCardColor());
     m_cardShape.setOutlineColor(Constants::DefaultPowerCardOutlineColor());
     m_cardShape.setOutlineThickness(Constants::DefaultCardOutlineThickness());

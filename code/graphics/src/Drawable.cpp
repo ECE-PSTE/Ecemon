@@ -1,6 +1,12 @@
 #include "../include/Drawable.h"
 
 Drawable::Drawable(){
+
+}
+
+Drawable::Drawable(sf::RenderWindow* window, sf::Vector2f size){
+    m_window = window;
+    m_size = size;
 }
 
 Drawable::~Drawable(){

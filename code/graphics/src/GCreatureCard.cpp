@@ -3,9 +3,7 @@
 GCreatureCard::GCreatureCard(){
 }
 
-GCreatureCard::GCreatureCard(sf::RenderWindow *window, sf::Vector2f size){
-    GCard::init(window, size);
-
+GCreatureCard::GCreatureCard(sf::RenderWindow *window, sf::Vector2f size) : GCard(window, size){
     m_cardShape.setFillColor(Constants::DefaultCreatureCardColor());
     m_cardShape.setOutlineColor(Constants::DefaultCreatureCardOutlineColor());
     m_cardShape.setOutlineThickness(Constants::DefaultCardOutlineThickness());
