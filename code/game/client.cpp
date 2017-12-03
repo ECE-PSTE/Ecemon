@@ -2,13 +2,15 @@
 #include <time.h>
 
 #include "include/Menu.h"
+#include "src/OpeningGame.cpp"
 #include "../../utils/ProfileUtils.h"
 
 int main(int argc, char const *argv[]) {
         srand(time(NULL));
 
-        s_DataMenu data;
+        startOpening();
 
+        s_DataMenu data;
         std::vector<Profile> vecProf;
 
         if(!ProfileUtils::loadProfiles(vecProf)){

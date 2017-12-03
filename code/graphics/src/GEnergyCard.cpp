@@ -48,5 +48,7 @@ void GEnergyCard::update(){
 void GEnergyCard::draw(){
     GCard::draw();
     GEnergyCard::update();
-    m_window->draw(m_energyText);
+    if(!m_hideText){
+        m_window->draw(m_energyText);
+    }
 }

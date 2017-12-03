@@ -1,13 +1,15 @@
 #ifndef DEF_OPENINGGAME
 #define DEF_OPENINGGAME
 
-#include <sstream>
-#include "LocalGame.cpp"
-#include "../../Socket/lib/SocketClient.h"
+#include <iostream>
+#include <SFML/Graphics.hpp>
 
-using namespace std;
+#include "../../graphics/include/GCreatureCard.h"
 
-void startOpening() {
+#include "../../utils/GameUtils.h"
+#include "../../utils/GraphicUtils.h"
+
+static void startOpening() {
     sf::RenderWindow window(sf::VideoMode(1920, 1080), "ECEMON", sf::Style::Fullscreen);
 
     GCreatureCard cartman(&window,
@@ -17,10 +19,8 @@ void startOpening() {
         )
     );
     cartman.setPosition(
-        sf::Vector2f(
-            window.getSize().x/2 - Constants::DefaultCardWidth()/2,
-            window.getSize().y/2
-        )
+        window.getSize().x/2 - Constants::DefaultCardWidth()/2,
+        window.getSize().y/2
     );
     cartman.setCard(GameUtils::Cards.at(1));
     cartman.setCardImage("../graphics/images/"+GraphicUtils::CardImages.at(1));
@@ -33,10 +33,8 @@ void startOpening() {
         )
     );
     kyle.setPosition(
-        sf::Vector2f(
-            window.getSize().x/2 + Constants::DefaultCardWidth()/2,
-            window.getSize().y/2
-        )
+        window.getSize().x/2 + Constants::DefaultCardWidth()/2,
+        window.getSize().y/2
     );
     kyle.setCard(GameUtils::Cards.at(2));
     kyle.setCardImage("../graphics/images/"+GraphicUtils::CardImages.at(2));
@@ -72,6 +70,7 @@ void startOpening() {
     float end = window.getSize().x-Constants::DefaultCardWidth()/2.0f;
     bool animationFinished = false;
     int deltaTimeMilli = 600;
+    int timeBeforeAnimation = 1000;
     sf::Clock timer;
 
     while (window.isOpen())
@@ -86,14 +85,16 @@ void startOpening() {
             }
         }
 
-        if(cartman.getPosition().x>=start){
-            cartman.moveToward(sf::Vector2f(start, window.getSize().y/2));
-        }
-        if(kyle.getPosition().x<=end){
-            kyle.moveToward(sf::Vector2f(end, window.getSize().y/2));
-        }
-        else{
-            animationFinished = true;
+        if(timer.getElapsedTime().asMilliseconds() > timeBeforeAnimation){
+            if(cartman.getPosition().x>=start){
+                cartman.moveToward(start, window.getSize().y/2);
+            }
+            if(kyle.getPosition().x<=end){
+                kyle.moveToward(end, window.getSize().y/2);
+            }
+            else{
+                animationFinished = true;
+            }
         }
 
         leftShape.setPosition(cartman.getPosition().x+cartman.getSize().x/2, window.getSize().y/2);
