@@ -87,7 +87,6 @@ int main(int argc , char *argv[]){
 				cout << "client connected !" << endl;
 				SocketClient *client = new SocketClient(sock);
                 std::string *uid = new std::string(getUid());
-                client->listenOnBackground();
 				client->addListener("player", onPlayer);
 				client->addListener("pick", onPickCard);
 				client->addListener("playCardDialog", onPlayCardDialog);
