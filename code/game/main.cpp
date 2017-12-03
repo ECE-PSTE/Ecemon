@@ -1,8 +1,9 @@
 #include <iostream>
+#include <time.h>
 
 #include "include/Menu.h"
 #include "../../utils/ProfileUtils.h"
-#include <time.h>
+#include "../Socket/lib/SocketClient.h"
 
 int main(int argc, char const *argv[]) {
         srand(time(NULL));

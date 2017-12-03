@@ -2,7 +2,7 @@
 Player 1
 0
 Default Deck Name
-7
+6
 1
 2
 3
@@ -10,29 +10,33 @@ Default Deck Name
 5
 6
 1
-1
 Collection1
-9
-1
-1
-1
-1
-2
-1
+12
+3
 5
-3
-3
+1
+1
+1
+1
+1
+1
+1
+1
+1
+1
 Player 2
 0
 Default Deck Name
-4
+6
 1
 2
 3
 4
+5
+6
 1
 Collection2
-10
+12
 4
 6
 2
@@ -41,5 +45,7 @@ Collection2
 2
 2
 2
-6
-5
+2
+2
+2
+2

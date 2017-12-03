@@ -47,7 +47,7 @@ inline void gameLoop(Profile* profile1, std::string deck1, Profile* profile2, st
     Combat combat;
     combat.startCombat(profile1, deck1, profile2, deck2);
 
-    sf::RenderWindow window(sf::VideoMode(1920, 1080), "FUCKING ECEMON !!!");
+    sf::RenderWindow window(sf::VideoMode(1000, 800), "ECEMON", sf::Style::Titlebar);
 
     sf::RectangleShape lineSeparator(sf::Vector2f(window.getSize().y, 3));
     lineSeparator.setFillColor(sf::Color::White);
