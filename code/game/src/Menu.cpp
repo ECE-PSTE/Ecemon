@@ -341,7 +341,7 @@ void createDeck(Profile* p){
 bool creatDeckInProgresse(Profile* p, Deck* d){
     int nb;
 
-    std::cout << "Numer of card in this Deck : " << d->getCards().size() << "\nNumber of card require to play : " << Constants::DefaultDeckSize() << "\n";
+    std::cout << "Number of card in this Deck : " << d->getCards().size() << "\nNumber of card require to play : " << Constants::DefaultDeckSize() << "\n";
 
     std::cout << "\nCard in collection : \n";
     displayDeck(p->getpCards());
