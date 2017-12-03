@@ -47,7 +47,7 @@ inline void startLocalGameLoop(Profile* profile1, std::string deck1, Profile* pr
     Combat combat;
     combat.startCombat(profile1, deck1, profile2, deck2);
 
-    sf::RenderWindow window(sf::VideoMode(1920, 1080), "ECEMON", sf::Style::Titlebar);
+    sf::RenderWindow window(sf::VideoMode(1920, 1080), "ECEMON", sf::Style::Fullscreen);
 
     sf::RectangleShape lineSeparator(sf::Vector2f(window.getSize().y, 3));
     lineSeparator.setFillColor(sf::Color::White);

@@ -113,7 +113,7 @@ inline void startOnlineGameLoop(Profile* profile, std::string deck){
 
     std::cout << "combat ok" << std::endl;
 
-    sf::RenderWindow window(sf::VideoMode(1000, 1080), "ECEMON", sf::Style::Titlebar);
+    sf::RenderWindow window(sf::VideoMode(1000, 1080), "ECEMON", sf::Style::Fullscreen);
 
     sf::RectangleShape lineSeparator(sf::Vector2f(window.getSize().y, 3));
     lineSeparator.setFillColor(sf::Color::White);
