@@ -1,0 +1,35 @@
+                                    # Code #
+
+Au niveau du code, il nous ait arrivé de verifier sur les sites :
+    http://www.cplusplus.com
+    https://stackoverflow.com
+ pour des méthodes existantes ou des aides pour corriger nos bugs vis a vis du C++
+
+Au niveau graphique, nous avons choisit la bibliotheque SFML dont voici le site officiel et la ou nous avons pris notre documentation :
+    https://www.sfml-dev.org/index.php
+
+################################################################################
+                                   # Images #
+Pour ce qui est des images, nous les avons toutes pris en intégralité sur Google Image.
+Ces images vienne en général de :
+    La série South Park
+    Les jeux vidéo basé sur South Park comme :
+        South Park, The stick of truth
+        South Park, The fractured but whole
+        South Park, Phone destroyer
+
+Pour certain symbole, nous les avons pris sur :
+    https://www.flaticon.com
+
+
+################################################################################
+
+Ce projet a était réaliser dans le cardre du projet Informatique 3 a ECE Paris
+Il a etait réaliser par Michel Omar AFLAK et Quentin MULLIEZ
+
+Il est possible de voir l'avancé du projet car il a etait réalisé a l aide de GitHub
+Lien vers le projet : https://github.com/ECE-PSTE/Ecemon
+
+Voir le README pour comprendre comment compiler / Lancer le programme
+
+Merci a vous !
