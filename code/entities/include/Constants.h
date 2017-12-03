@@ -38,6 +38,10 @@ namespace Constants {
         return "Default Profile Name";
     }
 
+    inline int DefaultMoneyProfile(){
+        return 500;
+    }
+
     // DECK
     inline int DefaultDeckSize(){
         return 20;

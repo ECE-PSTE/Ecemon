@@ -122,7 +122,7 @@ void Board::playPower(const PowerCard* cardPlay){
             getpEnemyBoard()->playerTakeDamage(cardPlay->getStats());
             break;
         case PowerType_Jesus:
-            if(m_creatureGraveyard.size() != 0){
+            if(m_creatureGraveyard.getCards().size() != 0){
                 getDeckPlay()->addCard(getCreatureGraveyard().getCards()[getCreatureGraveyard().getCards().size() - 1]);
                 getpCreatureGraveyard()->getCards().pop_back();
             }
