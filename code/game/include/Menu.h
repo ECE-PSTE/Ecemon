@@ -64,6 +64,8 @@ void loadProfileAndDeck(s_DataMenu* data, Profile** pPlay, std::string* nNameDec
 
 Profile* askProfileWithName(s_DataMenu* data, std::string name);
 
+void addtheCard();
+
 
 
 #endif
