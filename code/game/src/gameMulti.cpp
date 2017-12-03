@@ -1,51 +1,46 @@
-#ifndef DEF_GAMELOOP
-#define DEF_GAMELOOP
+#ifndef DEF_GAMELOOPMULTIPLAYER
+#define DEF_GAMELOOPMULTIPLAYER
 
-#include <iostream>
-#include <SFML/Graphics.hpp>
+#include <sstream>
+#include "game.cpp"
+#include "../../Socket/lib/SocketClient.h"
 
-#include "../../entities/include/CreatureCard.h"
-#include "../../entities/include/EnergyCard.h"
-#include "../../entities/include/PowerCard.h"
-#include "../../entities/include/Attack.h"
-#include "../../entities/include/Profile.h"
-#include "../../entities/include/Constants.h"
-#include "../../entities/include/EnergyStack.h"
-#include "../../entities/include/EnergyType.h"
-
-#include "../../graphics/include/GCreatureCard.h"
-#include "../../graphics/include/GEnergyCard.h"
-#include "../../graphics/include/GPowerCard.h"
-#include "../../graphics/include/GEnergy.h"
-#include "../../graphics/include/GBoard.h"
-#include "../../graphics/include/GDialog.h"
-
-#include "../../models/include/Combat.h"
-
-#include "../../utils/GameUtils.h"
-#include "../../utils/ProfileUtils.h"
-
-enum GameState {
-    GameState_PickCard,
-    GameState_DialogCard,
-    GameState_PlayCard,
-    GameState_DontPlayCard,
-    GameState_DialogAttack,
-    GameState_DoAttack,
-    GameState_DontAttack,
-    GameState_EndTurn,
-    GameState_EndGame
+enum NetworkState {
+    NetworkState_WaitingForPlayer,
+    NetworkState_PlayerOnline
 };
 
-enum AttackState {
-    AttackState_Basic,
-    AttackState_Special,
-    AttackState_Both
-};
+static NetworkState networkState;
+static Profile onlinePlayer;
+static std::string onlineDeckName;
 
-inline void gameLoop(Profile* profile1, std::string deck1, Profile* profile2, std::string deck2){
+inline void onPlayerConnected(SocketClient *socket, std::vector<std::string> messages){
+    std::stringstream ss(messages[0]);
+    ss >> onlinePlayer;
+    onlineDeckName = messages[1];
+    std::cout << "Player connected !" << std::endl;
+}
+
+inline void connectToServer(SocketClient *socket){
+    networkState = NetworkState_WaitingForPlayer;
+    socket = new SocketClient("127.0.0.1", 8888);
+    socket->addListener("player", onPlayerConnected);
+    if(!socket->connect()){
+        std::cout << "Could not connect to server" << std::endl;
+    }
+    else{
+        std::cout << "Connected to server !" << std::endl;
+    }
+}
+
+inline void gameLoopMultiplayer(Profile* profile1, std::string deck1){
+    SocketClient *socket;
+    connectToServer(socket);
+
+    while(networkState!=NetworkState_PlayerOnline);
+
     Combat combat;
-    combat.startCombat(profile1, deck1, profile2, deck2);
+    combat.startCombat(profile1, deck1, &onlinePlayer, onlineDeckName);
 
     sf::RenderWindow window(sf::VideoMode(1920, 1080), "ECEMON", sf::Style::Titlebar);
 

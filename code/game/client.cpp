@@ -3,7 +3,6 @@
 
 #include "include/Menu.h"
 #include "../../utils/ProfileUtils.h"
-#include "../Socket/lib/SocketClient.h"
 
 int main(int argc, char const *argv[]) {
         srand(time(NULL));

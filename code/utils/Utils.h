@@ -8,28 +8,28 @@
 #include <stdlib.h>
 
 namespace Utils {
-    inline void initRand(){
+    static void initRand(){
         srand(time(NULL));
     }
 
-    inline int getRand(int min, int max){
+    static int getRand(int min, int max){
         return min + rand()%(max - min + 1);
     }
 
-    inline int toInt(std::string s){
+    static int toInt(std::string s){
         std::stringstream ss(s);
         int n;
         ss >> n;
         return n;
     }
 
-    inline std::string toString(int n){
+    static std::string toString(int n){
         std::stringstream ss;
         ss << n;
         return ss.str();
     }
 
-    inline bool fileToString(const char* filename, std::string &str){
+    static bool fileToString(const char* filename, std::string &str){
         std::ifstream file(filename);
         if(file){
             std::string line;
