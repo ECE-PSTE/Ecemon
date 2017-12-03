@@ -121,13 +121,23 @@ inline void gameLoopMultiplayer(Profile* profile, std::string deck){
     lineSeparator.setPosition(window.getSize().x/2, 0);
     lineSeparator.rotate(90);
 
-    GBoard gboardP1(&window, sf::Vector2f(window.getSize().x/2, window.getSize().y));
-    gboardP1.setPosition(sf::Vector2f(window.getSize().x/4, window.getSize().y/2));
+    std::cout << "init gboards..." << std::endl;
+
+    sf::Vector2f winSize(window.getSize().x/2, window.getSize().y);
+
+    std::cout << "init gboards...0" << std::endl;
+    GBoard gboardP1(&window, winSize);
+    std::cout << "init gboards...0.5" << std::endl;
+    gboardP1.setPosition(window.getSize().x/4, window.getSize().y/2);
+    std::cout << "init gboards...1" << std::endl;
     gboardP1.setBoard(combat.getpBoardP1());
 
-    GBoard gboardP2(&window, sf::Vector2f(window.getSize().x/2, window.getSize().y));
-    gboardP2.setPosition(sf::Vector2f(3*window.getSize().x/4, window.getSize().y/2));
+    GBoard gboardP2(&window, winSize);
+    gboardP2.setPosition(3*window.getSize().x/4, window.getSize().y/2);
+    std::cout << "init gboards...2" << std::endl;
     gboardP2.setBoard(combat.getpBoardP2());
+
+    std::cout << "init gboards...OK" << std::endl;
 
     GDialog dialogPlayCard(&window, sf::Vector2f(400, 90));
     dialogPlayCard.setPositiveButton("Play the card !");
@@ -208,8 +218,8 @@ inline void gameLoopMultiplayer(Profile* profile, std::string deck){
             DATA.playerBoard = combat.getpBoardP2();
             pos = sf::Vector2f(3*window.getSize().x/4, dialogPlayCard.getSize().y);
         }
-        dialogPlayCard.setPosition(pos);
-        dialogAttack.setPosition(pos);
+        dialogPlayCard.setPosition(pos.x, pos.y);
+        dialogAttack.setPosition(pos.x, pos.y);
 
         switch(DATA.gameState){
             case GameState_PickCard:
@@ -261,6 +271,7 @@ inline void gameLoopMultiplayer(Profile* profile, std::string deck){
             break;
 
             case GameState_DoAttack:
+                std::cout << "attacking.." << std::endl;
                 if(DATA.attackState==AttackState_Basic){
                     DATA.playerBoard->attackEnemie(false);
                 }
@@ -268,6 +279,7 @@ inline void gameLoopMultiplayer(Profile* profile, std::string deck){
                     DATA.playerBoard->attackEnemie(true);
                 }
                 DATA.gameState = GameState_EndTurn;
+                std::cout << "attacking..OK" << std::endl;
             break;
 
             case GameState_DontAttack:

@@ -14,17 +14,17 @@ sf::Vector2f Drawable::getSize() const{
     return m_size;
 }
 
-void Drawable::setPosition(sf::Vector2f position){
-    m_position = position;
+void Drawable::setPosition(int x, int y){
+    m_position.x = x;
+    m_position.y = y;
 }
 
-void Drawable::setSize(sf::Vector2f size){
-    m_size = size;
+void Drawable::setSize(int x, int y){
+    m_size.x = x;
+    m_size.y = y;
 }
 
-void Drawable::moveToward(sf::Vector2f position){
-    int x = position.x;
-    int y = position.y;
+void Drawable::moveToward(int x, int y){
     float velocity = 0.2f;
 
     float length = sqrt(pow(x-m_position.x, 2)+pow(y-m_position.y, 2));

@@ -40,22 +40,6 @@ void GEnergy::loadEnergy(sf::Texture &texture, sf::Sprite &sprite, std::string i
     sprite.setScale(m_imageScale, m_imageScale);
 }
 
-sf::Vector2f GEnergy::getPosition() const{
-    return m_position;
-}
-
-sf::Vector2f GEnergy::getSize() const{
-    return m_size;
-}
-
-void GEnergy::setPosition(sf::Vector2f position){
-    m_position = position;
-}
-
-void GEnergy::setSize(sf::Vector2f size){
-    m_size = size;
-}
-
 void GEnergy::setFontSize(int fontSize){
     m_fontSize = fontSize;
 }

@@ -55,11 +55,11 @@ inline void gameLoop(Profile* profile1, std::string deck1, Profile* profile2, st
     lineSeparator.rotate(90);
 
     GBoard gboardP1(&window, sf::Vector2f(window.getSize().x/2, window.getSize().y));
-    gboardP1.setPosition(sf::Vector2f(window.getSize().x/4, window.getSize().y/2));
+    gboardP1.setPosition(window.getSize().x/4, window.getSize().y/2);
     gboardP1.setBoard(combat.getpBoardP1());
 
     GBoard gboardP2(&window, sf::Vector2f(window.getSize().x/2, window.getSize().y));
-    gboardP2.setPosition(sf::Vector2f(3*window.getSize().x/4, window.getSize().y/2));
+    gboardP2.setPosition(3*window.getSize().x/4, window.getSize().y/2);
     gboardP2.setBoard(combat.getpBoardP2());
 
     GDialog dialogPlayCard(&window, sf::Vector2f(400, 90));
@@ -134,8 +134,8 @@ inline void gameLoop(Profile* profile1, std::string deck1, Profile* profile2, st
             playerBoard = combat.getpBoardP2();
             pos = sf::Vector2f(3*window.getSize().x/4, dialogPlayCard.getSize().y);
         }
-        dialogPlayCard.setPosition(pos);
-        dialogAttack.setPosition(pos);
+        dialogPlayCard.setPosition(pos.x, pos.y);
+        dialogAttack.setPosition(pos.x, pos.y);
 
         switch(gameState){
             case GameState_PickCard:

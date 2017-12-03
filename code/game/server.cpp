@@ -44,17 +44,14 @@ void onPlayer(SocketClient *socket, vector<string> messages){
 }
 
 void onPickCard(SocketClient *socket, vector<string> messages){
-    std::cout << "pick: " << messages[0] << std::endl;
 	forward("pick", messages, socket);
 }
 
 void onPlayCardDialog(SocketClient *socket, vector<string> messages){
-    std::cout << "play: " << messages[0] << std::endl;
 	forward("playCardDialog", messages, socket);
 }
 
 void onAttackDialog(SocketClient *socket, vector<string> messages){
-    std::cout << "attack: " << messages[0] << std::endl;
 	forward("attackDialog", messages, socket);
 }
 
