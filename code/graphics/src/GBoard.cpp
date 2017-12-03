@@ -111,6 +111,18 @@ void GBoard::updateContent(){
 }
 
 void GBoard::update(){
+    m_gcardBet.setPosition(
+        left() + m_gcardBet.getSize().x/2 + wp(3),
+        m_position.y
+    );
+    m_genergy.setPosition(
+        left() + m_genergy.getSize().x/2 + wp(3),
+        bottom() - m_genergy.getSize().y/2
+    );
+    m_gcreature.setPosition(
+        m_position.x,
+        m_position.y
+    );
     m_playerNameText.setPosition(sf::Vector2f(
         m_position.x,
         bottom() - m_playerNameText.getLocalBounds().top
@@ -119,18 +131,6 @@ void GBoard::update(){
     m_playerLifePointsText.setPosition(sf::Vector2f(
         m_position.x,
         m_playerNameText.getPosition().y - hp(3)
-    ));
-    m_gcardBet.setPosition(sf::Vector2f(
-        left() + m_gcardBet.getSize().x/2 + wp(3),
-        m_position.y
-    ));
-    m_genergy.setPosition(sf::Vector2f(
-        left() + m_genergy.getSize().x/2 + wp(3),
-        bottom() - m_genergy.getSize().y/2
-    ));
-    m_gcreature.setPosition(sf::Vector2f(
-        m_position.x,
-        m_position.y
     ));
     m_deckSprite.setPosition(sf::Vector2f(
         right() - m_deckScale*m_deckTexture.getSize().x/2 - wp(3),

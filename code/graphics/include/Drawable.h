@@ -19,10 +19,10 @@ class Drawable {
         sf::Vector2f getPosition() const;
         sf::Vector2f getSize() const;
 
-        void setPosition(sf::Vector2f position);
-        virtual void setSize(sf::Vector2f size);
+        void setPosition(int x, int y);
+        virtual void setSize(int x, int y);
 
-        void moveToward(sf::Vector2f position);
+        void moveToward(int x, int y);
 
         virtual void draw();
 };

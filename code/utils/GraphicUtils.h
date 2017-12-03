@@ -8,7 +8,7 @@
 #include "../entities/include/Constants.h"
 
 namespace GraphicUtils {
-    inline const std::map<int, std::string> loadCardImages(){
+    static const std::map<int, std::string> loadCardImages(){
         std::map<int, std::string> images;
         std::ifstream file(Constants::DefaultCardImagesFilename().c_str());
         if(file){

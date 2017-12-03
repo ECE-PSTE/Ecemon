@@ -26,28 +26,28 @@
 #include "../../utils/ProfileUtils.h"
 
 enum GameState {
-    GameState_PICK_CARD,
-    GameState_DIALOG_CARD,
-    GameState_PLAY_CARD,
-    GameState_DONT_PLAY_CARD,
-    GameState_DIALOG_ATTACK,
-    GameState_DO_ATTACK,
-    GameState_DONT_ATTACK,
-    GameState_END_TURN,
-    GameState_END_GAME
+    GameState_PickCard,
+    GameState_DialogCard,
+    GameState_PlayCard,
+    GameState_DontPlayCard,
+    GameState_DialogAttack,
+    GameState_DoAttack,
+    GameState_DontAttack,
+    GameState_EndTurn,
+    GameState_EndGame
 };
 
 enum AttackState {
-    AttackState_BASIC,
-    AttackState_SPECIAL,
-    AttackState_BOTH
+    AttackState_Basic,
+    AttackState_Special,
+    AttackState_Both
 };
 
 inline void gameLoop(Profile* profile1, std::string deck1, Profile* profile2, std::string deck2){
     Combat combat;
     combat.startCombat(profile1, deck1, profile2, deck2);
 
-    sf::RenderWindow window(sf::VideoMode(1000, 800), "ECEMON", sf::Style::Titlebar);
+    sf::RenderWindow window(sf::VideoMode(1920, 1080), "ECEMON", sf::Style::Titlebar);
 
     sf::RectangleShape lineSeparator(sf::Vector2f(window.getSize().y, 3));
     lineSeparator.setFillColor(sf::Color::White);
@@ -55,11 +55,11 @@ inline void gameLoop(Profile* profile1, std::string deck1, Profile* profile2, st
     lineSeparator.rotate(90);
 
     GBoard gboardP1(&window, sf::Vector2f(window.getSize().x/2, window.getSize().y));
-    gboardP1.setPosition(sf::Vector2f(window.getSize().x/4, window.getSize().y/2));
+    gboardP1.setPosition(window.getSize().x/4, window.getSize().y/2);
     gboardP1.setBoard(combat.getpBoardP1());
 
     GBoard gboardP2(&window, sf::Vector2f(window.getSize().x/2, window.getSize().y));
-    gboardP2.setPosition(sf::Vector2f(3*window.getSize().x/4, window.getSize().y/2));
+    gboardP2.setPosition(3*window.getSize().x/4, window.getSize().y/2);
     gboardP2.setBoard(combat.getpBoardP2());
 
     GDialog dialogPlayCard(&window, sf::Vector2f(400, 90));
@@ -68,7 +68,7 @@ inline void gameLoop(Profile* profile1, std::string deck1, Profile* profile2, st
 
     GDialog dialogAttack(&window, sf::Vector2f(400, 90));
 
-    GameState gameState = GameState_PICK_CARD;
+    GameState gameState = GameState_PickCard;
     AttackState attackState;
     Board *playerBoard;
     const Card* card;
@@ -85,30 +85,30 @@ inline void gameLoop(Profile* profile1, std::string deck1, Profile* profile2, st
             else if(event.type == sf::Event::MouseButtonPressed){
                 if (event.mouseButton.button == sf::Mouse::Left){
                     sf::Vector2f mousePos(event.mouseButton.x, event.mouseButton.y);
-                    if(gameState==GameState_DIALOG_CARD){
+                    if(gameState==GameState_DialogCard){
                         int resp = dialogPlayCard.getState(mousePos);
                         if(resp==1){
-                            gameState = GameState_PLAY_CARD;
+                            gameState = GameState_PlayCard;
                         }
                         else if(resp==-1){
-                            gameState = GameState_DONT_PLAY_CARD;
+                            gameState = GameState_DontPlayCard;
                         }
                     }
-                    else if(gameState==GameState_DIALOG_ATTACK){
+                    else if(gameState==GameState_DialogAttack){
                         int resp = dialogPlayCard.getState(mousePos);
                         if(resp==1){
-                            gameState = GameState_DO_ATTACK;
-                            if(attackState==AttackState_BOTH){
-                                attackState = AttackState_SPECIAL;
+                            gameState = GameState_DoAttack;
+                            if(attackState==AttackState_Both){
+                                attackState = AttackState_Special;
                             }
                         }
                         else if(resp==-1){
-                            if(attackState==AttackState_BASIC || attackState==AttackState_SPECIAL){
-                                gameState = GameState_DONT_ATTACK;
+                            if(attackState==AttackState_Basic || attackState==AttackState_Special){
+                                gameState = GameState_DontAttack;
                             }
                             else{
-                                gameState = GameState_DO_ATTACK;
-                                attackState = AttackState_BASIC;
+                                gameState = GameState_DoAttack;
+                                attackState = AttackState_Basic;
                             }
                         }
                     }
@@ -116,10 +116,10 @@ inline void gameLoop(Profile* profile1, std::string deck1, Profile* profile2, st
             }
             else if (event.type == sf::Event::MouseMoved){
                 sf::Vector2f mousePos(event.mouseMove.x, event.mouseMove.y);
-                if(gameState==GameState_DIALOG_CARD){
+                if(gameState==GameState_DialogCard){
                     dialogPlayCard.mouseHoverProcess(mousePos);
                 }
-                else if(gameState==GameState_DIALOG_ATTACK){
+                else if(gameState==GameState_DialogAttack){
                     dialogAttack.mouseHoverProcess(mousePos);
                 }
             }
@@ -134,29 +134,29 @@ inline void gameLoop(Profile* profile1, std::string deck1, Profile* profile2, st
             playerBoard = combat.getpBoardP2();
             pos = sf::Vector2f(3*window.getSize().x/4, dialogPlayCard.getSize().y);
         }
-        dialogPlayCard.setPosition(pos);
-        dialogAttack.setPosition(pos);
+        dialogPlayCard.setPosition(pos.x, pos.y);
+        dialogAttack.setPosition(pos.x, pos.y);
 
         switch(gameState){
-            case GameState_PICK_CARD:
+            case GameState_PickCard:
                 card = playerBoard->askCard();
-                gameState = GameState_DIALOG_CARD;
+                gameState = GameState_DialogCard;
             break;
 
-            case GameState_DIALOG_CARD:
+            case GameState_DialogCard:
                 dialogPlayCard.setMessage("Do you want to play "+card->getName());
             break;
 
-            case GameState_PLAY_CARD:
+            case GameState_PlayCard:
                 playerBoard->playCard(card);
-                gameState = GameState_DIALOG_ATTACK;
+                gameState = GameState_DialogAttack;
             break;
 
-            case GameState_DONT_PLAY_CARD:
-                gameState = GameState_DIALOG_ATTACK;
+            case GameState_DontPlayCard:
+                gameState = GameState_DialogAttack;
             break;
 
-            case GameState_DIALOG_ATTACK:
+            case GameState_DialogAttack:
                 if(playerBoard->getCreatureOnBoard()!=NULL){
                     bool hasBasic = playerBoard->askAttack();
                     bool hasSpecial = playerBoard->askSpecialAttack();
@@ -164,48 +164,48 @@ inline void gameLoop(Profile* profile1, std::string deck1, Profile* profile2, st
                         dialogAttack.setMessage("You only have a basic attack. Attack ?");
                         dialogAttack.setPositiveButton("Yes");
                         dialogAttack.setNegativeButton("No");
-                        attackState = AttackState_BASIC;
+                        attackState = AttackState_Basic;
                     }
                     else if(!hasBasic && hasSpecial){
                         dialogAttack.setMessage("You only have a special attack. Attack ?");
                         dialogAttack.setPositiveButton("Yes");
                         dialogAttack.setNegativeButton("No");
-                        attackState = AttackState_SPECIAL;
+                        attackState = AttackState_Special;
                     }
                     else if(hasBasic && hasSpecial){
                         dialogAttack.setMessage("Use basic or special attack ?");
                         dialogAttack.setPositiveButton("Special");
                         dialogAttack.setNegativeButton("Basic");
-                        attackState = AttackState_BOTH;
+                        attackState = AttackState_Both;
                     }
                 } else{
-                    gameState = GameState_END_TURN;
+                    gameState = GameState_EndTurn;
                 }
             break;
 
-            case GameState_DO_ATTACK:
-                if(attackState==AttackState_BASIC){
+            case GameState_DoAttack:
+                if(attackState==AttackState_Basic){
                     playerBoard->attackEnemie(false);
                 }
                 else{
                     playerBoard->attackEnemie(true);
                 }
-                gameState = GameState_END_TURN;
+                gameState = GameState_EndTurn;
             break;
 
-            case GameState_DONT_ATTACK:
-                gameState = GameState_END_TURN;
+            case GameState_DontAttack:
+                gameState = GameState_EndTurn;
             break;
 
-            case GameState_END_GAME:
+            case GameState_EndGame:
             break;
         }
 
-        if(gameState == GameState_END_TURN){
+        if(gameState == GameState_EndTurn){
             combat.endTurn();
             playerBoard->endTurn();
             playerTurn = playerTurn==1?2:1;
-            gameState = GameState_PICK_CARD;
+            gameState = GameState_PickCard;
 
             int state = combat.askEndGame();
             if(state==1){
@@ -224,10 +224,10 @@ inline void gameLoop(Profile* profile1, std::string deck1, Profile* profile2, st
         window.draw(lineSeparator);
         gboardP1.draw();
         gboardP2.draw();
-        if(gameState==GameState_DIALOG_CARD){
+        if(gameState==GameState_DialogCard){
             dialogPlayCard.draw();
         }
-        if(gameState==GameState_DIALOG_ATTACK){
+        if(gameState==GameState_DialogAttack){
             dialogAttack.draw();
         }
         window.display();

@@ -23,6 +23,7 @@ class Deck{
         std::string getName() const;
         std::vector<const Card*>* getpCards();
         std::vector<const Card*> getCards() const;
+        const Card* getCardById(int id) const;
 
         void addCard(const Card* card);
         void addCards(std::vector<const Card*> cards);

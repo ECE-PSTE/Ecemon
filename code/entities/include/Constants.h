@@ -15,26 +15,26 @@
 
 namespace Constants {
     // GAME
-    inline std::string DefaultCardsFilename(){
+    static std::string DefaultCardsFilename(){
         return "GameCards";
     }
-    inline std::string DefaultCardImagesFilename(){
+    static std::string DefaultCardImagesFilename(){
         return "GameCardImages";
     }
-    inline std::string DefaultProfilesFilename(){
+    static std::string DefaultProfilesFilename(){
         return "GameProfiles";
     }
 
-    inline int DefaultLifePointBoard(){
+    static int DefaultLifePointBoard(){
         return 100;
     }
 
-    inline std::string DefaultPasswordAdmin(){
+    static std::string DefaultPasswordAdmin(){
         return "omarlebg";
     }
 
     // PROFILE
-    inline std::string DefaultProfileName(){
+    static std::string DefaultProfileName(){
         return "Default Profile Name";
     }
 
@@ -43,141 +43,141 @@ namespace Constants {
     }
 
     // DECK
-    inline int DefaultDeckSize(){
-        return 20;
+    static int DefaultDeckSize(){
+        return 13;
     }
-    inline std::string DefaultDeckName(){
+    static std::string DefaultDeckName(){
         return "Default Deck Name";
     }
 
     // ATTACK
-    inline int DefaultAttackCost(){
+    static int DefaultAttackCost(){
         return 10;
     }
-    inline EnergyType DefaultAttackType(){
+    static EnergyType DefaultAttackType(){
         return EnergyType_Undefined;
     }
-    inline std::string DefaultAttackName(){
+    static std::string DefaultAttackName(){
         return "Default Attack Name";
     }
-    inline std::string DefaultAttackDescription(){
+    static std::string DefaultAttackDescription(){
         return "Default Attack Description";
     }
 
     // CARD
-    inline int DefaultCardId(){
+    static int DefaultCardId(){
         return -1;
     }
-    inline std::string DefaultCardName(){
+    static std::string DefaultCardName(){
         return "Default Card Name";
     }
-    inline std::string DefaultCardDescription(){
+    static std::string DefaultCardDescription(){
         return "Default Card Description";
     }
-    inline CardType DefaultCardType(){
+    static CardType DefaultCardType(){
         return CardType_Undefined;
     }
 
-    inline int DefaultRandomCardPrice(){
+    static int DefaultRandomCardPrice(){
         return 10;
     }
 
 
 
     // CREATURE
-    inline int DefaultCreatureLife(){
+    static int DefaultCreatureLife(){
         return 100;
     }
 
     // ENERGY
-    inline int DefaultEnergy(){
+    static int DefaultEnergy(){
         return 5;
     }
-    inline EnergyType DefaultEnergyType(){
+    static EnergyType DefaultEnergyType(){
         return EnergyType_Undefined;
     }
 
     // POWER
-    inline int DefaultPowerStats(){
+    static int DefaultPowerStats(){
         return -1;
     }
-    inline PowerType DefaultPowerType(){
+    static PowerType DefaultPowerType(){
         return PowerType_Undefined;
     }
 
-    inline int DefaultDamageAttack(){
+    static int DefaultDamageAttack(){
         return 0;
     }
 
     // GRAPHICS
-    inline std::string DefaultFont(){
+    static std::string DefaultFont(){
         return "Prototype.ttf";
     }
 
     // GCARDS
-    inline int DefaultCardWidth(){
+    static int DefaultCardWidth(){
         return 250;
     }
-    inline int DefaultCardHeight(){
+    static int DefaultCardHeight(){
         return 450;
     }
-    inline float DefaultCardOutlineThickness(){
-        return -3.0f; // inline
+    static float DefaultCardOutlineThickness(){
+        return -3.0f; // static
     }
-    inline int DefaultCardFontSize(){
+    static int DefaultCardFontSize(){
         return 24;
     }
-    inline sf::Color DefaultCardTextColor(){
+    static sf::Color DefaultCardTextColor(){
         return sf::Color::White;
     }
 
     // G ENERGY CARD
-    inline sf::Color DefaultEnergyCardColor(){
+    static sf::Color DefaultEnergyCardColor(){
         return sf::Color(150, 50, 250);
     }
-    inline sf::Color DefaultEnergyCardOutlineColor(){
+    static sf::Color DefaultEnergyCardOutlineColor(){
         return sf::Color(50, 255, 0);
     }
-    inline sf::Color DefaultEnergyCardTextColor(){
+    static sf::Color DefaultEnergyCardTextColor(){
         return sf::Color::White;
     }
 
     // G CREATURE CARD
-    inline sf::Color DefaultCreatureCardColor(){
+    static sf::Color DefaultCreatureCardColor(){
         return sf::Color(0, 0, 100);
     }
-    inline sf::Color DefaultCreatureCardOutlineColor(){
+    static sf::Color DefaultCreatureCardOutlineColor(){
         return sf::Color(250, 150, 100);
     }
-    inline sf::Color DefaultCreatureCardTextColor(){
+    static sf::Color DefaultCreatureCardTextColor(){
         return sf::Color(255, 0, 0);
     }
 
     // G POWER CARD
-    inline sf::Color DefaultPowerCardColor(){
+    static sf::Color DefaultPowerCardColor(){
         return sf::Color(150, 50, 250);
     }
-    inline sf::Color DefaultPowerCardOutlineColor(){
+    static sf::Color DefaultPowerCardOutlineColor(){
         return sf::Color(0, 255, 10);
     }
 
     // G ENERGY
-    inline int DefaultEnergyImageSize(){
+    static int DefaultEnergyImageSize(){
         return 256; // 256x256
     }
-    inline int DefaultEnergyFontSize(){
+    static int DefaultEnergyFontSize(){
         return 18;
     }
-    inline std::string DefaultEnergyChili(){
+    static std::string DefaultEnergyChili(){
         return "chili.png";
     }
-    inline std::string DefaultEnergyTaco(){
+    static std::string DefaultEnergyTaco(){
         return "taco.png";
     }
-    inline std::string DefaultEnergyIceCream(){
+    static std::string DefaultEnergyIceCream(){
         return "ice-cream.png";
     }
-    inline std::string DefaultEnergyBlueberries(){
+    static std::string DefaultEnergyBlueberries(){
         return "blueberries.png";
     }
 

@@ -11,7 +11,7 @@
 #include "Utils.h"
 
 namespace GameUtils {
-    inline const std::map<int, const Card*> loadGameCards(){
+    static const std::map<int, const Card*> loadGameCards(){
         std::map<int, const Card*> cards;
         std::ifstream file(Constants::DefaultCardsFilename().c_str());
         if(file){
@@ -45,7 +45,7 @@ namespace GameUtils {
         return cards;
     }
 
-    inline bool saveGameCards(std::vector<const Card*> cards){
+    static bool saveGameCards(std::vector<const Card*> cards){
         std::ofstream file(Constants::DefaultCardsFilename().c_str());
         if(file){
             file << cards.size() << std::endl;
@@ -59,9 +59,9 @@ namespace GameUtils {
         return false;
     }
 
-    const std::map<int, const Card*> Cards = loadGameCards();
+    static const std::map<int, const Card*> Cards = loadGameCards();
 
-    inline std::vector<const Card*> cardsVector(){
+    static std::vector<const Card*> cardsVector(){
         std::vector<const Card*> cards;
         for(auto it : Cards){
             cards.push_back(it.second);
@@ -69,13 +69,13 @@ namespace GameUtils {
         return cards;
     }
 
-    inline bool addCardToGame(const Card *newCard){
+    static bool addCardToGame(const Card *newCard){
         std::vector<const Card*> cards = GameUtils::cardsVector();
         cards.push_back(newCard);
         return GameUtils::saveGameCards(cards);
     }
 
-    inline void freeCards(){
+    static void freeCards(){
         for(auto it : Cards){
             delete it.second;
         }
