@@ -38,9 +38,13 @@ namespace Constants {
         return "Default Profile Name";
     }
 
+    inline int DefaultMoneyProfile(){
+        return 500;
+    }
+
     // DECK
     static int DefaultDeckSize(){
-        return 12;
+        return 13;
     }
     static std::string DefaultDeckName(){
         return "Default Deck Name";

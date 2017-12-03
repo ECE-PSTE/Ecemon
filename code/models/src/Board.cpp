@@ -120,8 +120,10 @@ void Board::playPower(const PowerCard* cardPlay){
             getpEnemyBoard()->playerTakeDamage(cardPlay->getStats());
             break;
         case PowerType_Jesus:
-            getDeckPlay()->addCard(getCreatureGraveyard().getCards()[getCreatureGraveyard().getCards().size() - 1]);
-            getpCreatureGraveyard()->getCards().pop_back();
+            if(m_creatureGraveyard.getCards().size() != 0){
+                getDeckPlay()->addCard(getCreatureGraveyard().getCards()[getCreatureGraveyard().getCards().size() - 1]);
+                getpCreatureGraveyard()->getCards().pop_back();
+            }
             break;
         case PowerType_President:
             getpEffectsOnPlayer()->setDamage(0);
@@ -146,6 +148,10 @@ void Board::endGame(){
 
     for(const auto & elem : getpPowerEnergyGraveyard()->getCards()){
         getDeckPlay()->addCard(elem);
+    }
+
+    if(m_creatureOnBoard != NULL){
+        getDeckPlay()->addCard(m_creatureOnBoard);
     }
 }
 
