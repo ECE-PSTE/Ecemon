@@ -84,7 +84,6 @@ inline void gameLoopMultiplayer(Profile* profile, std::string deck){
     socket->addListener("playCardDialog", onCardPlayed);
     socket->addListener("attackDialog", onAttack);
     if(socket->connect()){
-        socket->listenOnBackground();
         std::cout << "Connected to server !" << std::endl;
     }
     else{
