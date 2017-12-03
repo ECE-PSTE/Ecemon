@@ -40,7 +40,7 @@ namespace Constants {
 
     // DECK
     inline int DefaultDeckSize(){
-        return 12;
+        return 20;
     }
     inline std::string DefaultDeckName(){
         return "Default Deck Name";
