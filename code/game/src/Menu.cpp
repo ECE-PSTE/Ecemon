@@ -72,7 +72,7 @@ bool menuPrincipal(s_DataMenu* data){
                 std::cout <<"\nImpossible : no admin mode\n\n";
             }
             return true;
-            break
+            break;
         case 2:
             switchAdmin(data);
             return true;
@@ -130,21 +130,22 @@ bool menuPrincipal(s_DataMenu* data){
 
 void addtheCard(){
     std::cout << "Wich type of card do you wante to create : \n\t1) Creature\n\t2) Power\n\t3) Energy\n\t 4) Cancel\n";
+    Card* card;
     switch (menuChoice({1,2,3,4})) {
         case 1:
-            Card* p = new CreatureCard();
-            GameUtils::addCardToGame(p);
-            CardUtils::creaturerajout(p);
+            card = new CreatureCard();
+            CardUtils::creaturerajout(card);
+            GameUtils::addCardToGame(card);
             break;
         case 2:
-            Card* p = new PowerCard();
-            CardUtils::pouvoirajout(p);
-            GameUtils::addCardToGame(p);
+            card = new PowerCard();
+            CardUtils::pouvoirajout(card);
+            GameUtils::addCardToGame(card);
             break;
         case 3:
-            Card* p = new EnergyCard();
-            CardUtils::ernergyajout(p);
-            GameUtils::addCardToGame(p);
+            card = new EnergyCard();
+            CardUtils::energyajout(card);
+            GameUtils::addCardToGame(card);
             break;
         case 4:
             break;

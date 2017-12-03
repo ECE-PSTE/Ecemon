@@ -3,6 +3,7 @@
 
 #include "../../entities/include/Profile.h"
 #include "../../utils/ProfileUtils.h"
+#include "../../utils/CardUtils.h"
 #include "../src/LocalGame.cpp"
 #include "../src/OnlineGame.cpp"
 
