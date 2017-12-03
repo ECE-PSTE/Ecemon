@@ -115,6 +115,11 @@ inline void startOnlineGameLoop(Profile* profile, std::string deck){
 
     sf::RenderWindow window(sf::VideoMode(1000, 1080), "ECEMON", sf::Style::Fullscreen);
 
+    sf::Music music;
+    assert(music.openFromFile("../graphics/sounds/"+Constants::DefaultIntroSound()));
+    music.setLoop(true);
+    music.play();
+
     sf::RectangleShape lineSeparator(sf::Vector2f(window.getSize().y, 3));
     lineSeparator.setFillColor(sf::Color::White);
     lineSeparator.setPosition(window.getSize().x/2, 0);
@@ -320,6 +325,8 @@ inline void startOnlineGameLoop(Profile* profile, std::string deck){
         }
         window.display();
     }
+
+    music.stop();
 
     delete uid;
     delete socket;

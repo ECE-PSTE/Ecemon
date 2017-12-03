@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 
 #include "../../entities/include/CreatureCard.h"
 #include "../../entities/include/EnergyCard.h"
@@ -48,6 +49,11 @@ inline void startLocalGameLoop(Profile* profile1, std::string deck1, Profile* pr
     combat.startCombat(profile1, deck1, profile2, deck2);
 
     sf::RenderWindow window(sf::VideoMode(1920, 1080), "ECEMON", sf::Style::Fullscreen);
+
+    sf::Music music;
+    assert(music.openFromFile("../graphics/sounds/"+Constants::DefaultIntroSound()));
+    music.setLoop(true);
+    music.play();
 
     sf::RectangleShape lineSeparator(sf::Vector2f(window.getSize().y, 3));
     lineSeparator.setFillColor(sf::Color::White);
@@ -232,6 +238,8 @@ inline void startLocalGameLoop(Profile* profile1, std::string deck1, Profile* pr
         }
         window.display();
     }
+
+    music.stop();
 }
 
 #endif

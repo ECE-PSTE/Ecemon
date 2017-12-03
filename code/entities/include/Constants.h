@@ -24,11 +24,9 @@ namespace Constants {
     static std::string DefaultProfilesFilename(){
         return "GameProfiles";
     }
-
     static int DefaultLifePointBoard(){
         return 100;
     }
-
     static std::string DefaultPasswordAdmin(){
         return "omarlebg";
     }
@@ -112,6 +110,9 @@ namespace Constants {
     // GRAPHICS
     static std::string DefaultFont(){
         return "Prototype.ttf";
+    }
+    static std::string DefaultIntroSound(){
+        return "intro.wav";
     }
 
     // GCARDS

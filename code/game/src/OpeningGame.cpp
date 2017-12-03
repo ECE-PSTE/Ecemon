@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 
 #include "../../graphics/include/GCreatureCard.h"
 
@@ -11,6 +12,11 @@
 
 static void startOpening() {
     sf::RenderWindow window(sf::VideoMode(1920, 1080), "ECEMON", sf::Style::Fullscreen);
+
+    sf::Music music;
+    assert(music.openFromFile("../graphics/sounds/"+Constants::DefaultIntroSound()));
+    music.setLoop(true);
+    music.play();
 
     GCreatureCard cartman(&window,
         sf::Vector2f(
@@ -70,7 +76,7 @@ static void startOpening() {
     float end = window.getSize().x-Constants::DefaultCardWidth()/2.0f;
     bool animationFinished = false;
     int deltaTimeMilli = 600;
-    int timeBeforeAnimation = 1000;
+    int timeBeforeAnimation = 1500;
     sf::Clock timer;
 
     while (window.isOpen())
@@ -116,6 +122,8 @@ static void startOpening() {
         }
         window.display();
     }
+
+    music.stop();
 }
 
 #endif
