@@ -9,11 +9,9 @@ Combat::~Combat(){
 }
 
 int Combat::askEndGame(){
-    std::cout << "P1 : ";
     if(!m_boardP1.playerAlive()){
         return 2;
     }
-    std::cout << "P2 : ";
     if(!m_boardP2.playerAlive()){
         return 1;
     }

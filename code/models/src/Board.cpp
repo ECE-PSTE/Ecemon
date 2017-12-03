@@ -59,17 +59,15 @@ void Board::startGame(){
 
 bool Board::stillAliveCreatureDeck(){
     if(m_creatureOnBoard != NULL){
-        std::cout << "Creature on Board\n";
         return true;
     }
 
     for(auto & elem : m_deckPlay->getCards()){
         if(elem->type() == CardType_Creature){
-            std::cout << "Creature in Deck\n";
             return true;
         }
     }
-    std::cout<< "Dead\n";
+
     return false;
 }
 
