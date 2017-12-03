@@ -14,7 +14,7 @@ int menuChoice(std::vector<int> vectorChoice){
         getline(std::cin, strChoice);
         intChoice = Utils::toInt(strChoice);
     }
-    system("cls");
+    system(clearConsoleCmd);
     return intChoice;
 }
 
@@ -349,12 +349,12 @@ bool creatDeckInProgresse(Profile* p, Deck* d){
             if(p->getpCards()->getCards()[i]->getId() == nb){
                 d->addCard(p->getpCards()->getCards()[i]);
                 p->getpCards()->removeCard(p->getpCards()->getCards()[i]);
-                system("cls");
+                system(clearConsoleCmd);
                 std::cout << "Add Done\n\n";
                 return true;
             }
         }
-        system("cls");
+        system(clearConsoleCmd);
         std::cout << "No add of a no existing ID in collection\n\n";
         return true;
     }
@@ -364,16 +364,16 @@ bool creatDeckInProgresse(Profile* p, Deck* d){
             if(d->getCards()[i]->getId() == nb){
                 p->getpCards()->addCard(d->getCards()[i]);
                 d->removeCard(d->getCards()[i]);
-                system("cls");
+                system(clearConsoleCmd);
                 std::cout << "Delete Done\n\n";
                 return true;
             }
         }
-        system("cls");
+        system(clearConsoleCmd);
         std::cout << "No delete of a no existing ID in collection\n\n";
         return true;
     }
-    system("cls");
+    system(clearConsoleCmd);
     std::cin.ignore();
     std::cout<< "Deck Save in your profile\n\n";
 
@@ -466,18 +466,18 @@ void lunchGame(s_DataMenu* data){
     std::string nameDeckP1;
     std::string nameDeckP2;
 
-    Profile* profileP1;
-    Profile* profileP2;
+    Profile* profileP1 = NULL;
+    Profile* profileP2 = NULL;
 
-    loadProfileAndDeck(data, profileP1, &nameDeckP1);
-    loadProfileAndDeck(data, profileP2, &nameDeckP2);
+    loadProfileAndDeck(data, &profileP1, &nameDeckP1);
+    loadProfileAndDeck(data, &profileP2, &nameDeckP2);
 
     if(profileP1 == profileP2 && nameDeckP1 == nameDeckP2){
-        system("cls");
+        system(clearConsoleCmd);
         std::cout << "You can play with the same profile but it be must between two diffrent Deck\n";
     }
     else{
-        system("cls");
+        system(clearConsoleCmd);
         std::cout << "Game in progress...\n";
         gameLoop(profileP1, nameDeckP1, profileP2, nameDeckP2);
         std::cout<< "End of game !\n\n";
@@ -485,7 +485,7 @@ void lunchGame(s_DataMenu* data){
 
 }
 
-void loadProfileAndDeck(s_DataMenu* data, Profile* pPlay, std::string* nNameDeck){
+void loadProfileAndDeck(s_DataMenu* data, Profile** pPlay, std::string* nNameDeck){
     std::string nameProfile;
     *nNameDeck = "";
 
@@ -495,15 +495,15 @@ void loadProfileAndDeck(s_DataMenu* data, Profile* pPlay, std::string* nNameDeck
     }
     std::cout << "\nName of profile To play with: ";
     getline(std::cin, nameProfile);
-    pPlay  = askProfileWithName(data, nameProfile);
-    while(pPlay == NULL){
+    *pPlay  = askProfileWithName(data, nameProfile);
+    while(*pPlay == NULL){
         std::cout << "\nThis profile name doesnt exist, enter a new name of profile To play with: ";
         getline(std::cin, nameProfile);
-        pPlay  = askProfileWithName(data, nameProfile);
+        *pPlay  = askProfileWithName(data, nameProfile);
     }
 
     std::cout << "This is the list of deck who can be play :\n";
-    for(const auto & elem : pPlay->getDecks()){
+    for(const auto & elem : (*pPlay)->getDecks()){
         std::cout << "\t" << elem->getName();
         if(elem->isComplete()){
             std::cout << "\t" << "Can Be Play";
@@ -514,7 +514,7 @@ void loadProfileAndDeck(s_DataMenu* data, Profile* pPlay, std::string* nNameDeck
     do{
         std::cout << "\nName of deck To play with: ";
         getline(std::cin, nameProfile);
-        for(const auto & elem : pPlay->getDecks()){
+        for(const auto & elem : (*pPlay)->getDecks()){
             if(!elem->isComplete() && elem->getName() == nameProfile){
                 std::cout << "Deck is existe but not complet to be play in a game\n\n";
                 break;

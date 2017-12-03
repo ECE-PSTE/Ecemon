@@ -54,15 +54,17 @@ void GCard::setSize(sf::Vector2f size){
 void GCard::setCard(const Card *card){
     m_card = card;
 
-    m_nameText.setFont(m_font);
-    m_nameText.setString(m_card->getName());
-    sf::FloatRect nameRect = m_nameText.getLocalBounds();
-    m_nameText.setOrigin(nameRect.left + nameRect.width/2.0f, nameRect.top  + nameRect.height/2.0f);
+    if(card!=NULL){
+        m_nameText.setFont(m_font);
+        m_nameText.setString(m_card->getName());
+        sf::FloatRect nameRect = m_nameText.getLocalBounds();
+        m_nameText.setOrigin(nameRect.left + nameRect.width/2.0f, nameRect.top  + nameRect.height/2.0f);
 
-    m_descriptionText.setFont(m_font);
-    m_descriptionText.setString(m_card->getDescription());
-    sf::FloatRect descRect = m_descriptionText.getLocalBounds();
-    m_descriptionText.setOrigin(descRect.left + descRect.width/2.0f, descRect.top  + descRect.height/2.0f);
+        m_descriptionText.setFont(m_font);
+        m_descriptionText.setString(m_card->getDescription());
+        sf::FloatRect descRect = m_descriptionText.getLocalBounds();
+        m_descriptionText.setOrigin(descRect.left + descRect.width/2.0f, descRect.top  + descRect.height/2.0f);
+    }
 }
 
 void GCard::setCardImage(std::string imagePath){
@@ -72,6 +74,10 @@ void GCard::setCardImage(std::string imagePath){
     m_imageSprite.setOrigin(m_imageTexture.getSize().x/2, m_imageTexture.getSize().y/2);
     float scale = getSpriteScale();
     m_imageSprite.setScale(scale, scale);
+}
+
+void GCard::setCardColor(sf::Color cardColor){
+    m_cardShape.setFillColor(cardColor);
 }
 
 void GCard::setFontSize(unsigned int size){
@@ -102,7 +108,9 @@ void GCard::update(){
 void GCard::draw(){
     GCard::update();
     m_window->draw(m_cardShape);
-    m_window->draw(m_nameText);
-    m_window->draw(m_descriptionText);
-    m_window->draw(m_imageSprite);
+    if(m_card!=NULL){
+        m_window->draw(m_nameText);
+        m_window->draw(m_descriptionText);
+        m_window->draw(m_imageSprite);
+    }
 }

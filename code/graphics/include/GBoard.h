@@ -6,6 +6,7 @@
 #include "GCreatureCard.h"
 #include "GEnergy.h"
 #include "../../models/include/Board.h"
+#include "../../utils/GraphicUtils.h"
 
 class GBoard : public Drawable{
     private:

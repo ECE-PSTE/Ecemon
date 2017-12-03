@@ -21,6 +21,11 @@ int Combat::askEndGame(){
     return 0;
 }
 
+void Combat::endTurn(){
+    m_boardP1.endCreatureTurn();
+    m_boardP2.endCreatureTurn();
+}
+
 void Combat::startCombat(Profile* player1, std::string nameDeckP1, Profile* player2, std::string nameDeckP2){
 
     m_boardP1.setNamePlayer(player1->getName());

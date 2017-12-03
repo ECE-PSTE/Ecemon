@@ -18,6 +18,9 @@ namespace Constants {
     inline std::string DefaultCardsFilename(){
         return "GameCards";
     }
+    inline std::string DefaultCardImagesFilename(){
+        return "GameCardImages";
+    }
     inline std::string DefaultProfilesFilename(){
         return "GameProfiles";
     }
