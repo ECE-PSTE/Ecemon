@@ -57,7 +57,7 @@ inline void onCardPlayed(SocketClient *socket, std::vector<std::string> messages
 }
 
 inline void onAttack(SocketClient *socket, std::vector<std::string> messages){
-    int resp = Utils::toInt(messages[1]);
+    int resp = Utils::toInt(messages[0]);
     if(resp==1){
         DATA.gameState = GameState_DoAttack;
         if(DATA.attackState==AttackState_Both){
@@ -105,7 +105,6 @@ inline void gameLoopMultiplayer(Profile* profile, std::string deck){
 
     while(DATA.firstToPlay==-1);
 
-    std::cout << "first to play : " << DATA.firstToPlay << std::endl;
     std::cout << "starting graphics..." << std::endl;
 
     // all set
@@ -138,7 +137,7 @@ inline void gameLoopMultiplayer(Profile* profile, std::string deck){
 
     int playerTurn = DATA.firstToPlay;
 
-    std::cout << "entering game loop..." << std::endl;
+    std::cout << "entering game loop... :O" << std::endl;
 
     while (window.isOpen())
     {
