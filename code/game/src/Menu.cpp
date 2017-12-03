@@ -51,18 +51,28 @@ bool menuPrincipal(s_DataMenu* data){
     <<"\n\t4) Change Profile Use"
     <<"\n\t5) Buy Cards"
     <<"\n\t6) Gestion Collection/Deck"
-    <<"\n\t7) Exit Game\n"
-    <<"\n\t8) Multiplayer Game";
+    <<"\n\t7) Multiplayer Game"
+    <<"\n\t8) Add Card to Game"
+    <<"\n\t9) Exit the Game";
 
-    switch (menuChoice({1,2,3,4,5,6,7,8})) {
+    switch (menuChoice({1,2,3,4,5,6,7,8,9})) {
         case 1:
             startLocalGame(data);
             return true;
             break;
-        case 8:
+        case 7:
             startOnlineGame(data);
             return true;
             break;
+        case 8:
+            if(data->m_admin){
+                addtheCard();
+            }
+            else{
+                std::cout <<"\nImpossible : no admin mode\n\n";
+            }
+            return true;
+            break
         case 2:
             switchAdmin(data);
             return true;
@@ -107,7 +117,7 @@ bool menuPrincipal(s_DataMenu* data){
             }
             return true;
             break;
-        case 7:
+        case 9:
             std::cout << "End of Game, all data Save \n";
             return false;
             break;
@@ -115,6 +125,33 @@ bool menuPrincipal(s_DataMenu* data){
             std::cout << "ERROR ENTER MENU PRINCIPAL\n\n";
             return false;
     }
+
+}
+
+void addtheCard(){
+    std::cout << "Wich type of card do you wante to create : \n\t1) Creature\n\t2) Power\n\t3) Energy\n\t 4) Cancel\n";
+    switch (menuChoice({1,2,3,4})) {
+        case 1:
+            Card* p = new CreatureCard();
+            GameUtils::addCardToGame(p);
+            CardUtils::creaturerajout(p);
+            break;
+        case 2:
+            Card* p = new PowerCard();
+            CardUtils::pouvoirajout(p);
+            GameUtils::addCardToGame(p);
+            break;
+        case 3:
+            Card* p = new EnergyCard();
+            CardUtils::ernergyajout(p);
+            GameUtils::addCardToGame(p);
+            break;
+        case 4:
+            break;
+        default:
+            std::cout << "ERROR CHOICE CREAT CARD\n\n";
+    }
+
 
 }
 
